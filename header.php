@@ -17,6 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
+	<style>.logo{height: 3.75rem}.site-title {display: none}</style>
 	<?php wp_head(); ?>
 </head>
 
