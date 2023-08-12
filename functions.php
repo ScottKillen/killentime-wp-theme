@@ -202,12 +202,12 @@ function emit_logo()
 
 	if (is_front_page() && !is_paged()) {
 		$html = sprintf(
-			'<span class="custom-logo-link">%1$s</span>',
+			'<span class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">%1$s</span>',
 			$svglogo
 		);
 	} else {
 		$html = sprintf(
-			'<a href="%1$s" class="custom-logo-link" rel="home">%2$s</a>',
+			'<a href="%1$s" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" rel="home">%2$s</a>',
 			esc_url(home_url('/')),
 			$svglogo
 		);
