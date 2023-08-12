@@ -17,48 +17,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<style>.logo{height: 3.75rem}.site-title {display: none}</style>
+	<style>.logo{height: 3.75rem}.site-title {display: none}.main-navigation{margin-top:auto}</style>
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
+<div id="page" class="site container">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'scottkillen' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			emit_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$scottkillen_description = get_bloginfo( 'description', 'display' );
-			if ( $scottkillen_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $scottkillen_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+		<?php emit_logo(); ?>
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'scottkillen' ); ?></button>
 			<?php
 			wp_nav_menu(
 				array(
+					'menu_class' => 'nav nav-pills',
+					'menu_id' => 'primary-menu',
+					'container' => false,
 					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
+					'add_li_class' => 'nav-item',
+					'add_link_class' => 'nav-link'
 				)
-			);
-			?>
-			<div class="darkmode-button">
-				<div class="darkmode-button-inner-left"></div>
-				<div class="darkmode-button-inner"></div>
-			</div>
+			); ?>
 		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+	</header>

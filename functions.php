@@ -215,3 +215,36 @@ function emit_logo()
 
 	echo $html;
 }
+
+function add_additional_class_on_menu_item($atts, $item, $args)
+{
+	if (isset($args->add_li_class)) {
+		$atts[] = $args->add_li_class;
+	}
+	return $atts;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_menu_item', 1, 3);
+
+function add_additional_class_on_menu_item_link($atts, $item, $args)
+{
+	if (in_array('class', $atts)) {
+		$classes = $atts['class'];
+	} else {
+		$classes = '';
+	}
+
+	if (isset($args->add_link_class)) {
+		$classes .= ' ' . $args->add_link_class;
+	}
+
+	if (!empty($atts['aria-current'])) {
+		$classes .= ' active';
+	}
+
+	if (!empty($classes)) {
+		$atts['class'] = $classes;
+	}
+
+	return $atts;
+}
+add_filter('nav_menu_link_attributes', 'add_additional_class_on_menu_item_link', 10, 3);
