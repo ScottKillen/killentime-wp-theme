@@ -49,7 +49,7 @@
 		</symbol>
 	</svg>
 
-	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom sticky-top shadow-sm">
 		<?php emit_logo(); ?>
 
 		<nav id="site-navigation" class="main-navigation">

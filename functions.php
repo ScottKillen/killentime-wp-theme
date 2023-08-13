@@ -133,8 +133,8 @@ function scottkillen_scripts()
 	 * wp_style_add_data('theme-style', 'rtl', 'replace');
    *
 	 * wp_enqueue_style('darkmode-button-style', get_theme_file_uri('darkmode-button.css'));
-	 * wp_enqueue_style('scottkillen-style', get_theme_file_uri('scottkillen.css'));
 	 */
+	wp_enqueue_style('scottkillen-style', get_theme_file_uri('/css/scottkillen.css'));
 
 	wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/js/bootstrap.bundle.js', array(), '5.0.2', false);
 	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
