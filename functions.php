@@ -182,7 +182,7 @@ if (defined('JETPACK__VERSION')) {
 function emit_logo()
 {
 	// SVG logo
-	$svglogo = '<svg><use href="#sk-logo" fill="currentColor"></use></svg>';
+	$svglogo = '<svg class="me-2" height="2em" width="2em"><use href="#sk-logo" fill="currentColor"></use></svg><span class=fs-4>Scott Killen</span>';
 
 	if (is_front_page() && !is_paged()) {
 		$html = sprintf(
