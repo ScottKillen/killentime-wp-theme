@@ -19,7 +19,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Proza+Libre:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-	<style>.logo{height: 3.75rem}.site-title {display: none}.main-navigation{margin-top:auto}.bi{width:1em;height:1em;vertical-align:-.125em;fill:currentcolor}</style>
+	<style>.bi{width:1em;height:1em;vertical-align:-.125em;fill:currentcolor}</style>
 	<?php wp_head(); ?>
 </head>
 
