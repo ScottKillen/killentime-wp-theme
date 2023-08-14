@@ -127,24 +127,9 @@ add_action('widgets_init', 'scottkillen_widgets_init');
  */
 function scottkillen_scripts()
 {
-	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '5.3.1');
-
-	/* wp_enqueue_style('theme-style', get_stylesheet_uri(), array(), _S_VERSION);
-	 * wp_style_add_data('theme-style', 'rtl', 'replace');
-   *
-	 * wp_enqueue_style('darkmode-button-style', get_theme_file_uri('darkmode-button.css'));
-	 */
 	wp_enqueue_style('scottkillen-style', get_theme_file_uri('/css/scottkillen.css'));
 
-	wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/js/bootstrap.bundle.js', array(), '5.0.2', false);
 	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
-	/*
-	 * wp_enqueue_script('dark-mode', get_template_directory_uri() . '/js/dark-mode.js', array(), _S_VERSION, true);
-	 *
-	 * if (is_singular() && comments_open() && get_option('thread_comments')) {
-	 *  wp_enqueue_script('comment-reply');
-	 * }
-	 */
 }
 add_action('wp_enqueue_scripts', 'scottkillen_scripts');
 
@@ -178,27 +163,6 @@ if (defined('JETPACK__VERSION')) {
 /**
  * Custom functions
  */
-
-function emit_logo()
-{
-	// SVG logo
-	$svglogo = '<svg class="me-2" height="2em" width="2em"><use href="#sk-logo" fill="currentColor"></use></svg><span class=fs-4>Scott Killen</span>';
-
-	if (is_front_page() && !is_paged()) {
-		$html = sprintf(
-			'<span class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">%1$s</span>',
-			$svglogo
-		);
-	} else {
-		$html = sprintf(
-			'<a href="%1$s" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" rel="home">%2$s</a>',
-			esc_url(home_url('/')),
-			$svglogo
-		);
-	}
-
-	echo $html;
-}
 
 function add_additional_class_on_menu_item($atts, $item, $args)
 {
