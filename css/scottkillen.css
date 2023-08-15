@@ -15,9 +15,13 @@
 }
 
 #site-navigation {
-  background-color: rgba(248, 249, 250, 0.8);
+  background-color: rgba(var(--bs-secondary-bg-rgb), 0.8);
 }
 
-[data-bs-theme='dark'] #site-navigation {
-  background-color: rgba(54, 60, 66, 0.8);
+#primary-menu .nav-link:not(.active) {
+  color: var(--bs-body-color);
+}
+
+#primary-menu .nav-link:not(.active):hover {
+  color: var(--bs-emphasis-color);
 }
