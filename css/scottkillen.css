@@ -1,51 +1,23 @@
+#head img.rounded-circle {
+  width: 140px;
+  height: 140px;
+}
+
 #head .title {
-    font-family: Alice,Georgia,serif;
-    font-size: 3.0625rem
-}
-
-#head .title a {
-    text-decoration: none;
-}
-
-#head .tagline {
-    display: block;
-    font-size: 14px;
-    font-size: .875rem;
-    line-height: 1.2em;
-    color: #7C7C7C;
-    margin: 5px 0 0
-}
-
-#head .tagline b {
-    font-weight: 400
-}
-
-#head .tagline a {
-    color: #5E5E5E
-}
-
-.home #head .title {
-    font-size: 49px;
-    font-size: 3.0625rem
-}
-
-.home #head .tagline {
-    font-size: 16px;
-    font-size: 1rem;
-    margin: 15px 0 0
+  font-family: 'Roboto Slab', serif;
 }
 
 .bi {
   width: 1em;
   height: 1em;
-  vertical-align: -.125em;
-  fill:currentcolor
+  vertical-align: -0.125em;
+  fill: currentcolor;
 }
 
 #site-navigation {
-  background-color: rgba(248,249,250,.8);
+  background-color: rgba(248, 249, 250, 0.8);
 }
 
-[data-bs-theme=dark] #site-navigation {
-  background-color: rgba(54,60,66,.80);
+[data-bs-theme='dark'] #site-navigation {
+  background-color: rgba(54, 60, 66, 0.8);
 }
