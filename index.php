@@ -20,7 +20,7 @@ get_header();
   else :
 	?>
   <div class="row">
-		<main id="primary" class="site-main col-lg-9">
+		<main id="primary" class="site-main col-md-8">
   <?php
   endif;
 			if ( have_posts() ) :
