@@ -17,7 +17,7 @@
 				<svg class="bi link-body-emphasis" width="1.75em" height="1.75em"><use xlink:href="#sk-logo" fill="currentColor"></use></svg>
 			</a></p>
 			<ul class="list-unstyled d-flex">
-				<li class="ms-3"><a class="link-body-emphasis" href="https://ttocs.io/@scott" rel="me"><i class="fa-brands fa-mastodon"></i><a></li>
+				<li class="ms-3"><a class="link-body-emphasis" href="https://ttocs.io/@scott" rel="me"><i class="fa-brands fa-mastodon"></i></a></li>
 				<li class="ms-3"><a class="link-body-emphasis" href="https://github.com/ScottKillen" rel="me"><i class="fa-brands fa-github"></i></a></li>
 				<li class="ms-3"><a class="link-body-emphasis" href="https://open.spotify.com/user/sdkillen" rel="me"><i class="fa-brands fa-spotify"></i></a></li>
 				<li class="ms-3"><a class="link-body-emphasis" href="https://www.flickr.com/photos/scottkillen" rel="me"><i class="fa-brands fa-flickr"></i></a></li>

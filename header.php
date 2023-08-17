@@ -13,12 +13,12 @@
 <!doctype html>
 <html <?php language_attributes(); ?> data-bs-theme="light">
 <head>
-	<meta charset="<?php bloginfo('charset'); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="profile" href="https://gmpg.org/xfn/11" />
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet" />
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
 	<?php wp_head(); ?>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/515e1e91da.js" crossorigin="anonymous"></script>
@@ -56,13 +56,13 @@
 			<div id="head" class="text-center pt-3 pb-5">
 				<h1 id="logo" class="text-center">
 					<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
-					<h1 class="title display-6">Killentime</h1>
-					<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><a class="text-body-tertiary text-decoration-none" href>(for whatever it's worth)</a></span>
+					<span class="title display-6">Killentime</span>
+					<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><span class="text-body-tertiary">(for whatever it's worth)</span></span>
 				</h1><!-- #logo -->
 			</div><!-- #head -->
 		</header> <!-- #header -->
 	<?php endif; ?>
-	<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm" id="site-navigation" class="main-navigation">
+	<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm main-navigation" id="site-navigation">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
