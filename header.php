@@ -73,7 +73,7 @@
 				<?php
 				wp_nav_menu(
 					array(
-						'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-pills',
+						'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-underline',
 						'menu_id' => 'primary-menu',
 						'container' => false,
 						'theme_location' => 'menu-1',

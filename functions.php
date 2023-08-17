@@ -188,7 +188,7 @@ function add_additional_class_on_menu_item_link($atts, $item, $args)
 	}
 
 	if (!empty($atts['aria-current'])) {
-		$classes .= ' active';
+		$classes .= ' active border-primary';
 	}
 
 	if (!empty($classes)) {
