@@ -53,10 +53,10 @@
 
 	<?php if ( is_front_page() && is_home() ) : ?>
 		<header id="header">
-			<div id="head" class="text-center py-5">
+			<div id="head" class="text-center pt-3 pb-5">
 				<h1 id="logo" class="text-center">
-					<img class="rounded-circle d-block overflow-hidden border bg-body-secondary border-secondary mx-auto my-0" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
-					<span class="title fs-1">Killentime</span>
+					<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
+					<h1 class="title display-6">Killentime</h1>
 					<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><a class="text-body-tertiary text-decoration-none" href>(for whatever it's worth)</a></span>
 				</h1><!-- #logo -->
 			</div><!-- #head -->
