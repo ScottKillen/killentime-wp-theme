@@ -11,7 +11,6 @@
 
 ?>
 
-<div class="container">
 	<footer id="colophon" class="site-footer">
 		<div class="d-flex flex-column flex-sm-row justify-content-between pt-2 my-4 border-top">
       <p>© <?php echo date('Y'); ?> Scott Killen. All rights reserved.<a href="/" class="mb-3 ms-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
@@ -26,7 +25,6 @@
 			</ul>
 		</div>
 	</footer>
-</div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
