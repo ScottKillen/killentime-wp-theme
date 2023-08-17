@@ -50,6 +50,8 @@
 		</symbol>
 	</svg>
 
+
+	<?php if ( is_front_page() && is_home() ) : ?>
 	<header id="header">
 		<div id="head" class="text-center py-5">
 			<h1 id="logo" class="text-center">
@@ -59,6 +61,7 @@
 			</h1><!-- #logo -->
 		</div><!-- #head -->
 	</header> <!-- #header -->
+	<?php endif; ?>
 	<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm" id="site-navigation" class="main-navigation">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
