@@ -113,7 +113,7 @@
 							</ul>
 						</li>
 					</ul>
-			</div>
-			<div> <!-- #navbar1 -->
+				</div>
+			</div> <!-- #navbar1 -->
 		</div>
 	</nav><!-- #site-navigation -->
