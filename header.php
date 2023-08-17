@@ -68,8 +68,11 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse d-lg-flex" id="navbar1">
-				<a class="navbar-brand col-lg-3 me-0 invisible" id="brand" hrf="/">Killentime</a>
-				<?php
+				<?php if ( is_front_page() && is_home() ) : ?>
+					<a class="navbar-brand col-lg-3 me-0 invisible" id="brand" href="/">Killentime</a>
+				<?php else : ?>
+					<a class="navbar-brand col-lg-3 me-0" href="/">Killentime</a>
+				<?php endif;
 				wp_nav_menu(
 					array(
 						'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-underline',
