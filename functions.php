@@ -131,6 +131,7 @@ function scottkillen_scripts()
 	wp_enqueue_style('scottkillen', get_theme_file_uri('/css/scottkillen.css'));
 
 	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
+	wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js', array(), '1.0.0', false);
 }
 add_action('wp_enqueue_scripts', 'scottkillen_scripts');
 

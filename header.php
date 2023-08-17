@@ -52,18 +52,19 @@
 
 
 	<?php if ( is_front_page() && is_home() ) : ?>
-	<header id="header">
-		<div id="head" class="text-center py-5">
-			<h1 id="logo" class="text-center">
-				<img class="rounded-circle d-block overflow-hidden border border-secondary mx-auto my-0" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
-				<span class="title fs-1">Killentime</span>
-				<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><a class="text-body-tertiary text-decoration-none" href>(for whatever it's worth)</a></span>
-			</h1><!-- #logo -->
-		</div><!-- #head -->
-	</header> <!-- #header -->
+		<header id="header">
+			<div id="head" class="text-center py-5">
+				<h1 id="logo" class="text-center">
+					<img class="rounded-circle d-block overflow-hidden border border-secondary mx-auto my-0" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
+					<span class="title fs-1">Killentime</span>
+					<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><a class="text-body-tertiary text-decoration-none" href>(for whatever it's worth)</a></span>
+				</h1><!-- #logo -->
+			</div><!-- #head -->
+		</header> <!-- #header -->
 	<?php endif; ?>
 	<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm" id="site-navigation" class="main-navigation">
 		<div class="container-fluid">
+			<a class="navbar-brand d-none" id="brand" hrf="/">Killentime</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>

@@ -3,7 +3,7 @@
   height: 140px;
 }
 
-#head .title {
+#head .title, .navbar-brand {
   font-family: 'Roboto Slab', serif;
 }
 
