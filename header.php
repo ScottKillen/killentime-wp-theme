@@ -56,7 +56,7 @@
 		<header id="header">
 			<div id="head" class="text-center py-5">
 				<h1 id="logo" class="text-center">
-					<img class="rounded-circle d-block overflow-hidden border border-secondary mx-auto my-0" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
+					<img class="rounded-circle d-block overflow-hidden border bg-body-secondary border-secondary mx-auto my-0" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
 					<span class="title fs-1">Killentime</span>
 					<span class="tagline text-body-secondary d-block my-2 fs-6">Stuff Scott Killen says...<br /><a class="text-body-tertiary text-decoration-none" href>(for whatever it's worth)</a></span>
 				</h1><!-- #logo -->
