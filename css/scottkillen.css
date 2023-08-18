@@ -33,3 +33,7 @@
 #primary-menu .nav-link:not(.active):hover {
   color: var(--bs-emphasis-color);
 }
+
+.widget-title {
+  font-style: italic;
+}
