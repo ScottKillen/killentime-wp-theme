@@ -3,8 +3,16 @@
   height: 180px;
 }
 
-#head .title, .navbar-brand {
-  font-family: 'Roboto Slab', serif;
+:root {
+  --bs-font-header: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+#head .title, .navbar-brand, h1, h2, h3, h4, h5, h6 {
+  font-family: var(--bs-font-header);
+}
+
+#logo .tagline {
+  font-family: var(--bs-body-font-family);
 }
 
 .bi {
