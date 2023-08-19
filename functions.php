@@ -167,7 +167,6 @@ if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-
 require get_template_directory() . '/inc/widget-recent-posts.php';
 require get_template_directory() . '/inc/widget-archives.php';
 
@@ -244,17 +243,25 @@ function KT_post_class( $css_class = '', $post = null ) {
 
 function new_excerpt_more($more) {
 	global $post;
-	return '<a class="btn btn-secondary"
-	href="'. get_permalink($post->ID) . '">'.$more.'</a>';
+	return '<a class="icon-link gap-1 icon-link-hover"
+	href="'. get_permalink($post->ID) . '">'.$more.'<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
 function add_morelink_class( $link, $text )
 {
-    return str_replace(
+	$return = str_replace(
         'more-link',
-        'more-link btn btn-outline-secondary',
+        'more-link icon-link gap-1 icon-link-hover',
         $link
-    );
+  );
+
+	$return = str_replace(
+        '</a>',
+        '<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
+        $return
+  );
+
+  return $return;
 }
 add_action( 'the_content_more_link', 'add_morelink_class', 10, 2 );
