@@ -48,8 +48,8 @@ get_header();
 
 				KT_the_posts_navigation(
 					array(
-						'prev_text' => 'Previous',
-						'next_text' => 'Next',
+						'prev_text' => 'Older',
+						'next_text' => 'Newer',
 						'screen_reader_text' => '',
 						'aria_label' => 'Page navigation'
 					)

@@ -9,8 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+<article id="post-<?php the_ID(); ?>" <?php KT_post_class(); ?> >
 		<?php
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -24,11 +23,9 @@
 				<?php killentime_posted_on(); ?>
 			</p>
 		<?php endif; ?>
-	</header><!-- .entry-header -->
 
 	<?php killentime_post_thumbnail(); ?>
 
-	<div class="entry-content">
 		<?php
 		the_content(
 			sprintf(
@@ -45,14 +42,14 @@
 			)
 		);
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'killentime' ),
-				'after'  => '</div>',
-			)
-		);
+/*		wp_link_pages(
+ *			array(
+ *				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'killentime' ),
+ *				'after'  => '</div>',
+ *			)
+ *		);
+ */
 		?>
-	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
 		<?php killentime_entry_footer(); ?>

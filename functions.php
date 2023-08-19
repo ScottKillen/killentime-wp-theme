@@ -604,3 +604,24 @@ function KT_get_the_posts_navigation( $args = array() ) {
 function KT_the_posts_navigation( $args = array() ) {
 	echo KT_get_the_posts_navigation( $args );
 }
+function KT_post_class( $css_class = '', $post = null ) {
+	// Separates classes with a single space, collates classes for post DIV.
+	echo 'class="blog-post ' . esc_attr( implode( ' ', get_post_class( $css_class, $post ) ) ) . '"';
+}
+
+function new_excerpt_more($more) {
+	global $post;
+	return '<a class="btn btn-secondary"
+	href="'. get_permalink($post->ID) . '">'.$more.'</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+function add_morelink_class( $link, $text )
+{
+    return str_replace(
+        'more-link',
+        'more-link btn btn-outline-secondary',
+        $link
+    );
+}
+add_action( 'the_content_more_link', 'add_morelink_class', 10, 2 );

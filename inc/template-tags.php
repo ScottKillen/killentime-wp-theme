@@ -49,6 +49,9 @@ if ( ! function_exists( 'killentime_entry_footer' ) ) :
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
 	function killentime_entry_footer() {
+
+		return;
+
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
