@@ -167,54 +167,9 @@ if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Custom functions
- */
-
-function add_additional_class_on_menu_item($atts, $item, $args)
-{
-	if (isset($args->add_li_class)) {
-		$atts[] = $args->add_li_class;
-	}
-	return $atts;
-}
-add_filter('nav_menu_css_class', 'add_additional_class_on_menu_item', 1, 3);
-
-function posts_link_attributes() {
-  return 'class="page-link"';
-}
-
-add_filter('next_posts_link_attributes', 'posts_link_attributes');
-add_filter('previous_posts_link_attributes', 'posts_link_attributes');
-
-function add_additional_class_on_menu_item_link($atts, $item, $args)
-{
-	if (in_array('class', $atts)) {
-		$classes = $atts['class'];
-	} else {
-		$classes = '';
-	}
-
-	if (isset($args->add_link_class)) {
-		$classes .= ' ' . $args->add_link_class;
-	}
-
-	if (!empty($atts['aria-current'])) {
-		$classes .= ' active border-primary';
-	}
-
-	if (!empty($classes)) {
-		$atts['class'] = $classes;
-	}
-
-	return $atts;
-}
-add_filter('nav_menu_link_attributes', 'add_additional_class_on_menu_item_link', 10, 3);
 
 require get_template_directory() . '/inc/widget-recent-posts.php';
 require get_template_directory() . '/inc/widget-archives.php';
-
-
 
 function KT_navigation_markup( $links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '' ) {
 	if ( empty( $screen_reader_text ) ) {
