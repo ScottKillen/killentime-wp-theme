@@ -128,7 +128,7 @@ add_action('widgets_init', 'scottkillen_widgets_init');
 function scottkillen_scripts()
 {
 	wp_enqueue_style('bootstrap', get_theme_file_uri('/css/bootstrap.min.css'));
-	wp_enqueue_style('scottkillen', get_theme_file_uri('/css/scottkillen.css'));
+	wp_enqueue_style('scottkillen', get_theme_file_uri('/style.css'));
 
 	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
 
