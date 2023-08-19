@@ -132,3 +132,76 @@ function killentime_add_morelink_class( $more_link_element, $more_link_text )
   return $return;
 }
 add_action( 'the_content_more_link', 'killentime_add_morelink_class', 10, 2 );
+
+// Replace wordpress versions of functions
+
+function KT_navigation_markup( $links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '' ) {
+	if ( empty( $screen_reader_text ) ) {
+		$screen_reader_text = /* translators: Hidden accessibility text. */ __( 'Posts navigation' );
+	}
+	if ( empty( $aria_label ) ) {
+		$aria_label = $screen_reader_text;
+	}
+
+	$template = '
+	<nav class="pt-4 mt-4 border-top %1$s" aria-label="%4$s">
+		<h2 class="screen-reader-text">%2$s</h2>
+		%3$s
+	</nav>';
+
+	$template = apply_filters( 'navigation_markup_template', $template, $css_class );
+
+	return sprintf( $template, sanitize_html_class( $css_class ), esc_html( $screen_reader_text ), $links, esc_attr( $aria_label ) );
+}
+
+
+function KT_get_the_posts_navigation( $args = array() ) {
+	global $wp_query;
+
+	$navigation = '';
+
+	// Don't print empty markup if there's only one page.
+	if ( $wp_query->max_num_pages > 1 ) {
+		// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
+		if ( ! empty( $args['screen_reader_text'] ) && empty( $args['aria_label'] ) ) {
+			$args['aria_label'] = $args['screen_reader_text'];
+		}
+
+		$args = wp_parse_args(
+			$args,
+			array(
+				'prev_text'          => __( 'Older posts' ),
+				'next_text'          => __( 'Newer posts' ),
+				'screen_reader_text' => __( 'Posts navigation' ),
+				'aria_label'         => __( 'Posts' ),
+				'class'              => 'posts-navigation',
+			)
+		);
+
+		$next_link = get_previous_posts_link( $args['next_text'] );
+		$prev_link = get_next_posts_link( $args['prev_text'] );
+
+		$navigation .= '<ul class="pagination">';
+
+		if ( $prev_link ) {
+			$navigation .= '<li class="page-item">' . $prev_link . '</li>';
+		}
+
+		if ( $next_link ) {
+			$navigation .= '<li class="page-item">' . $next_link . '</li>';
+		}
+		$navigation .= '</ul>';
+
+		$navigation = KT_navigation_markup( $navigation, $args['class'], $args['screen_reader_text'], $args['aria_label'] );
+	}
+
+	return $navigation;
+}
+
+function KT_the_posts_navigation( $args = array() ) {
+	echo KT_get_the_posts_navigation( $args );
+}
+function KT_post_class( $css_class = '', $post = null ) {
+	// Separates classes with a single space, collates classes for post DIV.
+	echo 'class="blog-post ' . esc_attr( implode( ' ', get_post_class( $css_class, $post ) ) ) . '"';
+}
