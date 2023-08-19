@@ -240,28 +240,3 @@ function KT_post_class( $css_class = '', $post = null ) {
 	// Separates classes with a single space, collates classes for post DIV.
 	echo 'class="blog-post ' . esc_attr( implode( ' ', get_post_class( $css_class, $post ) ) ) . '"';
 }
-
-function new_excerpt_more($more) {
-	global $post;
-	return '<a class="icon-link gap-1 icon-link-hover"
-	href="'. get_permalink($post->ID) . '">'.$more.'<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
-}
-add_filter('excerpt_more', 'new_excerpt_more');
-
-function add_morelink_class( $link, $text )
-{
-	$return = str_replace(
-        'more-link',
-        'more-link icon-link gap-1 icon-link-hover',
-        $link
-  );
-
-	$return = str_replace(
-        '</a>',
-        '<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
-        $return
-  );
-
-  return $return;
-}
-add_action( 'the_content_more_link', 'add_morelink_class', 10, 2 );
