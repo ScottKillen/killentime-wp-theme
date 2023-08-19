@@ -14,33 +14,33 @@
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses scottkillen_header_style()
+ * @uses killentime_header_style()
  */
-function scottkillen_custom_header_setup() {
+function killentime_custom_header_setup() {
 	add_theme_support(
 		'custom-header',
 		apply_filters(
-			'scottkillen_custom_header_args',
+			'killentime_custom_header_args',
 			array(
 				'default-image'      => '',
 				'default-text-color' => '000000',
 				'width'              => 1000,
 				'height'             => 250,
 				'flex-height'        => true,
-				'wp-head-callback'   => 'scottkillen_header_style',
+				'wp-head-callback'   => 'killentime_header_style',
 			)
 		)
 	);
 }
-add_action( 'after_setup_theme', 'scottkillen_custom_header_setup' );
+add_action( 'after_setup_theme', 'killentime_custom_header_setup' );
 
-if ( ! function_exists( 'scottkillen_header_style' ) ) :
+if ( ! function_exists( 'killentime_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see scottkillen_custom_header_setup().
+	 * @see killentime_custom_header_setup().
 	 */
-	function scottkillen_header_style() {
+	function killentime_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/*

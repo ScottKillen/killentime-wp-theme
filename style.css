@@ -56,6 +56,6 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   color: var(--bs-emphasis-color);
 }
 
-.widget-title {
-  font-style: italic;
+.blog-post-meta {
+    margin-bottom: 1.25rem;
 }

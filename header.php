@@ -27,7 +27,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site container">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'scottkillen'); ?></a>
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'killentime'); ?></a>
 
 	<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
 		<symbol id="check2" viewBox="0 0 16 16">

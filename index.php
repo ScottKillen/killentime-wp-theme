@@ -46,7 +46,14 @@ get_header();
 
 				endwhile;
 
-				the_posts_navigation();
+				KT_the_posts_navigation(
+					array(
+						'prev_text' => 'Previous',
+						'next_text' => 'Next',
+						'screen_reader_text' => '',
+						'aria_label' => 'Page navigation'
+					)
+				);
 
 			else :
 
