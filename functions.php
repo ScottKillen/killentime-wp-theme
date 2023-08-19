@@ -167,5 +167,6 @@ if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+require get_template_directory() . '/inc/icons.php';
 require get_template_directory() . '/inc/widget-recent-posts.php';
 require get_template_directory() . '/inc/widget-archives.php';
