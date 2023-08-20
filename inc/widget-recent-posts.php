@@ -106,7 +106,16 @@ class KT_Widget_Recent_Posts extends WP_Widget {
 				<li>
 					<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
 					href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo $aria_current; ?>>
-						<svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+					<?php
+					if ( post_password_required($recent_post) || is_attachment($recent_post) || ! has_post_thumbnail($recent_post) ) : ?>
+						<svg class="bd-placeholder-img" fill="currentColor" height="100" width="100" aria-hidden="true" focusable="false"><use xlink:href="#newspaper"/></svg>
+					<?php
+					else : ?>
+						<svg width="100%" aria-hidden="true" focusable="false" viewbox="0 0 1 1">
+							<image href="<?php echo get_the_post_thumbnail_url($recent_post) ?>" width="100%" />
+					</svg>
+					<?php
+					endif; ?>
 						<div class="col-lg-8">
 							<h6 class="mb-0"><?php echo $title; ?></h6>
 							<?php if ( $show_date ) : ?>
