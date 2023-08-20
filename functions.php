@@ -127,6 +127,7 @@ add_action('widgets_init', 'killentime_widgets_init');
  */
 function killentime_scripts()
 {
+	wp_enqueue_style('fonts', get_theme_file_uri('/css/fonts.css'));
 	wp_enqueue_style('bootstrap', get_theme_file_uri('/css/bootstrap.min.css'));
 	wp_enqueue_style('style', get_theme_file_uri('/style.css'));
 
