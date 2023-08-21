@@ -36,7 +36,7 @@
 					<h1 id="logo" class="text-center"><a href="/" class="text-body text-decoration-none">
 						<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
 						<span class="title">Killentime</span>
-						<span class="tagline text-body-secondary d-block mt-1 mb-2 fs-6">Stuff Scott Killen says...<br /><span class="text-body-tertiary">(for whatever it's worth)</span></span>
+						<span class="tagline text-body-secondary d-block mt-1 mb-2 fs-6">Stuff Scott Killen says...<br /><span class="text-body-tertiary">(for whatever that's worth)</span></span>
 					</a></h1><!-- #logo -->
 				</div><!-- #head -->
 			</header> <!-- #header -->
