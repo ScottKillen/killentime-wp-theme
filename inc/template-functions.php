@@ -117,19 +117,29 @@ add_filter('excerpt_more', 'killentime_excerpt_more');
  */
 function killentime_add_morelink_class( $more_link_element, $more_link_text )
 {
-	$return = str_replace(
+	$offset = strpos($more_link_element, '#more-');
+
+	if ($offset) {
+			$end = strpos($more_link_element, '"',$offset);
+	}
+
+	if ($end) {
+			$more_link_element = substr_replace($more_link_element, '', $offset, $end-$offset);
+	}
+
+	$more_link_element = str_replace(
         'more-link',
         'more-link icon-link gap-1 icon-link-hover',
         $more_link_element
   );
 
-	$return = str_replace(
+	$more_link_element = str_replace(
         '</a>',
         '<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
-        $return
+        $more_link_element
   );
 
-  return $return;
+  return $more_link_element;
 }
 add_action( 'the_content_more_link', 'killentime_add_morelink_class', 10, 2 );
 
