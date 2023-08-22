@@ -12,9 +12,9 @@ if ( ! function_exists( 'killentime_posted_on' ) ) :
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
 	function killentime_posted_on() {
-		$time_string = '<svg class="bi"><title>published</title><use xlink:href="#calendar"/> </svg> %1$s';
+		$time_string = '<svg class="bi ms-2"><title>published</title><use xlink:href="#clock"/> </svg> %1$s';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string .= ' <svg class="bi"><use xlink:href="#pipe"/></svg> <svg class="bi"><title>updated</title><use xlink:href="#pen"/></svg> %2$s';
+			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
 		}
 
 		$time_string = sprintf(

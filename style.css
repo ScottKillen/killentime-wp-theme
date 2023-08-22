@@ -98,3 +98,11 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   height: 3em;
   width: 3em;
 }
+
+.post-update-meta {
+  font-size: 0.9rem !important;
+  text-decoration-color: RGBA(
+    var(--bs-secondary-rgb),
+    0.5
+  ) !important;
+}
