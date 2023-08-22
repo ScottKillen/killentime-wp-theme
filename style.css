@@ -93,3 +93,8 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
 .font-mono {
   font-family: var(--bs-font-monospace);
 }
+
+#colophon .logo {
+  height: 3em;
+  width: 3em;
+}
