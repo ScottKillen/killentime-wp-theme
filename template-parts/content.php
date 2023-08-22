@@ -20,6 +20,7 @@
 		if ( 'post' === get_post_type() ) :
 			?>
 			<p class="blog-post-meta text-secondary font-accent">
+				<?php killentime_posted_by(); ?>
 				<?php killentime_posted_on(); ?>
 			</p>
 		<?php endif; ?>
