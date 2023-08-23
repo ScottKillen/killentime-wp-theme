@@ -122,7 +122,7 @@ if ( ! function_exists( 'killentime_post_thumbnail' ) ) :
 		if ( is_singular() ) :
 			?>
 
-			<div class="post-thumbnail">
+			<div class="post-thumbnail float-end ms-3 mb-3 shadow rounded overflow-hidden">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->
 
