@@ -27,32 +27,26 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'killentime'); ?></a>
 
   <?php
-		echo KT_the_icons();
-
-		if ( is_front_page() && is_home() ) : ?>
-		<div class="container">
-			<header id="header">
-				<div id="head" class="text-center pt-3 pb-5">
-					<h1 id="logo" class="text-center"><a href="/" class="text-body text-decoration-none">
-						<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
-						<span class="title">Killentime</span>
-						<span class="tagline text-body-secondary d-block mt-1 mb-2 fs-6">Stuff Scott Killen says...<br /><span class="text-body-tertiary">(for whatever that's worth)</span></span>
-					</a></h1><!-- #logo -->
-				</div><!-- #head -->
-			</header> <!-- #header -->
+		echo KT_the_icons(); ?>
+	<div class="container">
+		<header id="header">
+			<div id="head" class="text-center pt-3 pb-5">
+				<h1 id="logo" class="text-center"><a href="/" class="text-body text-decoration-none">
+					<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo" />
+					<span class="title">Killentime</span>
+					<span class="tagline text-body-secondary d-block mt-1 mb-2 fs-6">Stuff Scott Killen says...<br /><span class="text-body-tertiary">(for whatever that's worth)</span></span>
+				</a></h1><!-- #logo -->
+			</div><!-- #head -->
+		</header> <!-- #header -->
 	</div>
-	<?php endif; ?>
 	<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm main-navigation" id="site-navigation">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse d-lg-flex" id="navbar1">
-				<?php if ( is_front_page() && is_home() ) : ?>
 					<a class="navbar-brand col-lg-3 me-0 invisible" id="brand" href="/">Killentime</a>
-				<?php else : ?>
-					<a class="navbar-brand col-lg-3 me-0" href="/">Killentime</a>
-				<?php endif;
+				<?php
 				wp_nav_menu(
 					array(
 						'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-underline',
