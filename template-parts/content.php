@@ -20,8 +20,12 @@
 		if ( 'post' === get_post_type() ) :
 			?>
 			<p class="blog-post-meta text-secondary font-accent">
-				<?php killentime_posted_by(); ?>
-				<?php killentime_posted_on(); ?>
+				<?php
+				killentime_posted_by();
+				if (!is_singular()) {
+					killentime_posted_in();
+				}
+				killentime_posted_on(); ?>
 			</p>
 		<?php endif; ?>
 

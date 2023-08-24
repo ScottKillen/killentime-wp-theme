@@ -12,7 +12,7 @@ if ( ! function_exists( 'killentime_posted_on' ) ) :
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
 	function killentime_posted_on() {
-		$time_string = '<svg class="bi ms-2"><title>published</title><use xlink:href="#clock"/> </svg> %1$s';
+		$time_string = '<svg class="bi"><title>published</title><use xlink:href="#clock"/> </svg> %1$s';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
 		}
@@ -36,11 +36,29 @@ if ( ! function_exists( 'killentime_posted_by' ) ) :
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html_x( 'by %s', 'post author', 'killentime' ),
-			'<span class="author vcard me-2"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+			'<span class="author vcard me-1"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
+	}
+endif;
+
+if ( ! function_exists( 'killentime_posted_in' ) ) :
+	/**
+	 * Prints HTML with meta information for the post's category
+	 */
+	function killentime_posted_in() {
+		$categories = get_the_category();
+		if (empty($categories)) {
+			return;
+		}
+
+		if ($categories[0]->name === "Uncategorized") {
+			return;
+		}
+
+		echo 'in <a class="me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="'.esc_url(get_category_link($categories[0]->term_id)).'">'.esc_html($categories[0]->name)."</a>";
 	}
 endif;
 
