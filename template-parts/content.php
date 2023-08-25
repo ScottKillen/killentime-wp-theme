@@ -32,20 +32,44 @@
 	<?php killentime_post_thumbnail(); ?>
 
 		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'killentime' ),
-					array(
-						'span' => array(
-							'class' => array(),
+		if (is_singular()) {
+			the_content(
+				sprintf(
+					wp_kses(
+						/* translators: %s: Name of current post. Only visible to screen readers */
+						__('Continue reading<span class="screen-reader-text"> "%s"</span>', 'killentime'),
+						array(
+							'span' => array(
+								'class' => array(),
+							),
+						)
+					),
+					wp_kses_post(get_the_title())
+				)
+			);
+		} else {
+			if (has_excerpt()) {
+				echo '<p>'.$post->post_excerpt.'</p>';
+				echo '<a href="' . esc_url( get_permalink() ) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
+			} else if (strpos($post->post_content, '<!--more-->')) {
+				the_content(
+					sprintf(
+						wp_kses(
+							/* translators: %s: Name of current post. Only visible to screen readers */
+							__('Continue reading<span class="screen-reader-text"> "%s"</span>', 'killentime'),
+							array(
+								'span' => array(
+									'class' => array(),
+								),
+							)
 						),
+						wp_kses_post(get_the_title())
 					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
+				);
+			} else {
+				the_excerpt();
+			}
+		}
 
 /*		wp_link_pages(
  *			array(

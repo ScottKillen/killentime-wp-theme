@@ -104,8 +104,8 @@ add_filter('nav_menu_link_attributes', 'killentime_add_class_on_menu_item_link',
  */
 function killentime_excerpt_more($more_string) {
 	global $post;
-	return '<a class="icon-link gap-1 icon-link-hover"
-	href="'. get_permalink($post->ID) . '">'.$more_string.'<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
+	return '</p><a class="icon-link gap-1 icon-link-hover"
+	href="'. get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a><p class="d-none">';
 }
 add_filter('excerpt_more', 'killentime_excerpt_more');
 

@@ -20,7 +20,7 @@ get_header();
 				$categories = get_the_category();
 				if (!empty($categories)) {
 					if ($categories[0]->name != "Uncategorized") {
-						echo '<a class="badge bg-secondary link-body-emphasis text-decoration-none" href="'.esc_url(get_category_link($categories[0]->term_id)).'">'.esc_html($categories[0]->name)."</a>";
+						echo '<a class="badge text-bg-primary text-decoration-none" href="'.esc_url(get_category_link($categories[0]->term_id)).'">'.esc_html($categories[0]->name)."</a>";
 					}
 				}
 
