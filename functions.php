@@ -47,6 +47,9 @@ function killentime_setup()
 	 */
 	add_theme_support('post-thumbnails');
 
+	add_theme_support('disable-custom-colors');
+	add_theme_support('disable-custom-font-sizes');
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -68,18 +71,6 @@ function killentime_setup()
 			'caption',
 			'style',
 			'script',
-		)
-	);
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'killentime_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
 		)
 	);
 
