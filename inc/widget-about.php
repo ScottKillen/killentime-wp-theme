@@ -32,7 +32,17 @@ class KT_Widget_About extends WP_Widget
 ?>
 		<div class="p-4 mb-3 bg-body-tertiary rounded">
 			<h4 class="fst-italic">About</h4>
-			<p>Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+			<div class="row">
+				<div class="col-3">
+					<img class="rounded-circle border-secondary" width="100%" src="<?php echo get_theme_file_uri('/images/scott.jpg') ?>">
+				</div>
+				<div class="col">
+					<p><span class="fw-semibold">Scott Killen</span> is a technophile who serves Jesus. He has been married most
+						of his life of the love of his life. Scott has many interests and believes that healthy, respectful debates
+						promote the truth.
+					</p>
+				</div>
+			</div>
 		</div>
 <?php
 	}
