@@ -108,7 +108,6 @@ if (!function_exists('killentime_entry_footer')) :
 							<div class="relatedcontent">
 								<p class="font-title mb-0"><a href="<?php the_permalink() ?>" rel="bookmark" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover link-opacity-75 link-opacity-100-hover" title="<?php the_title(); ?>"><?php the_title(); ?></a></p>
 								<p class="text-secondary"><?php the_time('M j, Y') ?> <?php killentime_posted_in() ?></p>
-
 							</div>
 						</div>
 			<?php }

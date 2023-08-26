@@ -37,16 +37,10 @@
 		KT_home_excerpt($post);
 	}
 
-	/*		wp_link_pages(
- *			array(
- *				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'killentime' ),
- *				'after'  => '</div>',
- *			)
- *		);
- */
-	?>
-
-	<footer class="entry-footer">
-		<?php killentime_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	if (is_singular()) : ?>
+		<footer class="entry-footer">
+			<?php killentime_entry_footer(); ?>
+		</footer><!-- .entry-footer -->
+	<?php
+	endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
