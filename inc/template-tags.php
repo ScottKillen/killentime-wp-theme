@@ -12,7 +12,7 @@ if ( ! function_exists( 'killentime_posted_on' ) ) :
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
 	function killentime_posted_on() {
-		$time_string = '<svg class="bi"><title>published</title><use xlink:href="#clock"/> </svg> %1$s';
+		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#clock"/></svg> %1$s';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
 		}
@@ -68,60 +68,18 @@ if ( ! function_exists( 'killentime_entry_footer' ) ) :
 	 */
 	function killentime_entry_footer() {
 
-		return;
-
 		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'killentime' ) );
-			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'killentime' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
+		if ('post' === get_post_type()) {
 
-			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'killentime' ) );
-			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'killentime' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-		}
-
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link">';
-			comments_popup_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'killentime' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				)
+			$before_tag = '<span class="badge text-bg-primary rounded-pill">';
+			$after_tag = '</span>';
+			$tags_title = '<div class="py-3 my-2 border-top"><div class="shadow rounded bg-primary-subtle border p-2"><p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#hashtag"/></svg> Tags</p>';
+			the_tags(
+				$tags_title . '<div class="d-flex gap-2">' . $before_tag,
+				$after_tag . $before_tag,
+				$after_tag . '</div></div></div>'
 			);
-			echo '</span>';
 		}
-
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'killentime' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
 	}
 endif;
 

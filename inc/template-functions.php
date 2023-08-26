@@ -138,7 +138,18 @@ function killentime_add_morelink_class( $more_link_element, $more_link_text )
 }
 add_action( 'the_content_more_link', 'killentime_add_morelink_class', 10, 2 );
 
+// add custom class to tag
+function add_class_the_tags($html)
+{
+	$postid = get_the_ID();
+	$html = str_replace('<a', '<a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover"', $html);
+	return $html;
+}
+add_filter('the_tags', 'add_class_the_tags');
+
+//
 // Replace wordpress versions of functions
+//
 
 function KT_navigation_markup( $links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '' ) {
 	if ( empty( $screen_reader_text ) ) {
