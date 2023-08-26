@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The main template file
  *
@@ -13,61 +14,50 @@
  */
 
 get_header();
-  if ( ! is_active_sidebar( 'sidebar-1' ) ) :
-	?>
-	<main id="primary" class="site-main">
-  <?php
-  else :
-	?>
-  <div class="row">
-		<main id="primary" class="site-main col-md-8">
-  <?php
-  endif;
-			if ( have_posts() ) :
+?>
+<div class="row">
+	<main id="primary" class="site-main col-md-8">
+		<?php
+		if (have_posts()) :
 
-				if ( is_home() && ! is_front_page() ) :
-					?>
-					<header>
-						<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-					</header>
-					<?php
-				endif;
+			if (is_home() && !is_front_page()) :
+		?>
+				<header>
+					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				</header>
+		<?php
+			endif;
 
-				/* Start the Loop */
-				while ( have_posts() ) :
-					the_post();
+			/* Start the Loop */
+			while (have_posts()) :
+				the_post();
 
-					/*
+				/*
 					* Include the Post-Type-specific template for the content.
 					* If you want to override this in a child theme, then include a file
 					* called content-___.php (where ___ is the Post Type name) and that will be used instead.
 					*/
-					get_template_part( 'template-parts/content', get_post_type() );
+				get_template_part('template-parts/content', get_post_type());
 
-				endwhile;
+			endwhile;
 
-				KT_the_posts_navigation(
-					array(
-						'prev_text' => 'Older',
-						'next_text' => 'Newer',
-						'screen_reader_text' => '',
-						'aria_label' => 'Page navigation'
-					)
-				);
+			KT_the_posts_navigation(
+				array(
+					'prev_text' => 'Older',
+					'next_text' => 'Newer',
+					'screen_reader_text' => '',
+					'aria_label' => 'Page navigation'
+				)
+			);
 
-			else :
+		else :
 
-				get_template_part( 'template-parts/content', 'none' );
+			get_template_part('template-parts/content', 'none');
 
-			endif;
-			?>
+		endif;
+		?>
 
-		</main><!-- #main -->
+	</main><!-- #main -->
 
 	<?php get_sidebar();
-  if ( is_active_sidebar( 'sidebar-1' ) ) :
-	?>
-  </div>
-	  <?php
-  endif;
-  get_footer(); ?>
+	get_footer(); ?>

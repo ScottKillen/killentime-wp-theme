@@ -101,7 +101,7 @@ function killentime_widgets_init()
 {
 	register_sidebar(
 		array(
-			'name' => esc_html__('Sidebar', 'killentime'),
+			'name' => esc_html__('Page Sidebar', 'killentime'),
 			'id' => 'sidebar-1',
 			'description' => esc_html__('Add widgets here.', 'killentime'),
 			'before_widget' => '',
