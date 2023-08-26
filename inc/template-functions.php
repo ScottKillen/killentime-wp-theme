@@ -147,6 +147,7 @@ function add_class_the_tags($html)
 }
 add_filter('the_tags', 'add_class_the_tags');
 
+
 //
 // Replace wordpress versions of functions
 //
@@ -244,5 +245,53 @@ function KT_home_excerpt($post) {
 	} else {
 		the_excerpt();
 	}
+}
 
+function KT_the_comments_pagination($args = array())
+{
+	$links = KT_get_the_comments_pagination($args);
+	echo $links;
+}
+
+function KT_get_the_comments_pagination($args = array())
+{
+	$navigation = '';
+
+	// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
+	if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
+		$args['aria_label'] = $args['screen_reader_text'];
+	}
+
+	$args         = wp_parse_args(
+		$args,
+		array(
+			'screen_reader_text' => __('Comments navigation'),
+			'aria_label'         => __('Comments'),
+			'class'              => 'comments-pagination',
+		)
+	);
+	$args['echo'] = false;
+
+	// Make sure we get a string back. Plain is the next best thing.
+	if (isset($args['type']) && 'array' === $args['type']) {
+		$args['type'] = 'plain';
+	}
+
+	$links = paginate_comments_links($args);
+
+	if ($links) {
+		$navigation = _navigation_markup($links, $args['class'], $args['screen_reader_text'], $args['aria_label']);
+		$navigation = str_replace('<div class="nav-links">', '<ul class="pagination">', $navigation);
+		$navigation = str_replace('</div>', '</ul>', $navigation);
+		$navigation = str_replace('</a>', '</ali>', $navigation);
+		$navigation = str_replace('</ali>', '</a></li>', $navigation);
+		$navigation = str_replace('<a cl', '<lia', $navigation);
+		$navigation = str_replace('<lia', '<li class="page-item"><a cl', $navigation);
+		$navigation = str_replace('page-numbers', 'page-link', $navigation);
+		$navigation = str_replace('current', 'active', $navigation);
+		$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#chevrons-left"/></svg>', $navigation);
+		$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#chevrons-right"/></svg>', $navigation);
+	}
+
+	return $navigation;
 }
