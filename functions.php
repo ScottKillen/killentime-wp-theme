@@ -110,6 +110,17 @@ function killentime_widgets_init()
 			'after_title' => '</h4>',
 		)
 	);
+	register_sidebar(
+		array(
+			'name' => esc_html__('Post Sidebar', 'killentime'),
+			'id' => 'sidebar-2',
+			'description' => esc_html__('Add widgets here.', 'killentime'),
+			'before_widget' => '',
+			'after_widget' => '',
+			'before_title' => '<h4 class="fst-italic">',
+			'after_title' => '</h4>',
+		)
+	);
 }
 add_action('widgets_init', 'killentime_widgets_init');
 
