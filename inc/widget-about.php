@@ -37,10 +37,8 @@ class KT_Widget_About extends WP_Widget
 					<img class="rounded-circle border-secondary" width="100%" src="<?php echo get_theme_file_uri('/images/scott.jpg') ?>">
 				</div>
 				<div class="col">
-					<p><span class="fw-semibold">Scott Killen</span> is a technophile who serves Jesus. He has been married most
-						of his life of the love of his life. Scott has many interests and believes that healthy, respectful debates
-						promote the truth.
-					</p>
+					<p>I'm <span class="fw-semibold">Scott Killen</span>. Killentime is where I write about things that I find
+						interesting. I am a technophile and enjoy learning about all sorts of things.</p>
 				</div>
 			</div>
 		</div>
