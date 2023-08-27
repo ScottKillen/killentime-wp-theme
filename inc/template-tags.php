@@ -72,7 +72,7 @@ if (!function_exists('killentime_entry_footer')) :
 	 */
 	function killentime_entry_footer()
 	{ ?>
-		<div class="shadow rounded bg-primary-subtle border p-2 mt-5">
+		<div class="shadow rounded bg-primary-subtle border p-3 mt-5">
 			<?php
 			// Hide category and tag text for pages.
 			if ('post' === get_post_type()) {
@@ -107,7 +107,7 @@ if (!function_exists('killentime_entry_footer')) :
 						<div class="col">
 							<div class="relatedcontent">
 								<p class="font-title mb-0"><a href="<?php the_permalink() ?>" rel="bookmark" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover link-opacity-75 link-opacity-100-hover" title="<?php the_title(); ?>"><?php the_title(); ?></a></p>
-								<p class="text-secondary"><?php the_time('M j, Y') ?> <?php killentime_posted_in() ?></p>
+								<p class="text-secondary mb-0"><?php the_time('M j, Y') ?> <?php killentime_posted_in() ?></p>
 							</div>
 						</div>
 			<?php }
