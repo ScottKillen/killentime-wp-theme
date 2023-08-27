@@ -27,7 +27,7 @@ if (post_password_required()) {
 	// You can start editing here -- including this comment!
 	if (have_comments()) :
 	?>
-		<p class="comments-title h3">
+		<p class="comments-title h3 mb-3">
 			<?php
 			$killentime_comment_count = get_comments_number();
 			if ('1' === $killentime_comment_count) {
