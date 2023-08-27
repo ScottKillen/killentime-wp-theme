@@ -34,11 +34,7 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   font-family: var(--bs-font-heading);
 }
 
-#logo .tagline {
-  font-family: var(--bs-font-accent);
-}
-
-#logo .title {
+#head .title {
   font-size: 2.25rem;
 }
 
