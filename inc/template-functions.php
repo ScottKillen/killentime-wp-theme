@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
@@ -11,25 +12,27 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function killentime_body_classes( $classes ) {
+function killentime_body_classes($classes)
+{
 	// Adds a class of hfeed to non-singular pages.
-	if ( ! is_singular() ) {
+	if (!is_singular()) {
 		$classes[] = 'hfeed';
 	}
 
 	return $classes;
 }
-add_filter( 'body_class', 'killentime_body_classes' );
+add_filter('body_class', 'killentime_body_classes');
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
  */
-function killentime_pingback_header() {
-	if ( is_singular() && pings_open() ) {
-		printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
+function killentime_pingback_header()
+{
+	if (is_singular() && pings_open()) {
+		printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
 	}
 }
-add_action( 'wp_head', 'killentime_pingback_header' );
+add_action('wp_head', 'killentime_pingback_header');
 
 /**
  * Add custom classe to nav menu items
@@ -54,8 +57,9 @@ add_filter('nav_menu_css_class', 'killentime_add_class_on_menu_item', 1, 4);
  * @param mixed $attributes
  * @return string
  */
-function killentime_set_pagination_link_attributes($attributes) {
-  return 'class="page-link"';
+function killentime_set_pagination_link_attributes($attributes)
+{
+	return 'class="page-link"';
 }
 
 add_filter('next_posts_link_attributes', 'killentime_set_pagination_link_attributes');
@@ -97,10 +101,12 @@ add_filter('nav_menu_link_attributes', 'killentime_add_class_on_menu_item_link',
  * @param mixed $more_string The string shown within the more link.
  * @return string
  */
-function killentime_excerpt_more($more_string) {
+function killentime_excerpt_more($more_string)
+{
 	global $post;
-	return '</p><a class="icon-link gap-1 icon-link-hover"
-	href="'. get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a><p class="d-none">';
+	return
+	'</p><a class="icon-link gap-1 icon-link-hover"
+	href="' . get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a><p class="d-none">';
 }
 add_filter('excerpt_more', 'killentime_excerpt_more');
 
@@ -110,33 +116,33 @@ add_filter('excerpt_more', 'killentime_excerpt_more');
  * @param mixed $more_link_text Read More text
  * @return array|string
  */
-function killentime_add_morelink_class( $more_link_element, $more_link_text )
+function killentime_add_morelink_class($more_link_element, $more_link_text)
 {
 	$offset = strpos($more_link_element, '#more-');
 
 	if ($offset) {
-			$end = strpos($more_link_element, '"',$offset);
+		$end = strpos($more_link_element, '"', $offset);
 	}
 
 	if ($end) {
-			$more_link_element = substr_replace($more_link_element, '', $offset, $end-$offset);
+		$more_link_element = substr_replace($more_link_element, '', $offset, $end - $offset);
 	}
 
 	$more_link_element = str_replace(
-        'more-link',
-        'more-link icon-link gap-1 icon-link-hover',
-        $more_link_element
-  );
+		'more-link',
+		'more-link icon-link gap-1 icon-link-hover',
+		$more_link_element
+	);
 
 	$more_link_element = str_replace(
-        '</a>',
-        '<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
-        $more_link_element
-  );
+		'</a>',
+		'<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
+		$more_link_element
+	);
 
-  return $more_link_element;
+	return $more_link_element;
 }
-add_action( 'the_content_more_link', 'killentime_add_morelink_class', 10, 2 );
+add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
 
 // add custom class to tag
 function add_class_the_tags($html)
@@ -147,16 +153,31 @@ function add_class_the_tags($html)
 }
 add_filter('the_tags', 'add_class_the_tags');
 
+function replace_comment_author_link($link)
+{
+	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen<a> <svg class="bi-yellow"><use xlink:href="#star"/></svg>', $link);
+	return $link;
+}
+add_filter('get_comment_author_link', 'replace_comment_author_link');
+
+function replace_reply_link_class($class)
+{
+	$class = str_replace("class='comment-reply-link", "class='btn btn-secondary comment-reply-link icon-link", $class);
+	$class = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $class);
+	return $class;
+}
+add_filter('comment_reply_link', 'replace_reply_link_class');
 
 //
 // Replace wordpress versions of functions
 //
 
-function KT_navigation_markup( $links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '' ) {
-	if ( empty( $screen_reader_text ) ) {
-		$screen_reader_text = /* translators: Hidden accessibility text. */ __( 'Posts navigation' );
+function KT_navigation_markup($links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '')
+{
+	if (empty($screen_reader_text)) {
+		$screen_reader_text = /* translators: Hidden accessibility text. */ __('Posts navigation');
 	}
-	if ( empty( $aria_label ) ) {
+	if (empty($aria_label)) {
 		$aria_label = $screen_reader_text;
 	}
 
@@ -166,67 +187,71 @@ function KT_navigation_markup( $links, $css_class = 'posts-navigation', $screen_
 		%3$s
 	</nav>';
 
-	$template = apply_filters( 'navigation_markup_template', $template, $css_class );
+	$template = apply_filters('navigation_markup_template', $template, $css_class);
 
-	return sprintf( $template, sanitize_html_class( $css_class ), esc_html( $screen_reader_text ), $links, esc_attr( $aria_label ) );
+	return sprintf($template, sanitize_html_class($css_class), esc_html($screen_reader_text), $links, esc_attr($aria_label));
 }
 
 
-function KT_get_the_posts_navigation( $args = array() ) {
+function KT_get_the_posts_navigation($args = array())
+{
 	global $wp_query;
 
 	$navigation = '';
 
 	// Don't print empty markup if there's only one page.
-	if ( $wp_query->max_num_pages > 1 ) {
+	if ($wp_query->max_num_pages > 1) {
 		// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
-		if ( ! empty( $args['screen_reader_text'] ) && empty( $args['aria_label'] ) ) {
+		if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
 			$args['aria_label'] = $args['screen_reader_text'];
 		}
 
 		$args = wp_parse_args(
 			$args,
 			array(
-				'prev_text'          => __( 'Older posts' ),
-				'next_text'          => __( 'Newer posts' ),
-				'screen_reader_text' => __( 'Posts navigation' ),
-				'aria_label'         => __( 'Posts' ),
+				'prev_text'          => __('Older posts'),
+				'next_text'          => __('Newer posts'),
+				'screen_reader_text' => __('Posts navigation'),
+				'aria_label'         => __('Posts'),
 				'class'              => 'posts-navigation',
 			)
 		);
 
-		$next_link = get_previous_posts_link( $args['next_text'] );
-		$prev_link = get_next_posts_link( $args['prev_text'] );
+		$next_link = get_previous_posts_link($args['next_text']);
+		$prev_link = get_next_posts_link($args['prev_text']);
 
 		$navigation .= '<ul class="pagination">';
 
-		if ( $prev_link ) {
+		if ($prev_link) {
 			$navigation .= '<li class="page-item">' . $prev_link . '</li>';
 		}
 
-		if ( $next_link ) {
+		if ($next_link) {
 			$navigation .= '<li class="page-item">' . $next_link . '</li>';
 		}
 		$navigation .= '</ul>';
 
-		$navigation = KT_navigation_markup( $navigation, $args['class'], $args['screen_reader_text'], $args['aria_label'] );
+		$navigation = KT_navigation_markup($navigation, $args['class'], $args['screen_reader_text'], $args['aria_label']);
 	}
 
 	return $navigation;
 }
 
-function KT_the_posts_navigation( $args = array() ) {
-	echo KT_get_the_posts_navigation( $args );
+function KT_the_posts_navigation($args = array())
+{
+	echo KT_get_the_posts_navigation($args);
 }
-function KT_post_class( $css_class = '', $post = null ) {
+function KT_post_class($css_class = '', $post = null)
+{
 	// Separates classes with a single space, collates classes for post DIV.
-	echo 'class="blog-post ' . esc_attr( implode( ' ', get_post_class( $css_class, $post ) ) ) . '"';
+	echo 'class="blog-post ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
 }
 
-function KT_home_excerpt($post) {
+function KT_home_excerpt($post)
+{
 	if (has_excerpt()) {
-		echo '<p>'.$post->post_excerpt.'</p>';
-		echo '<a href="' . esc_url( get_permalink() ) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
+		echo '<p>' . $post->post_excerpt . '</p>';
+		echo '<a href="' . esc_url(get_permalink()) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
 	} else if (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
