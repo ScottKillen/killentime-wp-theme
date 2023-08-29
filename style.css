@@ -162,3 +162,7 @@ li.pingback {
   color: --bs-body-color;
   background-color: RGBA(var(--bs-secondary-rgb),.25)!important
 }
+
+.comment .says {
+  display: none;
+}
