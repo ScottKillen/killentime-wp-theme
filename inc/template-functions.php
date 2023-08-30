@@ -163,7 +163,7 @@ add_filter('get_comment_author_link', 'replace_comment_author_link');
 
 function replace_reply_link_class($class)
 {
-	$class = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis comment-reply-link icon-link", $class);
+	$class = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link", $class);
 	$class = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $class);
 	return $class;
 }
