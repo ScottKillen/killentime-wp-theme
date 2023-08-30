@@ -155,6 +155,7 @@ add_filter('the_tags', 'add_class_the_tags');
 
 function replace_comment_author_link($link)
 {
+	$link = str_replace('class="url"', 'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"', $link);
 	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen<a> <svg class="bi-yellow"><use xlink:href="#star"/></svg>', $link);
 	return $link;
 }
@@ -162,7 +163,7 @@ add_filter('get_comment_author_link', 'replace_comment_author_link');
 
 function replace_reply_link_class($class)
 {
-	$class = str_replace("class='comment-reply-link", "class='btn btn-secondary comment-reply-link icon-link", $class);
+	$class = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis comment-reply-link icon-link", $class);
 	$class = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $class);
 	return $class;
 }
@@ -306,7 +307,7 @@ function KT_get_the_comments_pagination($args = array())
 
 	if ($links) {
 		$navigation = _navigation_markup($links, $args['class'], $args['screen_reader_text'], $args['aria_label']);
-		$navigation = str_replace('<div class="nav-links">', '<ul class="pagination">', $navigation);
+		$navigation = str_replace('<div class="nav-links">', '<ul class="pagination pagination-sm">', $navigation);
 		$navigation = str_replace('</div>', '</ul>', $navigation);
 		$navigation = str_replace('</a>', '</ali>', $navigation);
 		$navigation = str_replace('</ali>', '</a></li>', $navigation);
