@@ -161,13 +161,21 @@ function replace_comment_author_link($link)
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
 
-function replace_reply_link_class($class)
+function replace_reply_link($link)
 {
-	$class = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link", $class);
-	$class = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $class);
-	return $class;
+	$link = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link", $link);
+	$link = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $link);
+	return $link;
 }
-add_filter('comment_reply_link', 'replace_reply_link_class');
+add_filter('comment_reply_link', 'replace_reply_link');
+
+function replace_comment_edit_link($link)
+{
+	$link = str_replace('"comment-edit-link"', '"comment-edit-link badge mx-1 bg-secondary-subtle icon-link text-decoration-none border border-seconday-subtle text-secondary-emphasis"', $link);
+	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#edit"/></svg> Edit<', $link);
+	return $link;
+}
+add_filter('edit_comment_link', 'replace_comment_edit_link');
 
 //
 // Replace wordpress versions of functions
