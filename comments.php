@@ -110,12 +110,12 @@ if (post_password_required()) {
 					$consent = empty($commenter['comment_author_email']) ? '' : 'checked';
 
 					$fields['cookies'] = sprintf(
-						'<div class="mx-3 comment-form-cookies-consent form-check">%s %s</p>',
+						'<div class="mx-3 comment-form-cookies-consent form-check">%s %s</div>',
 						sprintf(
-							'<input id="wp-comment-cookies-consent form-check-input" class= name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
+							'<input id="wp-comment-cookies-consent" class="form-check-input" name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
 							$consent
 						),
-						'<label class="form-check-label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>'
+						'<label class="form-check-label" for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>'
 					);
 				}
 
@@ -137,5 +137,4 @@ if (post_password_required()) {
 			</div>
 		</div>
 	</div>
-
 </div><!-- #comments -->

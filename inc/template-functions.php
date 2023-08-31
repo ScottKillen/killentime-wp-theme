@@ -156,7 +156,7 @@ add_filter('the_tags', 'add_class_the_tags');
 function replace_comment_author_link($link)
 {
 	$link = str_replace('class="url"', 'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"', $link);
-	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen<a> <svg class="bi-yellow"><use xlink:href="#star"/></svg>', $link);
+	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#star"/></svg>', $link);
 	return $link;
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
@@ -323,6 +323,8 @@ function KT_get_the_comments_pagination($args = array())
 		$navigation = str_replace('<lia', '<li class="page-item"><a cl', $navigation);
 		$navigation = str_replace('page-numbers', 'page-link', $navigation);
 		$navigation = str_replace('current', 'active', $navigation);
+		$navigation = str_replace('span aria-active="page"', 'li', $navigation);
+		$navigation = str_replace('/span', '/li', $navigation);
 		$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#chevrons-left"/></svg>', $navigation);
 		$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#chevrons-right"/></svg>', $navigation);
 	}
