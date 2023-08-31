@@ -28,11 +28,11 @@ if (post_password_required()) {
 	if (have_comments()) :
 	?>
 
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-12 col-lg-10 col-xl-8">
+		<div class="row d-flex justify-content-center mb-2">
+			<div class="col">
 				<div class="card">
 					<div class="card-body p-4">
-						<p class="h4 fst-italic text-center mb-4 pb-2">
+						<p class="h4 fst-italic text-center mb-2 pb-2">
 							<?php
 							$scottkillen_comment_count = get_comments_number();
 							if ('1' === $scottkillen_comment_count) {
