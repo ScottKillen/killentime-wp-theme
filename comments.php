@@ -23,14 +23,15 @@ if (post_password_required()) {
 
 <div id="comments" class="comments-area">
 
-	<?php
-	// You can start editing here -- including this comment!
-	if (have_comments()) :
-	?>
+	<div class="row d-flex justify-content-center mb-2">
+		<div class="col">
+			<div class="card">
 
-		<div class="row d-flex justify-content-center mb-2">
-			<div class="col">
-				<div class="card">
+				<?php
+				// You can start editing here -- including this comment!
+				if (have_comments()) :
+				?>
+
 					<div class="card-body p-4">
 						<p class="h4 fst-italic text-center mb-2 pb-2">
 							<?php
@@ -52,7 +53,7 @@ if (post_password_required()) {
 							?>
 						</p>
 						<?php KT_the_comments_pagination(); ?>
-						<div class="row">
+						<div class="border-bottom pb-5 row">
 							<div class="col comment-list">
 								<?php
 								wp_list_comments(
@@ -67,21 +68,74 @@ if (post_password_required()) {
 							</div><!-- .comment-list -->
 						</div>
 					</div>
-				</div>
+
+
+					<?php
+					// If comments are closed and there are comments, let's leave a little note, shall we?
+					if (!comments_open()) :
+					?>
+						<p class="text-info no-comments"><?php esc_html_e('Comments are closed.', 'scottkillen'); ?></p>
+				<?php
+					endif;
+				endif; // Check for have_comments().
+
+				$fields = array(
+					'author' => sprintf(
+						'<div class="mx-3 comment-form-author form-floating mb-3">%s %s</div>',
+						sprintf(
+							'<input id="author" name="author" type="text" value="%s" class="form-control" maxlength="245" autocomplete="name" placeholder="Name" required />',
+							esc_attr($commenter['comment_author'])
+						),
+						'<label for="author">Name <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+					),
+					'email'  => sprintf(
+						'<div class="mx-3 comment-form-email form-floating mb-3">%s %s</div>',
+						sprintf(
+							'<input id="email" name="email" type="email" placeholder="Email" value="%s" class="form-control" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required />',
+							esc_attr($commenter['comment_author_email'])
+						),
+						'<label for="email">Email <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+					),
+					'url'    => sprintf(
+						'<div class="mx-3 comment-form-url form-floating mb-3">%s %s</div>',
+						sprintf(
+							'<input id="url" name="url" type="url" value="%s" placeholder="Website" class="form-control" size="30" maxlength="200" autocomplete="url" />',
+							esc_attr($commenter['comment_author_url'])
+						),
+						'<label for="url">Website</label>'
+					),
+				);
+
+				if (has_action('set_comment_cookies', 'wp_set_comment_cookies') && get_option('show_comments_cookies_opt_in')) {
+					$consent = empty($commenter['comment_author_email']) ? '' : 'checked';
+
+					$fields['cookies'] = sprintf(
+						'<div class="mx-3 comment-form-cookies-consent form-check">%s %s</p>',
+						sprintf(
+							'<input id="wp-comment-cookies-consent form-check-input" class= name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
+							$consent
+						),
+						'<label class="form-check-label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>'
+					);
+				}
+
+
+				comment_form(
+					array(
+						'fields' => $fields,
+						'title_reply_before' => '<p id="reply-title" class="h4 fst-italic mx-3 pt-3">',
+						'title_reply_after' => '</p>',
+						'comment_notes_before' => '<p class="comment-notes mx-3 text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span>.</p>',
+						'comment_field' => sprintf(
+							'<div class="comment-form-comment form-floating mb-3 mx-3">%s %s</div>',
+							'<textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" maxlength="65525" required></textarea>',
+							'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+						),
+					)
+				);
+				?>
 			</div>
 		</div>
-
-
-		<?php
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if (!comments_open()) :
-		?>
-			<p class="text-info no-comments"><?php esc_html_e('Comments are closed.', 'scottkillen'); ?></p>
-	<?php
-		endif;
-	endif; // Check for have_comments().
-
-	comment_form();
-	?>
+	</div>
 
 </div><!-- #comments -->
