@@ -164,12 +164,36 @@ class KT_Walker_Comment extends Walker_Comment
 	 */
 	protected function ping($comment, $depth, $args)
 	{
+		$ping_classes = array('d-flex', 'd-start', 'border-top', 'border-bottom')
 ?>
-		<div id="comment-<?php comment_ID(); ?>" <?php comment_class('', $comment); ?>><!--ping-->
-			<div class="comment-body">
-				<?php _e('Pingback:'); ?> <?php comment_author_link($comment); ?> <?php edit_comment_link(__('Edit'), '<span class="edit-link">', '</span>'); ?>
+		<div id="comment-<?php comment_ID(); ?>" <?php comment_class($ping_classes, $comment); ?> style="width:100%">
+			<svg width="65" height="65" fill="#6610f2" class="shadow-strong me-3">
+				<use xlink:href="#pingback" />
+			</svg>
+			<div class="flex-grow-1 flex-shrink-1">
+				<div class="d-flex justify-content-between align-items-center align-middle">
+					<p class="mb-1 mt-2">
+						Mentioned at <?php comment_author_link($comment); ?><br />
+						<span class=small">
+							<?php
+							printf(
+								'<a href="%s" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time datetime="%s">%s</time></a>',
+								esc_url(get_comment_link($comment, $args)),
+								get_comment_time('c'),
+								sprintf(
+									/* translators: 1: Comment date, 2: Comment time. */
+									__('%1$s at %2$s'),
+									get_comment_date('', $comment),
+									get_comment_time()
+								)
+							);
+							?>
+							<?php edit_comment_link(__('Edit'), '<span class="edit-link">', '</span>'); ?>
+					</p>
+				</div>
 			</div>
-		<?php
+		</div>
+	<?php
 	}
 
 	/**
@@ -197,58 +221,58 @@ class KT_Walker_Comment extends Walker_Comment
 		if ($this->has_children) {
 			@$comment_classes[] = 'parent';
 		}
-		?>
-			<div id="comment-<?php comment_ID(); ?>" <?php comment_class($comment_classes, $comment); ?>>
-				<?php
-						$avatar_img = str_replace("class='avatar", "class='rounded-circle border border-primary-subtle shadow-strong me-3 avatar", get_avatar($comment, $args['avatar_size']));
-				echo $avatar_img; ?>
-				<div class="flex-grow-1 flex-shrink-1">
-					<div class="d-flex justify-content-between align-items-center">
-						<p class="mb-1">
-							<?php
-							$comment_author = get_comment_author_link($comment);
-
-							if ('0' == $comment->comment_approved && !$show_pending_links) {
-								$comment_author = get_comment_author($comment);
-							}
-							echo $comment_author . ' ';
-							?>
-							<span class=small">
-								<?php
-								printf(
-									'<a href="%s" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time datetime="%s">%s</time></a>',
-									esc_url(get_comment_link($comment, $args)),
-									get_comment_time('c'),
-									sprintf(
-										/* translators: 1: Comment date, 2: Comment time. */
-										__('%1$s at %2$s'),
-										get_comment_date('', $comment),
-										get_comment_time()
-									)
-								);
-								?>
-							</span><?php edit_comment_link(__('Edit'), ' <span class="edit-link">', '</span>'); ?>
-						</p>
+	?>
+		<div id="comment-<?php comment_ID(); ?>" <?php comment_class($comment_classes, $comment); ?>>
+			<?php
+			$avatar_img = str_replace("class='avatar", "class='rounded-circle border border-primary-subtle shadow-strong me-3 avatar", get_avatar($comment, $args['avatar_size']));
+			echo $avatar_img; ?>
+			<div class="flex-grow-1 flex-shrink-1">
+				<div class="d-flex justify-content-between align-items-center">
+					<p class="mb-1">
 						<?php
-						if ('1' == $comment->comment_approved || $show_pending_links) {
-							comment_reply_link(
-								array_merge(
-									$args,
-									array(
-										'add_below' => 'div-comment',
-										'depth' => $depth,
-										'max_depth' => $args['max_depth'],
-										'before' => '<div class="reply">',
-										'after' => '</div>',
-									)
+						$comment_author = get_comment_author_link($comment);
+
+						if ('0' == $comment->comment_approved && !$show_pending_links) {
+							$comment_author = get_comment_author($comment);
+						}
+						echo $comment_author . ' ';
+						?>
+						<span class=small">
+							<?php
+							printf(
+								'<a href="%s" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time datetime="%s">%s</time></a>',
+								esc_url(get_comment_link($comment, $args)),
+								get_comment_time('c'),
+								sprintf(
+									/* translators: 1: Comment date, 2: Comment time. */
+									__('%1$s at %2$s'),
+									get_comment_date('', $comment),
+									get_comment_time()
 								)
 							);
-						}
-						?>
-					</div>
-					<?php if ('0' == $comment->comment_approved) : ?>
-						<p class="comment-awaiting-moderation text-info"><?php echo $moderation_note; ?></p>
-			<?php endif;
-					comment_text();
-				}
+							?>
+						</span><?php edit_comment_link(__('Edit'), ' <span class="edit-link">', '</span>'); ?>
+					</p>
+					<?php
+					if ('1' == $comment->comment_approved || $show_pending_links) {
+						comment_reply_link(
+							array_merge(
+								$args,
+								array(
+									'add_below' => 'div-comment',
+									'depth' => $depth,
+									'max_depth' => $args['max_depth'],
+									'before' => '<div class="reply">',
+									'after' => '</div>',
+								)
+							)
+						);
+					}
+					?>
+				</div>
+				<?php if ('0' == $comment->comment_approved) : ?>
+					<p class="comment-awaiting-moderation text-info"><?php echo $moderation_note; ?></p>
+		<?php endif;
+				comment_text();
 			}
+		}
