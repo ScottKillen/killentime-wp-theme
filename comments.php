@@ -30,7 +30,7 @@ if (post_password_required()) {
 			// You can start editing here -- including this comment!
 			if (have_comments()) :
 			?>
-				<div class="card">
+				<div class="card mb-4">
 
 					<div class="card-body p-4">
 						<p class="h4 fst-italic text-center mb-2 pb-2">
@@ -123,7 +123,7 @@ if (post_password_required()) {
 			comment_form(
 				array(
 					'fields' => $fields,
-					'title_reply_before' => '<p id="reply-title" class="h4 fst-italic mx-3 pt-3">',
+					'title_reply_before' => '<p id="reply-title" class="h4 fst-italic mx-3">',
 					'title_reply_after' => '</p>',
 					'comment_notes_before' => '<p class="comment-notes mx-3 text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span>.</p>',
 					'comment_field' => sprintf(

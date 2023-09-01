@@ -253,7 +253,7 @@ function KT_the_posts_navigation($args = array())
 function KT_post_class($css_class = '', $post = null)
 {
 	// Separates classes with a single space, collates classes for post DIV.
-	echo 'class="blog-post ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
+	echo 'class="blog-post mb-0 pb-5 ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
 }
 
 function KT_home_excerpt($post)

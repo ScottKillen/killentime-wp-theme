@@ -71,25 +71,26 @@ if (!function_exists('killentime_entry_footer')) :
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
 	function killentime_entry_footer()
-	{ ?>
-		<div class="shadow rounded bg-primary-subtle border p-3 mt-5">
-			<?php
-			// Hide category and tag text for pages.
-			if ('post' === get_post_type()) {
+	{
+		global $post;
+		$orig_post = $post;
+		$tags = wp_get_post_tags($post->ID);
+		if ($tags) : ?>
+			<div class="shadow rounded bg-primary-subtle border p-3 mt-5">
+				<?php
+				// Hide category and tag text for pages.
+				if ('post' === get_post_type()) {
 
-				$before_tag = '<span class="badge text-bg-primary rounded-pill">';
-				$after_tag = '</span>';
-				$tags_title = '<p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#hashtag"/></svg> Tags</p>';
-				the_tags(
-					$tags_title . '<div class="d-flex gap-2">' . $before_tag,
-					$after_tag . $before_tag,
-					$after_tag . '</div>'
-				);
-			}
-			global $post;
-			$orig_post = $post;
-			$tags = wp_get_post_tags($post->ID);
-			if ($tags) {
+					$before_tag = '<span class="badge text-bg-primary rounded-pill">';
+					$after_tag = '</span>';
+					$tags_title = '<p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#hashtag"/></svg> Tags</p>';
+					the_tags(
+						$tags_title . '<div class="d-flex gap-2">' . $before_tag,
+						$after_tag . $before_tag,
+						$after_tag . '</div>'
+					);
+				}
+
 				$tag_ids = array();
 				foreach ($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
 				$args = array(
@@ -110,14 +111,15 @@ if (!function_exists('killentime_entry_footer')) :
 								<p class="text-secondary mb-0"><?php the_time('M j, Y') ?> <?php killentime_posted_in() ?></p>
 							</div>
 						</div>
-			<?php }
+				<?php
+					}
 					echo '</div></div>';
 				}
-			}
-			$post = $orig_post;
-			wp_reset_query(); ?>
-		</div>
+				$post = $orig_post;
+				wp_reset_query(); ?>
+			</div>
 		<?php
+		endif;
 	}
 endif;
 
