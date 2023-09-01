@@ -111,7 +111,7 @@ if (post_password_required()) {
 				$consent = empty($commenter['comment_author_email']) ? '' : 'checked';
 
 				$fields['cookies'] = sprintf(
-					'<div class="mx-3 comment-form-cookies-consent form-check">%s %s</div>',
+					'<div class="mx-3 comment-form-cookies-consent form-check mb-3">%s %s</div>',
 					sprintf(
 						'<input id="wp-comment-cookies-consent" class="form-check-input" name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
 						$consent
@@ -131,6 +131,8 @@ if (post_password_required()) {
 						'<textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" maxlength="65525" required></textarea>',
 						'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
 					),
+					'submit_field' => '<div class="form-submit mx-3">%1$s %2$s</div>',
+					'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary" value="%4$s">Post Comment</button>',
 				)
 			);
 			?>
