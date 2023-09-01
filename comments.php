@@ -82,7 +82,7 @@ if (post_password_required()) {
 			<?php
 			$fields = array(
 				'author' => sprintf(
-					'<div class="mx-3 comment-form-author form-floating mb-3">%s %s</div>',
+					'<div class="comment-form-author form-floating col-lg-4">%s %s</div>',
 					sprintf(
 						'<input id="author" name="author" type="text" value="%s" class="form-control" maxlength="245" autocomplete="name" placeholder="Name" required />',
 						esc_attr($commenter['comment_author'])
@@ -90,7 +90,7 @@ if (post_password_required()) {
 					'<label for="author">Name <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
 				),
 				'email'  => sprintf(
-					'<div class="mx-3 comment-form-email form-floating mb-3">%s %s</div>',
+					'<div class="comment-form-email form-floating col-lg-4">%s %s</div>',
 					sprintf(
 						'<input id="email" name="email" type="email" placeholder="Email" value="%s" class="form-control" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required />',
 						esc_attr($commenter['comment_author_email'])
@@ -98,7 +98,7 @@ if (post_password_required()) {
 					'<label for="email">Email <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
 				),
 				'url'    => sprintf(
-					'<div class="mx-3 comment-form-url form-floating mb-3">%s %s</div>',
+					'<div class="comment-form-url form-floating col-lg-4">%s %s</div>',
 					sprintf(
 						'<input id="url" name="url" type="url" value="%s" placeholder="Website" class="form-control" size="30" maxlength="200" autocomplete="url" />',
 						esc_attr($commenter['comment_author_url'])
@@ -111,7 +111,7 @@ if (post_password_required()) {
 				$consent = empty($commenter['comment_author_email']) ? '' : 'checked';
 
 				$fields['cookies'] = sprintf(
-					'<div class="mx-3 comment-form-cookies-consent form-check mb-3">%s %s</div>',
+					'<div class="mx-3 comment-form-cookies-consent form-check mb-3 col-12">%s %s</div>',
 					sprintf(
 						'<input id="wp-comment-cookies-consent" class="form-check-input" name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
 						$consent
@@ -123,16 +123,17 @@ if (post_password_required()) {
 			comment_form(
 				array(
 					'fields' => $fields,
-					'title_reply_before' => '<p id="reply-title" class="h4 fst-italic mx-3">',
+					'title_reply_before' => '<p id="reply-title" class="h4 fst-italic">',
 					'title_reply_after' => '</p>',
-					'comment_notes_before' => '<p class="comment-notes mx-3 text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span>.</p>',
+					'comment_notes_before' => '<p class="comment-notes text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span>.</p>',
 					'comment_field' => sprintf(
-						'<div class="comment-form-comment form-floating mb-3 mx-3">%s %s</div>',
+						'<div class="comment-form-comment form-floating col-12">%s %s</div>',
 						'<textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" maxlength="65525" required></textarea>',
 						'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
 					),
-					'submit_field' => '<div class="form-submit mx-3">%1$s %2$s</div>',
+					'submit_field' => '<div class="form-submit mx-3 col-12 ">%1$s %2$s</div>',
 					'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary">%4$s</button>',
+					'class_form' => 'comment-form row g-3',
 				)
 			);
 			?>
