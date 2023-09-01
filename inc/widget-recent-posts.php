@@ -1,19 +1,21 @@
 <?php
-class KT_Widget_Recent_Posts extends WP_Widget {
+class KT_Widget_Recent_Posts extends WP_Widget
+{
 
 	/**
 	 * Sets up a new Recent Posts widget instance.
 	 *
 	 * @since 2.8.0
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$widget_ops = array(
 			'classname'                   => 'kt_widget_recent_entries',
-			'description'                 => __( 'Your site&#8217;s most recent Posts.' ),
+			'description'                 => __('Your site&#8217;s most recent Posts.'),
 			'customize_selective_refresh' => true,
 			'show_instance_in_rest'       => true,
 		);
-		parent::__construct( 'kt-recent-posts', __( 'Killentime Recent Posts' ), $widget_ops );
+		parent::__construct('kt-recent-posts', __('Killentime Recent Posts'), $widget_ops);
 		$this->alt_option_name = 'kt_widget_recent_entries';
 	}
 
@@ -26,22 +28,23 @@ class KT_Widget_Recent_Posts extends WP_Widget {
 	 *                        'before_widget', and 'after_widget'.
 	 * @param array $instance Settings for the current Recent Posts widget instance.
 	 */
-	public function widget( $args, $instance ) {
-		if ( ! isset( $args['widget_id'] ) ) {
+	public function widget($args, $instance)
+	{
+		if (!isset($args['widget_id'])) {
 			$args['widget_id'] = $this->id;
 		}
 
-		$default_title = __( 'Recent Posts' );
-		$title         = ( ! empty( $instance['title'] ) ) ? $instance['title'] : $default_title;
+		$default_title = __('Recent Posts');
+		$title         = (!empty($instance['title'])) ? $instance['title'] : $default_title;
 
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
-		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+		$title = apply_filters('widget_title', $title, $instance, $this->id_base);
 
-		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
-		if ( ! $number ) {
+		$number = (!empty($instance['number'])) ? absint($instance['number']) : 5;
+		if (!$number) {
 			$number = 5;
 		}
-		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+		$show_date = isset($instance['show_date']) ? $instance['show_date'] : false;
 
 		$r = new WP_Query(
 			/**
@@ -67,68 +70,67 @@ class KT_Widget_Recent_Posts extends WP_Widget {
 			)
 		);
 
-		if ( ! $r->have_posts() ) {
+		if (!$r->have_posts()) {
 			return;
 		}
-		?>
+?>
 
 		<?php echo $args['before_widget']; ?>
 
 		<?php
-		if ( $title ) {
+		if ($title) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-		$format = current_theme_supports( 'html5', 'navigation-widgets' ) ? 'html5' : 'xhtml';
+		$format = current_theme_supports('html5', 'navigation-widgets') ? 'html5' : 'xhtml';
 
 		/** This filter is documented in wp-includes/widgets/class-wp-nav-menu-widget.php */
-		$format = apply_filters( 'navigation_widgets_format', $format );
+		$format = apply_filters('navigation_widgets_format', $format);
 
-		if ( 'html5' === $format ) {
+		if ('html5' === $format) {
 			// The title may be filtered: Strip out HTML and make sure the aria-label is never empty.
-			$title      = trim( strip_tags( $title ) );
+			$title      = trim(strip_tags($title));
 			$aria_label = $title ? $title : $default_title;
-			echo '<nav aria-label="' . esc_attr( $aria_label ) . '">';
+			echo '<nav aria-label="' . esc_attr($aria_label) . '">';
 		}
 		?>
 
 		<ul class="list-unstyled">
-			<?php foreach ( $r->posts as $recent_post ) : ?>
+			<?php foreach ($r->posts as $recent_post) : ?>
 				<?php
-				$post_title   = get_the_title( $recent_post->ID );
-				$title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
+				$post_title   = get_the_title($recent_post->ID);
+				$title        = (!empty($post_title)) ? $post_title : __('(no title)');
 				$aria_current = '';
 
-				if ( get_queried_object_id() === $recent_post->ID ) {
+				if (get_queried_object_id() === $recent_post->ID) {
 					$aria_current = ' aria-current="page"';
 				}
 				?>
 				<li>
-					<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-					href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo $aria_current; ?>>
-					<?php
-					if ( post_password_required($recent_post) || is_attachment($recent_post) || ! has_post_thumbnail($recent_post) ) : ?>
-						<svg class="bd-placeholder-img" fill="currentColor" height="100" width="100" aria-hidden="true" focusable="false"><use xlink:href="#newspaper"/></svg>
-					<?php
-					else : ?>
-						<svg width="100%" aria-hidden="true" focusable="false" viewbox="0 0 1 1">
-							<image href="<?php echo get_the_post_thumbnail_url($recent_post, array(100, 100)) ?>" width="100%" />
-						</svg>
-					<?php
-					endif; ?>
+					<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="<?php the_permalink($recent_post->ID); ?>" <?php echo $aria_current; ?>>
+						<?php
+						if (post_password_required($recent_post) || is_attachment($recent_post) || !has_post_thumbnail($recent_post)) : ?>
+							<svg class="bd-placeholder-img" fill="currentColor" height="100" width="100" aria-hidden="true" focusable="false">
+								<use xlink:href="#newspaper" />
+							</svg>
+						<?php
+						else : ?>
+							<img src="<?php echo get_the_post_thumbnail_url($recent_post, array(100, 100)) ?>" width="100" height="100" alt="<?php echo $title ?>" />
+						<?php
+						endif; ?>
 						<div class="col-lg-8">
 							<h6 class="mb-0"><?php echo $title; ?></h6>
-							<?php if ( $show_date ) : ?>
-								<small class="text-body-secondary"><?php echo get_the_date( '', $recent_post->ID ); ?></small>
+							<?php if ($show_date) : ?>
+								<small class="text-body-secondary"><?php echo get_the_date('', $recent_post->ID); ?></small>
 							<?php endif; ?>
 						</div>
-          </a>
+					</a>
 				</li>
 			<?php endforeach; ?>
 		</ul>
 
 		<?php
-		if ( 'html5' === $format ) {
+		if ('html5' === $format) {
 			echo '</nav>';
 		}
 
@@ -145,11 +147,12 @@ class KT_Widget_Recent_Posts extends WP_Widget {
 	 * @param array $old_instance Old settings for this instance.
 	 * @return array Updated settings to save.
 	 */
-	public function update( $new_instance, $old_instance ) {
+	public function update($new_instance, $old_instance)
+	{
 		$instance              = $old_instance;
-		$instance['title']     = sanitize_text_field( $new_instance['title'] );
+		$instance['title']     = sanitize_text_field($new_instance['title']);
 		$instance['number']    = (int) $new_instance['number'];
-		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$instance['show_date'] = isset($new_instance['show_date']) ? (bool) $new_instance['show_date'] : false;
 		return $instance;
 	}
 
@@ -160,29 +163,31 @@ class KT_Widget_Recent_Posts extends WP_Widget {
 	 *
 	 * @param array $instance Current settings.
 	 */
-	public function form( $instance ) {
-		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
-		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
-		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
+	public function form($instance)
+	{
+		$title     = isset($instance['title']) ? esc_attr($instance['title']) : '';
+		$number    = isset($instance['number']) ? absint($instance['number']) : 5;
+		$show_date = isset($instance['show_date']) ? (bool) $instance['show_date'] : false;
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
-			<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" />
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:'); ?></label>
+			<input class="tiny-text" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" />
 		</p>
 
 		<p>
-			<input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-			<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label>
+			<input class="checkbox" type="checkbox" <?php checked($show_date); ?> id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" />
+			<label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Display post date?'); ?></label>
 		</p>
-		<?php
+<?php
 	}
 }
-function load_KT_recent_posts_widget() {
+function load_KT_recent_posts_widget()
+{
 	register_widget('KT_Widget_Recent_Posts');
 }
 add_action('widgets_init', 'load_KT_recent_posts_widget');
