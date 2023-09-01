@@ -132,7 +132,7 @@ if (post_password_required()) {
 						'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
 					),
 					'submit_field' => '<div class="form-submit mx-3">%1$s %2$s</div>',
-					'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary" value="%4$s">Post Comment</button>',
+					'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary">%4$s</button>',
 				)
 			);
 			?>
