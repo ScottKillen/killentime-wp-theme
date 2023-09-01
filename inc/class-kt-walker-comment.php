@@ -224,6 +224,7 @@ class KT_Walker_Comment extends Walker_Comment
 				<div id="comment-<?php comment_ID(); ?>" <?php comment_class($comment_classes, $comment); ?>>
 					<?php
 					$avatar_img = str_replace("class='avatar", "class='rounded-circle border border-primary-subtle shadow-strong me-3 avatar", get_avatar($comment, $args['avatar_size']));
+							$avatar_img = str_replace('/>', '>', $avatar_img);
 					echo $avatar_img; ?>
 					<div class="flex-grow-1 flex-shrink-1">
 						<div class="d-flex justify-content-between align-items-center">

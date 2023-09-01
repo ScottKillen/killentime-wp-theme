@@ -84,7 +84,7 @@ if (post_password_required()) {
 				'author' => sprintf(
 					'<div class="comment-form-author form-floating col-lg-4">%s %s</div>',
 					sprintf(
-						'<input id="author" name="author" type="text" value="%s" class="form-control" maxlength="245" autocomplete="name" placeholder="Name" required />',
+						'<input id="author" name="author" type="text" value="%s" class="form-control" maxlength="245" autocomplete="name" placeholder="Name" required>',
 						esc_attr($commenter['comment_author'])
 					),
 					'<label for="author">Name <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
@@ -92,7 +92,7 @@ if (post_password_required()) {
 				'email'  => sprintf(
 					'<div class="comment-form-email form-floating col-lg-4">%s %s</div>',
 					sprintf(
-						'<input id="email" name="email" type="email" placeholder="Email" value="%s" class="form-control" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required />',
+						'<input id="email" name="email" type="email" placeholder="Email" value="%s" class="form-control" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required>',
 						esc_attr($commenter['comment_author_email'])
 					),
 					'<label for="email">Email <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
@@ -100,7 +100,7 @@ if (post_password_required()) {
 				'url'    => sprintf(
 					'<div class="comment-form-url form-floating col-lg-4">%s %s</div>',
 					sprintf(
-						'<input id="url" name="url" type="url" value="%s" placeholder="Website" class="form-control" size="30" maxlength="200" autocomplete="url" />',
+						'<input id="url" name="url" type="url" value="%s" placeholder="Website" class="form-control" size="30" maxlength="200" autocomplete="url">',
 						esc_attr($commenter['comment_author_url'])
 					),
 					'<label for="url">Website</label>'
@@ -113,7 +113,7 @@ if (post_password_required()) {
 				$fields['cookies'] = sprintf(
 					'<div class="mx-3 comment-form-cookies-consent form-check mb-3 col-12">%s %s</div>',
 					sprintf(
-						'<input id="wp-comment-cookies-consent" class="form-check-input" name="wp-comment-cookies-consent" type="checkbox" value="yes"%s />',
+						'<input id="wp-comment-cookies-consent" class="form-check-input" name="wp-comment-cookies-consent" type="checkbox" value="%s">',
 						$consent
 					),
 					'<label class="form-check-label" for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>'

@@ -115,7 +115,7 @@ class KT_Widget_Recent_Posts extends WP_Widget
 							</svg>
 						<?php
 						else : ?>
-							<img src="<?php echo get_the_post_thumbnail_url($recent_post, array(100, 100)) ?>" width="100" height="100" alt="<?php echo $title ?>" />
+							<img src="<?php echo get_the_post_thumbnail_url($recent_post, array(100, 100)) ?>" width="100" height="100" alt="<?php echo $title ?>">
 						<?php
 						endif; ?>
 						<div class="col-lg-8">
