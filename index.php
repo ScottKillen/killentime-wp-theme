@@ -15,17 +15,16 @@
 
 get_header();
 ?>
+
 <div class="row">
 	<main id="primary" class="site-main col-md-8">
 		<?php
 		if (have_posts()) :
-
 			if (is_home() && !is_front_page()) :
-		?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-		<?php
+				// Display page title for blog posts page.
+				echo '<header><h1 class="page-title screen-reader-text">';
+				single_post_title();
+				echo '</h1></header>';
 			endif;
 
 			/* Start the Loop */
@@ -33,32 +32,32 @@ get_header();
 				the_post();
 
 				/*
-					* Include the Post-Type-specific template for the content.
-					* If you want to override this in a child theme, then include a file
-					* called content-___.php (where ___ is the Post Type name) and that will be used instead.
-					*/
+                 * Include the Post-Type-specific template for the content.
+                 * If you want to override this in a child theme, then include a file
+                 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+                 */
 				get_template_part('template-parts/content', get_post_type());
 
 			endwhile;
 
 			KT_the_posts_navigation(
 				array(
-					'prev_text' => 'Older',
-					'next_text' => 'Newer',
+					'prev_text' => esc_html__('Older', 'scottkillen'),
+					'next_text' => esc_html__('Newer', 'scottkillen'),
 					'screen_reader_text' => '',
-					'aria_label' => 'Page navigation'
+					'aria_label' => esc_attr__('Page navigation', 'scottkillen'),
 				)
 			);
 
 		else :
-
+			// If no posts found, display a message.
 			get_template_part('template-parts/content', 'none');
 
 		endif;
 		?>
-
 	</main><!-- #main -->
 
 	<?php get_sidebar(); ?>
 </div>
-<?php get_footer(); ?>
+
+<?php get_footer();
