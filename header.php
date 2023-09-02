@@ -34,7 +34,7 @@
 			<header id="header">
 				<div id="head" class="text-center pt-3 pb-5">
 					<?php
-					if (is_singular()) {
+					if (is_singular() || is_archive() || is_404()) {
 						$logo_tag = "p";
 					} else {
 						$logo_tag = "h1";
