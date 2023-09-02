@@ -106,7 +106,7 @@ function killentime_excerpt_more($more_string)
 	global $post;
 	return
 	'</p><a class="icon-link gap-1 icon-link-hover"
-	href="' . get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a><p class="d-none">';
+	href="' . get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a><p class="d-none">';
 }
 add_filter('excerpt_more', 'killentime_excerpt_more');
 
@@ -136,7 +136,7 @@ function killentime_add_morelink_class($more_link_element, $more_link_text)
 
 	$more_link_element = str_replace(
 		'</a>',
-		'<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>',
+		'<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>',
 		$more_link_element
 	);
 
@@ -156,7 +156,7 @@ add_filter('the_tags', 'add_class_the_tags');
 function replace_comment_author_link($link)
 {
 	$link = str_replace('class="url"', 'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"', $link);
-	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#star"/></svg>', $link);
+	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>', $link);
 	return $link;
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
@@ -164,7 +164,7 @@ add_filter('get_comment_author_link', 'replace_comment_author_link');
 function replace_reply_link($link)
 {
 	$link = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link", $link);
-	$link = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#reply"/></svg> Reply<', $link);
+	$link = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<', $link);
 	return $link;
 }
 add_filter('comment_reply_link', 'replace_reply_link');
@@ -172,7 +172,7 @@ add_filter('comment_reply_link', 'replace_reply_link');
 function replace_comment_edit_link($link)
 {
 	$link = str_replace('"comment-edit-link"', '"comment-edit-link badge mx-1 bg-secondary-subtle icon-link text-decoration-none border border-seconday-subtle text-secondary-emphasis"', $link);
-	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#edit"/></svg> Edit<', $link);
+	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<', $link);
 	return $link;
 }
 add_filter('edit_comment_link', 'replace_comment_edit_link');
@@ -180,7 +180,7 @@ add_filter('edit_comment_link', 'replace_comment_edit_link');
 function replace_edit_post_link($link)
 {
 	$link = str_replace('"post-edit-link"', '"post-edit-link btn btn-outline-secondary icon-link text-decoration-none"', $link);
-	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#edit"/></svg> Edit<', $link);
+	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<', $link);
 	return $link;
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
@@ -277,7 +277,7 @@ function KT_home_excerpt($post)
 {
 	if (has_excerpt()) {
 		echo '<p>' . $post->post_excerpt . '</p>';
-		echo '<a href="' . esc_url(get_permalink()) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#chevron-right"/></svg></a>';
+		echo '<a href="' . esc_url(get_permalink()) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>';
 	} else if (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
@@ -342,8 +342,8 @@ function KT_get_the_comments_pagination($args = array())
 		$navigation = str_replace('current', 'active', $navigation);
 		$navigation = str_replace('span aria-active="page"', 'li', $navigation);
 		$navigation = str_replace('/span', '/li', $navigation);
-		$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#chevrons-left"/></svg>', $navigation);
-		$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#chevrons-right"/></svg>', $navigation);
+		$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#fa-chevrons-left"/></svg>', $navigation);
+		$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#fa-chevrons-right"/></svg>', $navigation);
 	}
 
 	return $navigation;

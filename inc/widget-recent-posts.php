@@ -111,7 +111,7 @@ class KT_Widget_Recent_Posts extends WP_Widget
 						<?php
 						if (post_password_required($recent_post) || is_attachment($recent_post) || !has_post_thumbnail($recent_post)) : ?>
 							<svg class="bd-placeholder-img" fill="currentColor" height="100" width="100" aria-hidden="true" focusable="false">
-								<use xlink:href="#newspaper" />
+								<use xlink:href="#fa-newspaper" />
 							</svg>
 						<?php
 						else : ?>

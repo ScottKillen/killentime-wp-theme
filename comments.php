@@ -87,7 +87,7 @@ if (post_password_required()) {
 						'<input id="author" name="author" type="text" value="%s" class="form-control" maxlength="245" autocomplete="name" placeholder="Name" required>',
 						esc_attr($commenter['comment_author'])
 					),
-					'<label for="author">Name <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+					'<label for="author">Name <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#fa-asterisk"/></svg></span></label>'
 				),
 				'email'  => sprintf(
 					'<div class="comment-form-email form-floating col-lg-4">%s %s</div>',
@@ -95,7 +95,7 @@ if (post_password_required()) {
 						'<input id="email" name="email" type="email" placeholder="Email" value="%s" class="form-control" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required>',
 						esc_attr($commenter['comment_author_email'])
 					),
-					'<label for="email">Email <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+					'<label for="email">Email <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#fa-asterisk"/></svg></span></label>'
 				),
 				'url'    => sprintf(
 					'<div class="comment-form-url form-floating col-lg-4">%s %s</div>',
@@ -125,11 +125,11 @@ if (post_password_required()) {
 					'fields' => $fields,
 					'title_reply_before' => '<p id="reply-title" class="h4 fst-italic">',
 					'title_reply_after' => '</p>',
-					'comment_notes_before' => '<p class="comment-notes text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span>.</p>',
+					'comment_notes_before' => '<p class="comment-notes text-info"><span class="email-notes">Your email address will not be published.</span> Required fields are marked <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#fa-asterisk"/></svg></span>.</p>',
 					'comment_field' => sprintf(
 						'<div class="comment-form-comment form-floating col-12">%s %s</div>',
 						'<textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" maxlength="65525" required></textarea>',
-						'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#asterisk"/></svg></span></label>'
+						'<label for="comment">Comment <span class="text-warning"><svg class="bi"><title>*</title><use xlink:href="#fa-asterisk"/></svg></span></label>'
 					),
 					'submit_field' => '<div class="form-submit mx-3 col-12 ">%1$s %2$s</div>',
 					'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary">%4$s</button>',

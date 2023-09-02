@@ -14,7 +14,7 @@ if (!function_exists('killentime_posted_on')) :
 	 */
 	function killentime_posted_on()
 	{
-		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#clock"/></svg> %1$s';
+		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> %1$s';
 		if (get_the_time('U') !== get_the_modified_time('U')) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
 		}
@@ -107,7 +107,7 @@ if (!function_exists('killentime_entry_footer')) :
 
 					$before_tag = '<span class="badge text-bg-primary rounded-pill">';
 					$after_tag = '</span>';
-					$tags_title = '<p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#hashtag"/></svg> Tags</p>';
+					$tags_title = '<p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#fa-hashtag"/></svg> Tags</p>';
 					the_tags(
 						$tags_title . '<div class="d-flex gap-2">' . $before_tag,
 						$after_tag . $before_tag,
@@ -125,7 +125,7 @@ if (!function_exists('killentime_entry_footer')) :
 				);
 				$my_query = new wp_query($args);
 				if ($my_query->have_posts()) {
-					echo '<div id="relatedposts"><p class= "mt-4 h5 fst-italic"><svg class="bi"><title>Related Posts</title><use xlink:href="#posts"/></svg> Related Posts</p>';
+					echo '<div id="relatedposts"><p class= "mt-4 h5 fst-italic"><svg class="bi"><title>Related Posts</title><use xlink:href="#fa-newspaper-alt"/></svg> Related Posts</p>';
 					echo '<div class="row">';
 					while ($my_query->have_posts()) {
 						$my_query->the_post(); ?>

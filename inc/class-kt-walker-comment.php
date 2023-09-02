@@ -167,8 +167,8 @@ class KT_Walker_Comment extends Walker_Comment
 		$ping_classes = array('d-flex', 'd-start', 'border-top', 'border-bottom')
 ?>
 		<div id="comment-<?php comment_ID(); ?>" <?php comment_class($ping_classes, $comment); ?> style="width:100%">
-			<svg width="65" height="65" fill="#6610f2" class="shadow-strong me-3">
-				<use xlink:href="#pingback" />
+			<svg width="65" height="65" fill="#6610f2" class="shadow-strong me-3 my-2">
+				<use xlink:href="#fa-message-quote" />
 			</svg>
 			<div class="flex-grow-1 flex-shrink-1">
 				<div class="d-flex justify-content-between align-items-center align-middle">
@@ -224,7 +224,7 @@ class KT_Walker_Comment extends Walker_Comment
 				<div id="comment-<?php comment_ID(); ?>" <?php comment_class($comment_classes, $comment); ?>>
 					<?php
 					$avatar_img = str_replace("class='avatar", "class='rounded-circle border border-primary-subtle shadow-strong me-3 avatar", get_avatar($comment, $args['avatar_size']));
-							$avatar_img = str_replace('/>', '>', $avatar_img);
+					$avatar_img = str_replace('/>', '>', $avatar_img);
 					echo $avatar_img; ?>
 					<div class="flex-grow-1 flex-shrink-1">
 						<div class="d-flex justify-content-between align-items-center">
