@@ -15,6 +15,7 @@ if (!function_exists('killentime_posted_on')) :
 	function killentime_posted_on()
 	{
 		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> %1$s';
+
 		if (get_the_time('U') !== get_the_modified_time('U')) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
 		}
@@ -25,7 +26,7 @@ if (!function_exists('killentime_posted_on')) :
 			esc_html(get_the_modified_date())
 		);
 
-		echo $time_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $time_string;
 
 	}
 endif;
@@ -37,13 +38,11 @@ if (!function_exists('killentime_posted_by')) :
 	function killentime_posted_by()
 	{
 		$byline = sprintf(
-			/* translators: %s: post author. */
 			esc_html_x('by %s', 'post author', 'killentime'),
 			'<span class="author vcard me-1"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
 		);
 
-		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
+		echo '<span class="byline"> ' . $byline . '</span>';
 	}
 endif;
 
@@ -54,11 +53,8 @@ if (!function_exists('killentime_posted_in')) :
 	function killentime_posted_in()
 	{
 		$categories = get_the_category();
-		if (empty($categories)) {
-			return;
-		}
 
-		if ($categories[0]->name === "Uncategorized") {
+		if (empty($categories) || $categories[0]->name === "Uncategorized") {
 			return;
 		}
 
@@ -78,7 +74,6 @@ if (!function_exists('killentime_entry_footer')) :
 				edit_post_link(
 					sprintf(
 						wp_kses(
-							/* translators: %s: Name of current post. Only visible to screen readers */
 							__('Edit <span class="screen-reader-text">%s</span>', 'killentime'),
 							array(
 								'span' => array(
@@ -174,11 +169,7 @@ if (!function_exists('killentime_post_thumbnail')) :
 				the_post_thumbnail(
 					'post-thumbnail',
 					array(
-						'alt' => the_title_attribute(
-							array(
-								'echo' => false,
-							)
-						),
+						'alt' => get_the_title(),
 					)
 				);
 				?>
