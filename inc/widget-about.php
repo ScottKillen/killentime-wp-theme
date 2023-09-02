@@ -34,7 +34,7 @@ class KT_Widget_About extends WP_Widget
 			<h4 class="fst-italic">About</h4>
 			<div class="row">
 				<div class="col-3">
-					<img class="rounded-circle border border-secondary" alt="Scott Killen" width="65" src="<?php echo get_theme_file_uri('/images/scott.jpg') ?>">
+					<img class="rounded-circle border border-secondary" alt="Scott Killen" width="65" src="<?php echo get_theme_file_uri('/images/scott.png') ?>">
 				</div>
 				<div class="col">
 					<p>I'm <span class="fw-semibold">Scott Killen</span>. Killentime is where I write about things that I find
