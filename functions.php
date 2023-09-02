@@ -122,10 +122,18 @@ function killentime_scripts()
 	wp_enqueue_style('bootstrap', get_theme_file_uri('/css/bootstrap.min.css'));
 	wp_enqueue_style('style', get_theme_file_uri('/style.css'));
 
+	wp_enqueue_script(
+		'bootstrap',
+		'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js',
+		array('jquery'), // Add jQuery as a dependency if needed
+		'5.3.1',
+		true // Load in the footer
+	);
 	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
 
 	wp_register_style('animate', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
 	wp_enqueue_style('animate');
+
 	wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js', array(), '1.0.0', false);
 }
 add_action('wp_enqueue_scripts', 'killentime_scripts');

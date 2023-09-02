@@ -19,7 +19,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -27,8 +26,8 @@
 	<div id="page" class="site container">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'killentime'); ?></a>
 
-		<?php
-		echo KT_the_icons(); ?>
+		<?php echo KT_the_icons(); ?>
+
 		<div class="container">
 			<header id="header">
 				<div id="head" class="text-center pt-3 pb-5">
@@ -40,10 +39,10 @@
 					}
 					?>
 					<<?php echo $logo_tag ?> id="logo" class="text-center">
-						<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo">
+						<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo esc_url(get_template_directory_uri() . '/images/killentime.png'); ?>" alt="Killentime logo">
 						<span class="title"><?php bloginfo('name'); ?></span>
 						<span class="tagline text-body-secondary d-block mt-1 mb-2 font-accent fs-6 lh-sm"><?php bloginfo('description'); ?></span>
-					</<?php echo $logo_tag ?>><!-- #logo -->
+					</<?php echo $logo_tag ?>> <!-- #logo -->
 				</div><!-- #head -->
 			</header> <!-- #header -->
 		</div>
@@ -58,13 +57,11 @@
 					wp_nav_menu(
 						array(
 							'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-underline',
-							'menu_id' => 'primary-menu',
 							'container' => false,
 							'theme_location' => 'menu-1',
-							'add_li_class' => 'nav-item',
-							'add_link_class' => 'nav-link'
 						)
-					); ?>
+					);
+					?>
 					<div class="d-lg-flex col-lg-3 justify-content-end">
 						<ul class="navbar-nav flex-row-flex-wrap ms-md-auto">
 							<li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
