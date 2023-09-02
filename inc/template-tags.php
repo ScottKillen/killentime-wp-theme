@@ -125,7 +125,7 @@ if (!function_exists('killentime_entry_footer')) :
 				);
 				$my_query = new wp_query($args);
 				if ($my_query->have_posts()) {
-					echo '<div id="relatedposts"><p class= "mt-4 h5 fst-italic"><svg class="bi"><title>Related Posts</title><use xlink:href="#fa-newspaper-alt"/></svg> Related Posts</p>';
+					echo '<div id="relatedposts"><p class= "mt-4 h5 fst-italic"><svg class="bi"><title>Related Posts</title><use xlink:href="#fa-newspaper"/></svg> Related Posts</p>';
 					echo '<div class="row">';
 					while ($my_query->have_posts()) {
 						$my_query->the_post(); ?>
