@@ -177,6 +177,14 @@ function replace_comment_edit_link($link)
 }
 add_filter('edit_comment_link', 'replace_comment_edit_link');
 
+function replace_edit_post_link($link)
+{
+	$link = str_replace('"post-edit-link"', '"post-edit-link btn btn-outline-secondary icon-link text-decoration-none"', $link);
+	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#edit"/></svg> Edit<', $link);
+	return $link;
+}
+add_filter('edit_post_link', 'replace_edit_post_link');
+
 //
 // Replace wordpress versions of functions
 //
