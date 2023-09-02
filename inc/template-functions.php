@@ -105,7 +105,7 @@ function killentime_excerpt_more($more_string)
 {
 	global $post;
 	return
-	'</p><a class="icon-link gap-1 icon-link-hover"
+		'</p><a class="icon-link gap-1 icon-link-hover"
 	href="' . get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a><p class="d-none">';
 }
 add_filter('excerpt_more', 'killentime_excerpt_more');
@@ -120,25 +120,24 @@ function killentime_add_morelink_class($more_link_element, $more_link_text)
 {
 	$offset = strpos($more_link_element, '#more-');
 
-	if ($offset) {
+	if ($offset !== false) {
 		$end = strpos($more_link_element, '"', $offset);
+		if ($end !== false) {
+			$more_link_element = substr_replace($more_link_element, '', $offset, $end - $offset);
+		}
+
+		$more_link_element = str_replace(
+			'more-link',
+			'more-link icon-link gap-1 icon-link-hover',
+			$more_link_element
+		);
+
+		$more_link_element = str_replace(
+			'</a>',
+			'<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>',
+			$more_link_element
+		);
 	}
-
-	if ($end) {
-		$more_link_element = substr_replace($more_link_element, '', $offset, $end - $offset);
-	}
-
-	$more_link_element = str_replace(
-		'more-link',
-		'more-link icon-link gap-1 icon-link-hover',
-		$more_link_element
-	);
-
-	$more_link_element = str_replace(
-		'</a>',
-		'<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>',
-		$more_link_element
-	);
 
 	return $more_link_element;
 }
@@ -147,7 +146,6 @@ add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
 // add custom class to tag
 function add_class_the_tags($html)
 {
-	$postid = get_the_ID();
 	$html = str_replace('<a', '<a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover"', $html);
 	return $html;
 }
@@ -155,41 +153,74 @@ add_filter('the_tags', 'add_class_the_tags');
 
 function replace_comment_author_link($link)
 {
-	$link = str_replace('class="url"', 'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"', $link);
-	$link = str_replace('ugc">Scott Killen</a>', 'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>', $link);
+	$link = str_replace(
+		array('class="url"', 'ugc">Scott Killen</a>'),
+		array(
+			'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"',
+			'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>'
+		),
+		$link
+	);
+
 	return $link;
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
 
 function replace_reply_link($link)
 {
-	$link = str_replace("class='comment-reply-link", "class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link", $link);
-	$link = str_replace('>Reply<', '><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<', $link);
+	$link = str_replace(
+		array("class='comment-reply-link", '>Reply<'),
+		array(
+			"class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link",
+			'><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<'
+		),
+		$link
+	);
+
 	return $link;
 }
 add_filter('comment_reply_link', 'replace_reply_link');
 
 function replace_comment_edit_link($link)
 {
-	$link = str_replace('"comment-edit-link"', '"comment-edit-link badge mx-1 bg-secondary-subtle icon-link text-decoration-none border border-seconday-subtle text-secondary-emphasis"', $link);
-	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<', $link);
+	$link = str_replace(
+		array('"comment-edit-link"', '>Edit<'),
+		array(
+			'"comment-edit-link badge mx-1 bg-secondary-subtle icon-link text-decoration-none border border-seconday-subtle text-secondary-emphasis"',
+			'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<'
+		),
+		$link
+	);
+
 	return $link;
 }
 add_filter('edit_comment_link', 'replace_comment_edit_link');
 
 function replace_edit_post_link($link)
 {
-	$link = str_replace('"post-edit-link"', '"post-edit-link btn btn-outline-secondary icon-link text-decoration-none"', $link);
-	$link = str_replace('>Edit<', '><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<', $link);
+	$link = str_replace(
+		array('"post-edit-link"', '>Edit<'),
+		array(
+			'"post-edit-link btn btn-outline-secondary icon-link text-decoration-none"',
+			'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<'
+		),
+		$link
+	);
+
 	return $link;
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
 
 function kt_list_categories($html)
 {
-	$html = str_replace('<li class="cat', '<li class="list-group-item d-flex justify-content-between align-items-start cat', $html);
+	$html = str_replace(
+		array('<li class="cat', '<a hr'),
+		array('<li class="list-group-item d-flex justify-content-between align-items-start cat', '<a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" hr'),
+		$html
+	);
+
 	$html = preg_replace('/\((\d+)\)/', '<span class="badge bg-primary rounded-pill">$1</span>', $html);
-	$html = str_replace('<a hr', '<a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" hr', $html);
+
 	return $html;
 }
 add_filter('wp_list_categories', 'kt_list_categories');
@@ -200,24 +231,29 @@ add_filter('wp_list_categories', 'kt_list_categories');
 
 function KT_navigation_markup($links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '')
 {
-	if (empty($screen_reader_text)) {
-		$screen_reader_text = /* translators: Hidden accessibility text. */ __('Posts navigation');
-	}
-	if (empty($aria_label)) {
-		$aria_label = $screen_reader_text;
-	}
+	// Set default values if empty
+	$screen_reader_text = $screen_reader_text ?: __('Posts navigation');
+	$aria_label = $aria_label ?: $screen_reader_text;
 
-	$template = '
-	<nav class="pt-4 mt-4 border-top %1$s" aria-label="%4$s">
-		<h2 class="screen-reader-text">%2$s</h2>
-		%3$s
-	</nav>';
+	$template =
+	'
+    <nav class="pt-4 mt-4 border-top %1$s" aria-label="%4$s">
+        <h2 class="screen-reader-text">%2$s</h2>
+        %3$s
+    </nav>';
 
+	// Apply filters
 	$template = apply_filters('navigation_markup_template', $template, $css_class);
 
-	return sprintf($template, sanitize_html_class($css_class), esc_html($screen_reader_text), $links, esc_attr($aria_label));
+	// Generate and return the formatted markup
+	return sprintf(
+		$template,
+		sanitize_html_class($css_class),
+		esc_html($screen_reader_text),
+		$links,
+		esc_attr($aria_label)
+	);
 }
-
 
 function KT_get_the_posts_navigation($args = array())
 {
@@ -232,6 +268,7 @@ function KT_get_the_posts_navigation($args = array())
 			$args['aria_label'] = $args['screen_reader_text'];
 		}
 
+		// Define default arguments using wp_parse_args.
 		$args = wp_parse_args(
 			$args,
 			array(
@@ -263,10 +300,6 @@ function KT_get_the_posts_navigation($args = array())
 	return $navigation;
 }
 
-function KT_the_posts_navigation($args = array())
-{
-	echo KT_get_the_posts_navigation($args);
-}
 function KT_post_class($css_class = '', $post = null)
 {
 	// Separates classes with a single space, collates classes for post DIV.
@@ -276,9 +309,9 @@ function KT_post_class($css_class = '', $post = null)
 function KT_home_excerpt($post)
 {
 	if (has_excerpt()) {
-		echo '<p>' . $post->post_excerpt . '</p>';
+		echo '<p>' . esc_html($post->post_excerpt) . '</p>';
 		echo '<a href="' . esc_url(get_permalink()) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>';
-	} else if (strpos($post->post_content, '<!--more-->')) {
+	} elseif (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
 				wp_kses(
@@ -298,12 +331,6 @@ function KT_home_excerpt($post)
 	}
 }
 
-function KT_the_comments_pagination($args = array())
-{
-	$links = KT_get_the_comments_pagination($args);
-	echo $links;
-}
-
 function KT_get_the_comments_pagination($args = array())
 {
 	$navigation = '';
@@ -313,7 +340,7 @@ function KT_get_the_comments_pagination($args = array())
 		$args['aria_label'] = $args['screen_reader_text'];
 	}
 
-	$args         = wp_parse_args(
+	$args = wp_parse_args(
 		$args,
 		array(
 			'screen_reader_text' => __('Comments navigation'),

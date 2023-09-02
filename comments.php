@@ -52,7 +52,7 @@ if (post_password_required()) {
 							}
 							?>
 						</p>
-						<?php KT_the_comments_pagination(); ?>
+						<?php echo KT_get_the_comments_pagination(); ?>
 						<div class="row">
 							<div class="col comment-list">
 								<?php

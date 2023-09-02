@@ -40,7 +40,7 @@ get_header();
 
 			endwhile;
 
-			KT_the_posts_navigation(
+			echo KT_get_the_posts_navigation(
 				array(
 					'prev_text' => esc_html__('Older', 'scottkillen'),
 					'next_text' => esc_html__('Newer', 'scottkillen'),
