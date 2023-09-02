@@ -185,6 +185,15 @@ function replace_edit_post_link($link)
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
 
+function kt_list_categories($html)
+{
+	$html = str_replace('<li class="cat', '<li class="list-group-item d-flex justify-content-between align-items-start cat', $html);
+	$html = preg_replace('/\((\d+)\)/', '<span class="badge bg-primary rounded-pill">$1</span>', $html);
+	$html = str_replace('<a hr', '<a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" hr', $html);
+	return $html;
+}
+add_filter('wp_list_categories', 'kt_list_categories');
+
 //
 // Replace wordpress versions of functions
 //

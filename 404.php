@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying 404 pages (not found)
  *
@@ -9,26 +10,26 @@
 
 get_header();
 ?>
-
-	<main id="primary" class="site-main">
+<div class="row">
+	<main id="primary" class="site-main col-md-8">
 
 		<section class="error-404 not-found">
 			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'killentime' ); ?></h1>
+				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="<?php echo get_theme_file_uri('/images/404.png') ?>">
+				<h1 class="fst-italic page-title text-center"><?php esc_html_e('Oops! We couldn&rsquo;t find that page.', 'killentime'); ?></h1>
 			</header><!-- .page-header -->
 
 			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'killentime' ); ?></p>
+				<p class="text-info text-center"><?php esc_html_e('Try the links on this page to get your bearings.', 'killentime'); ?></p>
 
-					<?php
-					get_search_form();
+				<?php
+				get_search_form();
+				?>
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'killentime' ); ?></h2>
-						<ul>
+				<div class="d-flex gap-3">
+					<div class="widget widget_categories my-4 col-6">
+						<p class="h2 fst-italic widget-title"><?php esc_html_e('Most Used Categories', 'killentime'); ?></p>
+						<div class="list-group">
 							<?php
 							wp_list_categories(
 								array(
@@ -40,21 +41,28 @@ get_header();
 								)
 							);
 							?>
-						</ul>
+						</div>
 					</div><!-- .widget -->
 
-					<?php
-					/* translators: %1$s: smiley */
-					$killentime_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'killentime' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$killentime_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
+					<div class="widget widget_categories my-4 col-6">
+						<p class="h2 fst-italic widget-title">Tags</p>
+						<?php
+						ob_start();
+						wp_tag_cloud();
+						$tag_cloud = ob_get_contents();
+						ob_clean();
+						$tag_cloud = str_replace('"tag-cloud-link', '"pe-2 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover tag-cloud-link', $tag_cloud);
+						echo $tag_cloud;
+						?>
+					</div>
+				</div>
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
 	</main><!-- #main -->
+
+	<?php get_sidebar(); ?>
+</div>
 
 <?php
 get_footer();
