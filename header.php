@@ -42,9 +42,9 @@
 					?>
 					<<?php echo $logo_tag ?> id="logo" class="text-center">
 						<img class="rounded-circle d-block overflow-hidden border bg-body-tertiary border-secondary mx-auto my-0 shadow-lg" src="<?php echo get_template_directory_uri() . '/images/killentime.png'; ?>" alt="Killentime logo">
+						<span class="title"><?php bloginfo('name'); ?></span>
+						<span class="tagline text-body-secondary d-block mt-1 mb-2 font-accent fs-6 lh-sm"><?php bloginfo('description'); ?></span>
 					</<?php echo $logo_tag ?>><!-- #logo -->
-					<span class="title"><?php bloginfo('name'); ?></span>
-					<span class="tagline text-body-secondary d-block mt-1 mb-2 font-accent fs-6 lh-sm"><?php bloginfo('description'); ?></span>
 				</div><!-- #head -->
 			</header> <!-- #header -->
 		</div>
