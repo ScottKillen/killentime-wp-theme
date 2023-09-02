@@ -9,22 +9,22 @@
  */
 
 get_header();
+$image_url = get_theme_file_uri('/images/404.png');
 ?>
+
 <div class="row">
 	<main id="primary" class="site-main col-md-8">
 
 		<section class="error-404 not-found">
 			<header class="page-header">
-				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="<?php echo get_theme_file_uri('/images/404.png') ?>">
+				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="<?php echo esc_url($image_url) ?>">
 				<h1 class="fst-italic page-title text-center"><?php esc_html_e('Oops! We couldn&rsquo;t find that page.', 'killentime'); ?></h1>
 			</header><!-- .page-header -->
 
 			<div class="page-content">
 				<p class="text-info text-center"><?php esc_html_e('Try the links on this page to get your bearings.', 'killentime'); ?></p>
 
-				<?php
-				get_search_form();
-				?>
+				<?php get_search_form(); ?>
 
 				<div class="d-flex gap-3">
 					<div class="widget widget_categories my-4 col-6">
@@ -49,9 +49,12 @@ get_header();
 						<?php
 						ob_start();
 						wp_tag_cloud();
-						$tag_cloud = ob_get_contents();
-						ob_clean();
-						$tag_cloud = str_replace('"tag-cloud-link', '"pe-2 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover tag-cloud-link', $tag_cloud);
+						$tag_cloud = ob_get_clean();
+						$tag_cloud = str_replace(
+							'"tag-cloud-link',
+							'"pe-2 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover tag-cloud-link',
+							$tag_cloud
+						);
 						echo $tag_cloud;
 						?>
 					</div>
