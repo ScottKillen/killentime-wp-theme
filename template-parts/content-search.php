@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying results in search pages
  *
@@ -9,27 +10,24 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
+<article id="post-<?php the_ID(); ?>" <?php KT_post_class(); ?>>
+	<?php
+	// Display the post title as a link.
+	the_title('<h2 class="entry-title display-5 mb-1"><a class="link-body-emphasis text-decoration-none" href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
+
+	if ('post' === get_post_type()) :
+		// Display post metadata for blog posts.
+	?>
+		<p class="blog-post-meta text-secondary font-accent">
 			<?php
-			killentime_posted_on();
 			killentime_posted_by();
+			killentime_posted_on();
 			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+		</p>
+	<?php endif;
 
-	<?php killentime_post_thumbnail(); ?>
-
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php killentime_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	// Display the post excerpt.
+	KT_home_excerpt($post);
+	?>
 </article><!-- #post-<?php the_ID(); ?> -->

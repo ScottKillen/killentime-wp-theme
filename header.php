@@ -32,7 +32,7 @@
 			<header id="header">
 				<div id="head" class="text-center pt-3 pb-5">
 					<?php
-					if (is_singular() || is_archive() || is_404()) {
+					if (is_singular() || is_archive() || is_404() || is_search()) {
 						$logo_tag = "p";
 					} else {
 						$logo_tag = "h1";
