@@ -8,6 +8,7 @@
  * @package Scott_Killen
  */
 
+// Check if the primary sidebar is active. If not, return early.
 if (!is_active_sidebar(1)) {
 	return;
 }
