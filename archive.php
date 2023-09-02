@@ -25,7 +25,7 @@ get_header();
 				<header class="page-header">
 					<?php
 					if ($archive_title) {
-						echo '<h1 class="page-title">' . $archive_title . '</h1>';
+						echo '<h1 class="page-title border-bottom">' . $archive_title . '</h1>';
 					}
 					if ($archive_description) {
 						echo '<div class="archive-description">' . $archive_description . '</div>';
