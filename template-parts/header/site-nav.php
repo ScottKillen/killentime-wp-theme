@@ -24,6 +24,7 @@
 			);
 			?>
 			<div class="d-lg-flex col-lg-3 justify-content-end">
+				<?php get_template_part('template-parts/header/nav-search'); ?>
 				<?php get_template_part('template-parts/header/color-mode-switch'); ?>
 			</div>
 		</div> <!-- #navbar1 -->
