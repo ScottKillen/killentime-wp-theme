@@ -14,15 +14,17 @@ if (!function_exists('killentime_posted_on')) :
 	 */
 	function killentime_posted_on()
 	{
-		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> %1$s';
+		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> <time class="dt-published" datetime="%1s">%2$s</time>';
 
 		if (get_the_time('U') !== get_the_modified_time('U')) {
-			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated %2$s)</span>';
+			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated <timeclass="dt-updated" datetime="%3s">%4$s</time>)</span>';
 		}
 
 		$time_string = sprintf(
 			$time_string,
+			esc_attr(get_the_date(DATE_W3C)),
 			esc_html(get_the_date()),
+			esc_attr(get_the_modified_date(DATE_W3C)),
 			esc_html(get_the_modified_date())
 		);
 
@@ -39,7 +41,7 @@ if (!function_exists('killentime_posted_by')) :
 	{
 		$byline = sprintf(
 			esc_html_x('by %s', 'post author', 'killentime'),
-			'<span class="author vcard me-1"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
+			'<span class="p-author author vcard me-1"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>';
@@ -58,7 +60,7 @@ if (!function_exists('killentime_posted_in')) :
 			return;
 		}
 
-		echo 'in <a class="me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a>";
+		echo 'in <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a>";
 	}
 endif;
 

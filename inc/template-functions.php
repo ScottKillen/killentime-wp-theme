@@ -303,14 +303,14 @@ function KT_get_the_posts_navigation($args = array())
 function KT_post_class($css_class = '', $post = null)
 {
 	// Separates classes with a single space, collates classes for post DIV.
-	echo 'class="blog-post mb-0 pb-5 ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
+	echo 'class="h-entry blog-post mb-0 pb-5 ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
 }
 
 function KT_home_excerpt($post)
 {
 	if (has_excerpt()) {
 		echo '<p>' . esc_html($post->post_excerpt) . '</p>';
-		echo '<a href="' . esc_url(get_permalink()) . '" class="more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>';
+		echo '<a href="' . esc_url(get_permalink()) . '" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>';
 	} elseif (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
