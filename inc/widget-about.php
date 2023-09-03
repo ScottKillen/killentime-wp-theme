@@ -32,13 +32,25 @@ class KT_Widget_About extends WP_Widget
 ?>
 		<div class="p-4 mb-3 bg-body-tertiary rounded">
 			<h4 class="fst-italic">About</h4>
-			<div class="row">
+			<div class="row h-card">
 				<div class="col-3">
-					<img class="rounded-circle border border-secondary" alt="Scott Killen" width="65" src="<?php echo get_theme_file_uri('/images/scott.png') ?>">
+					<img class="rounded-circle border border-secondary u-photo" alt="Scott Killen" width="65" src="<?php echo get_theme_file_uri('/images/scott.png') ?>">
 				</div>
 				<div class="col">
-					<p>I'm <span class="fw-semibold">Scott Killen</span>. Killentime is where I write about things that I find
-						interesting. I am a technophile and enjoy learning about all sorts of things.</p>
+					<p>
+						I'm <span class="fw-semibold p-name">Scott Killen</span>. Killentime is where I write about things that I find
+						interesting. I am a bible scholar and technophile and enjoy learning about all sorts of things.
+					</p>
+					<p>
+						I'm a gospel preacher at
+						<a class="p-name p-org u-url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="https://edistochurch.org/">
+							Edisto Island Church of Christ
+						</a>
+						and a <abbr class="link-offset-2 link-underline-secondary" title="Certified Public Accountant">CPA</abbr> at
+						<a class="p-name p-org u-url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="https://killencpa.com/">
+							Killen & Associates, CPAs, PA.
+						</a>
+					</p>
 				</div>
 			</div>
 		</div>
