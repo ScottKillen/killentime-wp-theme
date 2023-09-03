@@ -42,11 +42,11 @@ class KT_Widget_About extends WP_Widget
 						interesting. I am a bible scholar and technophile and enjoy learning about all sorts of things.
 					</p>
 					<p>
-						I'm a gospel preacher at
+						I preach at
 						<a class="p-name p-org u-url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="https://edistochurch.org/">
 							Edisto Island Church of Christ
 						</a>
-						and a <abbr class="link-offset-2 link-underline-secondary" title="Certified Public Accountant">CPA</abbr> at
+						and work as a <abbr class="link-offset-2 link-underline-secondary" title="Certified Public Accountant">CPA</abbr> at
 						<a class="p-name p-org u-url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="https://killencpa.com/">
 							Killen & Associates, CPAs, PA.
 						</a>
