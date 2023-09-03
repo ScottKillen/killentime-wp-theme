@@ -21,6 +21,7 @@
 		<ul class="nav col-md-4 justify-content-end">
 			<?php
 			$social_links = array(
+				'mailto:scott@scottkillen.com' => 'fa-at',
 				'https://ttocs.io/@scott' => 'fa-mastodon',
 				'https://github.com/ScottKillen' => 'fa-github',
 				'https://open.spotify.com/user/sdkillen' => 'fa-spotify',
