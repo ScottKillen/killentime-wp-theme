@@ -56,9 +56,8 @@ if (post_password_required()) {
 						<div class="row">
 							<div class="col comment-list">
 								<?php
-								wp_list_comments(
+					KT_wp_list_comments(
 									array(
-										'walker' => new KT_Walker_Comment(),
 										'style'      => 'div',
 										'avatar_size' => 65,
 										'short_ping' => true,
