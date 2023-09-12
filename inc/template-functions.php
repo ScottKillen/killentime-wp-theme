@@ -225,6 +225,12 @@ function kt_list_categories($html)
 }
 add_filter('wp_list_categories', 'kt_list_categories');
 
+function kt_webmention_comment_form($template_name)
+{
+	return locate_template('webmention-comment-form.php');
+}
+add_filter('webmention_comment_form', 'kt_webmention_comment_form');
+
 //
 // Replace wordpress versions of functions
 //
