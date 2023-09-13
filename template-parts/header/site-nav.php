@@ -20,6 +20,8 @@
 					'menu_class' => 'navbar-nav col-lg-6 justify-content-center nav-underline',
 					'container' => false,
 					'theme_location' => 'menu-1',
+					'add_li_class' => 'nav-item',
+					'add_link_class' => 'nav-link',
 				)
 			);
 			?>
