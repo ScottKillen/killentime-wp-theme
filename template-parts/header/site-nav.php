@@ -7,7 +7,7 @@
 
 ?>
 
-<nav class="py-2 mb-4 navbar navbar-expand-lg border-bottom border-top sticky-top shadow-sm main-navigation" id="site-navigation">
+<nav class="py-2 mb-4 navbar navbar-expand-lg rounded border sticky-top shadow-sm main-navigation glass" id="site-navigation">
 	<div class="container-fluid">
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

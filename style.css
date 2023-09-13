@@ -81,10 +81,6 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   fill: #ffc107;
 }
 
-#site-navigation {
-  background-color: rgba(var(--bs-secondary-bg-rgb), 0.8);
-}
-
 #primary-menu .nav-link:not(.active) {
   color: var(--bs-body-color);
 }
@@ -195,4 +191,10 @@ textarea#comment {
     --bd-callout-color: var(--bs-info-text-emphasis);
     --bd-callout-bg: var(--bs-info-bg-subtle);
     --bd-callout-border: var(--bs-info-border-subtle)
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(var(--bs-body-color-rgb), 0.15);
 }
