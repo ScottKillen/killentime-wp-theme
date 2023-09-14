@@ -31,18 +31,23 @@ $social_links = array(
 		'title' => 'Instagram'
 	)
 );
-?>
 
-<ul class="nav col-md-4 justify-content-end">
-	<?php
-	foreach ($social_links as $link => $data) :
-	?>
-		<li class="nav-item">
-			<a class="nav-link px-2 text-body-secondary icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="<?php echo esc_url($link); ?>" rel="me" title="<?php echo esc_attr($data['title']); ?>">
-				<svg class="bi">
-					<use xlink:href="#<?php echo esc_attr($data['icon']); ?>" />
-				</svg>
-			</a>
-		</li>
-	<?php endforeach; ?>
-</ul>
+$social_class = 'nav-item';
+
+ob_start();
+var_dump($args);
+if (array_key_exists('social-class', $args)) {
+	$social_class .= ' ' . $args['social-class'];
+}
+ob_end_clean();
+
+foreach ($social_links as $link => $data) :
+?>
+	<li class="<?php echo $social_class ?>">
+		<a class="nav-link px-2 text-body-secondary icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="<?php echo esc_url($link); ?>" rel="me" title="<?php echo esc_attr($data['title']); ?>">
+			<svg class="bi">
+				<use xlink:href="#<?php echo esc_attr($data['icon']); ?>" />
+			</svg>
+		</a>
+	</li>
+<?php endforeach;

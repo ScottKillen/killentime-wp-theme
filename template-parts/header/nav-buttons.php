@@ -8,17 +8,24 @@
 ?>
 
 <ul class="navbar-nav flex-row-flex-wrap ms-md-auto">
-  <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-    <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
-    <hr class="d-lg-none my-2 text-white-50">
-  </li>
   <li class="nav-item">
-    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+    <button type="button" class="btn py-2" data-bs-toggle="modal" data-bs-target="#searchModal">
       <svg class="bi">
         <use xlink:href="#fa-magnifying-glass" />
       </svg>
     </button>
   </li>
+  <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+    <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+    <hr class="d-lg-none my-2 text-white-50">
+  </li>
+  <?php get_template_part(
+    'template-parts/social-icons',
+    null,
+    array(
+      'social-class' => 'pt-1',
+    )
+  ); ?>
   <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
     <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
     <hr class="d-lg-none my-2 text-white-50">

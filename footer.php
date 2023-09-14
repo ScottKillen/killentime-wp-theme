@@ -18,9 +18,9 @@
 		<a href="<?php echo esc_url(home_url('/')) ?>" class="font-title col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-decoration-none link-body-emphasis">
 			<?php bloginfo('name'); ?>
 		</a>
-
-		<?php get_template_part('template-parts/footer/social-icons'); ?>
-
+		<ul class="nav col-md-4 justify-content-end">
+			<?php get_template_part('template-parts/social-icons'); ?>
+		</ul>
 	</div>
 </footer>
 
