@@ -7,6 +7,8 @@
 
 ?>
 
+<?php get_template_part('template-parts/header/search-modal'); ?>
+
 <nav class="py-2 mb-4 navbar navbar-expand-lg rounded border sticky-top shadow-sm main-navigation glass" id="site-navigation">
 	<div class="container-fluid">
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +28,7 @@
 			);
 			?>
 			<div class="d-lg-flex col-lg-3 justify-content-end">
-				<?php get_template_part('template-parts/header/nav-search'); ?>
-				<?php get_template_part('template-parts/header/color-mode-switch'); ?>
+				<?php get_template_part('template-parts/header/nav-buttons'); ?>
 			</div>
 		</div> <!-- #navbar1 -->
 	</div>
