@@ -9,8 +9,8 @@
 
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="seachModalTitle" aria-hidden="true">
-  <div class="modal-dialog">
-    <form class="modal-content d-flex" role="search" method="get" action="<?php echo esc_url(home_url('/')) ?>">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content d-flex glass" role="search" method="get" action="<?php echo esc_url(home_url('/')) ?>">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="seachModalTitle">Search</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
