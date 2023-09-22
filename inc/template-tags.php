@@ -16,8 +16,8 @@ if (!function_exists('killentime_posted_on')) :
 	{
 		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> <time class="dt-published" datetime="%1s">%2$s</time>';
 
-		if (get_the_time('U') !== get_the_modified_time('U')) {
-			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated <timeclass="dt-updated" datetime="%3s">%4$s</time>)</span>';
+		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
+			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated <time class="dt-updated" datetime="%3s">%4$s</time>)</span>';
 		}
 
 		$time_string = sprintf(
