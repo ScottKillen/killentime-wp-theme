@@ -14,13 +14,13 @@ if (!function_exists('killentime_posted_on')) :
 	 */
 	function killentime_posted_on()
 	{
-		echo '<div class="col border-start"><svg class="bi"><title>Published</title><use xlink:href="#fa-calendar" /></svg> ';
+		echo '<div class="col border-end" title="Published"><svg class="bi"><use xlink:href="#fa-calendar" /></svg> ';
 
 		$time_string = '<time class="dt-published" datetime="%1s">%2$s</time>';
 
 		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
-			$time_string .= '</div><div class="post-update-meta border-start">'
-			. '<svg class="bi"><title>Updated</title><use xlink:href="#fa-wrench" /></svg> '
+			$time_string .= '</div><div class="post-update-meta border-end" title="Updated">'
+			. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
 			. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
 		}
 
@@ -61,24 +61,9 @@ if (!function_exists('killentime_reading_time')) :
 			$reading_time = ceil($reading_time) . " minutes";
 		}
 
-		echo '<div class="col border-start border-end"><svg class="bi"><title>Reading time</title><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</div>';
+		echo '<div class="col border-end" title="Reading time"><svg class="bi"><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</div>';
 	}
 
-endif;
-
-if (!function_exists('killentime_posted_by')) :
-	/**
-	 * Prints HTML with meta information for the current author.
-	 */
-	function killentime_posted_by()
-	{
-		$byline = sprintf(
-			esc_html_x('%s', 'post author', 'killentime'),
-			'<a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a>'
-		);
-
-		echo '<div class="col byline p-author author vcard border-start"><svg class="bi"><title>Author</title><use xlink:href="#fa-user" /></svg> ' . $byline . '</div>';
-	}
 endif;
 
 if (!function_exists('killentime_posted_in')) :
@@ -93,7 +78,7 @@ if (!function_exists('killentime_posted_in')) :
 			return;
 		}
 
-		echo '<div class="col border-start"><svg class="bi"><title>Category</title><use xlink:href="#fa-tag" /></svg> <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a></div>";
+		echo '<div class="col border-end" title="Category"><svg class="bi"><use xlink:href="#fa-tag" /></svg> <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a></div>";
 	}
 endif;
 
