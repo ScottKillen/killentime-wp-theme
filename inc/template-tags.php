@@ -93,7 +93,7 @@ if (!function_exists('killentime_posted_in')) :
 			return;
 		}
 
-		echo 'in <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a>";
+		echo '<div class="col border-start"><svg class="bi"><title>Category</title><use xlink:href="#fa-tag" /></svg> <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a></div>";
 	}
 endif;
 
