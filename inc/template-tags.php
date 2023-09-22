@@ -73,11 +73,11 @@ if (!function_exists('killentime_posted_by')) :
 	function killentime_posted_by()
 	{
 		$byline = sprintf(
-			esc_html_x('by %s', 'post author', 'killentime'),
+			esc_html_x('%s', 'post author', 'killentime'),
 			'<a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a>'
 		);
 
-		echo '<div class="col byline p-author author vcard border-start"> ' . $byline . '</div>';
+		echo '<div class="col byline p-author author vcard border-start"><svg class="bi"><title>Author</title><use xlink:href="#fa-user" /></svg> ' . $byline . '</div>';
 	}
 endif;
 
