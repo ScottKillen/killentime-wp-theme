@@ -12,16 +12,19 @@ if (!function_exists('killentime_posted_on')) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function killentime_posted_on()
+	function killentime_posted_on($show_border = true, $show_update = true)
 	{
-		echo '<div class="col border-end" title="Published"><svg class="bi"><use xlink:href="#fa-calendar" /></svg> ';
+
+		$border_class = $show_border ? ' border-end' : '';
+
+		echo '<div class="col' . $border_class . '" title="Published"><svg class="bi"><use xlink:href="#fa-calendar" /></svg> ';
 
 		$time_string = '<time class="dt-published" datetime="%1s">%2$s</time>';
 
-		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
-			$time_string .= '</div><div class="post-update-meta border-end" title="Updated">'
-				. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
-				. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
+		if ($show_update && get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
+			$time_string .= '</div><div class="post-update-meta' . $border_class . '" title="Updated">'
+			. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
+			. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
 		}
 
 		$time_string = sprintf(
@@ -40,28 +43,33 @@ endif;
 
 if (!function_exists('killentime_reading_time')) :
 
-	function killentime_reading_time()
+	function killentime_reading_time($show_border = true)
 	{
-		// Getting the post content
+		// Getting the post content and stripping HTML tags
 		$content = strip_tags(get_the_content());
 		$content = html_entity_decode($content);
 
 		// Getting the number of words in the content
 		$word_count = str_word_count($content);
 
-		// Getting the estimated reading time, considering 200 words per minute and rounded up.
-		$reading_time = $word_count / 200;
+		// Calculate the estimated reading time, considering 200 words per minute
+		$reading_time_minutes = ceil($word_count / 200);
 
-		// If reading time is less than one minute, I display "less than a minute"
-		if ($reading_time < 1) {
+		// Determine the reading time string
+		if ($reading_time_minutes < 1) {
 			$reading_time = "Less than a minute";
-		} elseif ($reading_time == 1) {
+		} elseif ($reading_time_minutes === 1) {
 			$reading_time = "1 minute";
 		} else {
-			$reading_time = ceil($reading_time) . " minutes";
+			$reading_time = $reading_time_minutes . " minutes";
 		}
 
-		echo '<div class="col border-end" title="Reading time"><svg class="bi"><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</div>';
+		$border_class = $show_border ? ' border-end' : '';
+
+		// Output the reading time
+		echo '<div class="col' . $border_class . '" title="Reading time">'
+			. '<svg class="bi"><use xlink:href="#fa-book-open-reader" /></svg> '
+			. $reading_time . '</div>';
 	}
 
 endif;
@@ -70,7 +78,7 @@ if (!function_exists('killentime_posted_in')) :
 	/**
 	 * Prints HTML with meta information for the post's category
 	 */
-	function killentime_posted_in()
+	function killentime_posted_in($show_border = true)
 	{
 		$categories = get_the_category();
 
@@ -78,7 +86,19 @@ if (!function_exists('killentime_posted_in')) :
 			return;
 		}
 
-		echo '<div class="col border-end" title="Category"><svg class="bi"><use xlink:href="#fa-tag" /></svg> <a class="p-category me-1 link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . "</a></div>";
+		// Use sprintf to build the output string for better readability.
+		$output = sprintf(
+			'<div class="col%s" title="Category">'
+			. '<svg class="bi"><use xlink:href="#fa-tag" /></svg> '
+			. '<a class="p-category me-1 link-secondary link-offset-2 '
+			. 'link-underline-opacity-25 link-underline-opacity-100-hover" '
+			. 'href="%s">%s</a></div>',
+			$show_border ? ' border-end' : '',
+			esc_url(get_category_link($categories[0]->term_id)),
+			esc_html($categories[0]->name)
+		);
+
+		echo $output;
 	}
 endif;
 
@@ -147,7 +167,13 @@ if (!function_exists('killentime_entry_footer')) :
 						<div class="col">
 							<div class="relatedcontent">
 								<p class="font-title mb-0"><a href="<?php the_permalink() ?>" rel="bookmark" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover link-opacity-75 link-opacity-100-hover" title="<?php the_title(); ?>"><?php the_title(); ?></a></p>
-								<p class="text-secondary mb-0"><?php the_time('M j, Y') ?> <?php killentime_posted_in() ?></p>
+								<div class="text-secondary mb-0">
+									<?php
+									killentime_posted_on(false, false);
+									killentime_reading_time(false);
+									killentime_posted_in(false);
+									?>
+								</div>
 							</div>
 						</div>
 				<?php
