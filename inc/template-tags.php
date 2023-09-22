@@ -14,7 +14,7 @@ if (!function_exists('killentime_posted_on')) :
 	 */
 	function killentime_posted_on()
 	{
-		$time_string = ' <svg class="bi"><title>published</title><use xlink:href="#fa-clock"/></svg> <time class="dt-published" datetime="%1s">%2$s</time>';
+		$time_string = 'on <time class="dt-published" datetime="%1s">%2$s</time>';
 
 		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated <time class="dt-updated" datetime="%3s">%4$s</time>)</span>';
