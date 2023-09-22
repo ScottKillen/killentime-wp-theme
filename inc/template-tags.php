@@ -59,7 +59,7 @@ if (!function_exists('killentime_reading_time')) :
 			$reading_time = ceil($reading_time) . " minutes";
 		}
 
-		echo '<div class="col border-start"><svg class="bi"><title>Reading time</title><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</div>';
+		echo '<div class="col border-start border-end"><svg class="bi"><title>Reading time</title><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</div>';
 	}
 
 endif;
@@ -72,10 +72,10 @@ if (!function_exists('killentime_posted_by')) :
 	{
 		$byline = sprintf(
 			esc_html_x('by %s', 'post author', 'killentime'),
-			'<span class="p-author author vcard"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
+			'<a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a>'
 		);
 
-		echo '<div class="col byline"> ' . $byline . '</div>';
+		echo '<div class="col byline p-author author vcard border-start"> ' . $byline . '</div>';
 	}
 endif;
 
