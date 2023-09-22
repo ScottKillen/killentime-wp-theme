@@ -20,15 +20,17 @@
 
 	if ('post' === get_post_type()) :
 	?>
-		<p class="blog-post-meta text-secondary font-accent">
-			<?php
-			killentime_posted_by();
-			if (!is_singular()) {
-				killentime_posted_in();
-			}
-			killentime_posted_on();
-			killentime_reading_time(); ?>
-		</p>
+		<div class="container text-center">
+			<div class="row row-cols-auto blog-post-meta text-secondary font-accent">
+				<?php
+				killentime_posted_by();
+				if (!is_singular()) {
+					killentime_posted_in();
+				}
+				killentime_posted_on();
+				killentime_reading_time(); ?>
+			</div>
+		</div>
 	<?php endif;
 
 	if (is_singular()) {
