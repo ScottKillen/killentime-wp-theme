@@ -25,9 +25,7 @@
 				<?php
 				killentime_posted_on();
 				killentime_reading_time();
-				if (!is_singular()) {
-					killentime_posted_in();
-				} ?>
+				killentime_posted_in(); ?>
 			</div>
 		</div>
 	<?php endif;
