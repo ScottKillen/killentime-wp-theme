@@ -20,8 +20,8 @@ if (!function_exists('killentime_posted_on')) :
 
 		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
 			$time_string .= '</div><div class="post-update-meta border-end" title="Updated">'
-			. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
-			. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
+				. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
+				. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
 		}
 
 		$time_string = sprintf(
@@ -115,12 +115,12 @@ if (!function_exists('killentime_entry_footer')) :
 		$orig_post = $post;
 		$tags = wp_get_post_tags($post->ID);
 		if ($tags) : ?>
-			<div class="shadow rounded bg-primary-subtle border p-3 mt-5">
+			<div class="shadow rounded bg-secondary-subtle border p-3 mt-5">
 				<?php
 				// Hide category and tag text for pages.
 				if ('post' === get_post_type()) {
 
-					$before_tag = '<span class="badge text-bg-primary rounded-pill">';
+					$before_tag = '<span class="badge bg-info-subtle border border-info-subtle text-info-emphasis shadow rounded-pill">';
 					$after_tag = '</span>';
 					$tags_title = '<p class="h5 fst-italic"><svg class="bi"><title>Tags</title><use xlink:href="#fa-hashtag"/></svg> Tags</p>';
 					the_tags(

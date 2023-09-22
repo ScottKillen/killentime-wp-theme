@@ -146,7 +146,7 @@ add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
 // add custom class to tag
 function add_class_the_tags($html)
 {
-	$html = str_replace('<a', '<a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover"', $html);
+	$html = str_replace('<a', '<a class="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover"', $html);
 	return $html;
 }
 add_filter('the_tags', 'add_class_the_tags');
@@ -201,7 +201,7 @@ function replace_edit_post_link($link)
 	$link = str_replace(
 		array('"post-edit-link"', '>Edit<'),
 		array(
-			'"post-edit-link btn btn-outline-secondary icon-link text-decoration-none"',
+			'"post-edit-link btn btn-outline-secondary mt-2 icon-link text-decoration-none"',
 			'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<'
 		),
 		$link
