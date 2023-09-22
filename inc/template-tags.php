@@ -14,7 +14,9 @@ if (!function_exists('killentime_posted_on')) :
 	 */
 	function killentime_posted_on()
 	{
-		$time_string = 'on <time class="dt-published" datetime="%1s">%2$s</time>';
+		echo ' <svg class="bi"><use xlink:href="#fa-pipe" /></svg> ';
+
+		$time_string = '<time class="dt-published" datetime="%1s">%2$s</time>';
 
 		if (get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
 			$time_string .= ' <span class="fst-italic post-update-meta text-decoration-underline">(updated <time class="dt-updated" datetime="%3s">%4$s</time>)</span>';
@@ -29,8 +31,38 @@ if (!function_exists('killentime_posted_on')) :
 		);
 
 		echo $time_string;
-
 	}
+
+endif;
+
+if (!function_exists('killentime_reading_time')) :
+
+	function killentime_reading_time()
+	{
+		// Getting the post content
+		$content = strip_tags(get_the_content());
+		$content = html_entity_decode($content);
+
+		// Getting the number of words in the content
+		$word_count = str_word_count($content);
+
+		// Getting the estimated reading time, considering 200 words per minute and rounded up.
+		$reading_time = $word_count / 200;
+
+		// If reading time is less than one minute, I display "less than a minute"
+		if ($reading_time < 1) {
+			$reading_time = "Less than a minute";
+		} elseif ($reading_time == 1) {
+			$reading_time = "1 minute";
+		} else {
+			$reading_time = ceil($reading_time) . " minutes";
+		}
+
+		echo ' <svg class="bi"><use xlink:href="#fa-pipe" /></svg> ';
+
+		echo '<span class="reading_time"><svg class="bi"><title>Reading time</title><use xlink:href="#fa-book-open-reader" /></svg> ' . $reading_time . '</span>';
+	}
+
 endif;
 
 if (!function_exists('killentime_posted_by')) :
@@ -41,7 +73,7 @@ if (!function_exists('killentime_posted_by')) :
 	{
 		$byline = sprintf(
 			esc_html_x('by %s', 'post author', 'killentime'),
-			'<span class="p-author author vcard me-1"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
+			'<span class="p-author author vcard"><a class="link-secondary text-decoration-none fw-bold link-secondary-emphasis" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>';
