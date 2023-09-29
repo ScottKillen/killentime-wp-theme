@@ -146,68 +146,100 @@ add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
 // add custom class to tag
 function add_class_the_tags($html)
 {
-	$html = str_replace('<a', '<a class="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover"', $html);
-	return $html;
+	$processor = new WP_HTML_Tag_Processor($html);
+	while ($processor->next_tag('a')) {
+		$processor->add_class('link-info');
+		$processor->add_class('link');
+		$processor->add_class('link-offset-2');
+		$processor->add_class('link-underline-opacity-0');
+		$processor->add_class('link-underline-opacity-75-hover');
+	}
+	return $processor->get_updated_html();
 }
 add_filter('the_tags', 'add_class_the_tags');
 
 function replace_comment_author_link($link)
 {
-	$link = str_replace(
-		array('class="url"', 'ugc">Scott Killen</a>'),
-		array(
-			'class="url link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"',
-			'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>'
-		),
-		$link
-	);
+	$processor = new WP_HTML_Tag_Processor($link);
 
-	return $link;
+	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'url'))) {
+		$processor->add_class('link-body-emphasis');
+		$processor->add_class('link-offset-2');
+		$processor->add_class('link-underline-opacity-25');
+		$processor->add_class('link-underline-opacity-75-hover');
+	}
+
+	return str_replace(
+		'ugc">Scott Killen</a>',
+		'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>',
+		$processor->get_updated_html()
+	);
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
 
 function replace_reply_link($link)
 {
-	$link = str_replace(
-		array("class='comment-reply-link", '>Reply<'),
-		array(
-			"class='badge bg-primary-subtle border border-primary-subtle text-primary-emphasis text-decoration-none comment-reply-link icon-link",
-			'><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<'
-		),
-		$link
-	);
+	$processor = new WP_HTML_Tag_Processor($link);
 
-	return $link;
+	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-reply-link'))) {
+		$processor->add_class('badge');
+		$processor->add_class('bg-primary-subtle');
+		$processor->add_class('border');
+		$processor->add_class('border-primary-subtle');
+		$processor->add_class('text-primary-emphasis');
+		$processor->add_class('text-decoration-none');
+		$processor->add_class('icon-link');
+	}
+
+	return str_replace(
+		'>Reply<',
+		'><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<',
+		$processor->get_updated_html()
+	);
 }
 add_filter('comment_reply_link', 'replace_reply_link');
 
 function replace_comment_edit_link($link)
 {
-	$link = str_replace(
-		array('"comment-edit-link"', '>Edit<'),
-		array(
-			'"comment-edit-link badge mx-1 bg-secondary-subtle icon-link text-decoration-none border border-seconday-subtle text-secondary-emphasis"',
-			'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<'
-		),
-		$link
-	);
+	$processor = new WP_HTML_Tag_Processor($link);
 
-	return $link;
+	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-edit-link'))) {
+		$processor->add_class('badge');
+		$processor->add_class('mx-1');
+		$processor->add_class('bg-secondary-subtle');
+		$processor->add_class('border');
+		$processor->add_class('border-secondary-subtle');
+		$processor->add_class('text-primary-emphasis');
+		$processor->add_class('text-decoration-none');
+		$processor->add_class('icon-link');
+	}
+
+	return str_replace(
+		'>Edit<',
+		'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<',
+		$processor->get_updated_html()
+	);
 }
 add_filter('edit_comment_link', 'replace_comment_edit_link');
 
 function replace_edit_post_link($link)
 {
-	$link = str_replace(
-		array('"post-edit-link"', '>Edit<'),
-		array(
-			'"post-edit-link btn btn-outline-secondary mt-2 icon-link text-decoration-none"',
-			'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<'
-		),
-		$link
-	);
+	$processor = new WP_HTML_Tag_Processor($link);
 
-	return $link;
+	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
+		$processor->add_class('btn');
+		$processor->add_class('btn-outline-secondary');
+		$processor->add_class('mt-2');
+		$processor->add_class('border');
+		$processor->add_class('text-decoration-none');
+		$processor->add_class('icon-link');
+	}
+
+	return str_replace(
+		'>Edit <',
+		'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<',
+		$processor->get_updated_html()
+	);
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
 
