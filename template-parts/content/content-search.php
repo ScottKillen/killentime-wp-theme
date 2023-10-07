@@ -19,12 +19,12 @@
 	if ('post' === get_post_type()) :
 		// Display post metadata for blog posts.
 	?>
-		<p class="blog-post-meta text-secondary font-accent">
+		<div class="border-start row row-cols-auto blog-post-meta text-secondary font-accent">
 			<?php
-			killentime_posted_by();
 			killentime_posted_on();
-			?>
-		</p>
+			killentime_reading_time();
+			killentime_posted_in(); ?>
+		</div>
 	<?php endif;
 
 	// Display the post excerpt.

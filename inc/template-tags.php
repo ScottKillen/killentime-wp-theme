@@ -19,20 +19,12 @@ if (!function_exists('killentime_posted_on')) :
 
 		echo '<div class="col' . $border_class . '" title="Published"><svg class="bi"><use xlink:href="#fa-calendar" /></svg> ';
 
-		$time_string = '<time class="dt-published" datetime="%1s">%2$s</time>';
-
-		if ($show_update && get_the_time('Ymd') !== get_the_modified_time('Ymd')) {
-			$time_string .= '</div><div class="post-update-meta' . $border_class . '" title="Updated">'
-			. '<svg class="bi"><use xlink:href="#fa-wrench" /></svg> '
-			. '<time class="dt-updated" datetime="%3s">%4$s</time></span>';
-		}
+		$time_string = '<time class="dt-published dt-updated" datetime="%1s">%2$s</time>';
 
 		$time_string = sprintf(
 			$time_string,
 			esc_attr(get_the_date(DATE_W3C)),
-			esc_html(get_the_date()),
-			esc_attr(get_the_modified_date(DATE_W3C)),
-			esc_html(get_the_modified_date())
+			esc_html(get_the_date())
 		);
 
 		echo $time_string;
