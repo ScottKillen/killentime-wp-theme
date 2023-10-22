@@ -28,6 +28,15 @@ function kt_site_url_classes($atts)
 }
 add_filter('get_semantics_site-url', 'kt_site_url_classes');
 
+function kt_post_class($classes = array())
+{
+	$classes[] = 'mb-0';
+	$classes[] = 'pb-5';
+
+	return $classes;
+}
+add_filter('post_class', 'kt_post_class');
+
 
 
 
@@ -349,12 +358,6 @@ function KT_get_the_posts_navigation($args = array())
 	}
 
 	return $navigation;
-}
-
-function KT_post_class($css_class = '', $post = null)
-{
-	// Separates classes with a single space, collates classes for post DIV.
-	echo 'class="h-entry blog-post mb-0 pb-5 ' . esc_attr(implode(' ', get_post_class($css_class, $post))) . '"';
 }
 
 function KT_home_excerpt($post)

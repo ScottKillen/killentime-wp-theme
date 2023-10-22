@@ -8,6 +8,31 @@
  * @package Scott_Killen
  */
 
+
+/**
+ * Display the id for the post div.
+ */
+function kt_post_id($post_id = null)
+{
+	if ($post_id) {
+		echo 'id="' . $post_id  . '"';
+	} else {
+		echo 'id="' . kt_get_post_id()  . '"';
+	}
+}
+
+/**
+ * Retrieve the id for the post div.
+ */
+function kt_get_post_id()
+{
+	return 'post-' . get_the_ID();
+}
+
+
+
+
+
 /**
  * Prints HTML with meta information for the current post-date/time.
  */

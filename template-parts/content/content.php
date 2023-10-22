@@ -10,25 +10,8 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php KT_post_class(); ?>>
-	<?php
-	if (is_singular()) :
-		the_title('<h1 class="p-name entry-title">', '</h1>');
-	else :
-		the_title('<h2 class="entry-title display-5 mb-1"><a class="p-name p-url link-body-emphasis text-decoration-none" href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
-	endif;
-
-	if ('post' === get_post_type()) :
-	?>
-		<div class="container text-center">
-			<div class="border-start row row-cols-auto blog-post-meta text-secondary font-accent">
-				<?php
-				killentime_posted_on();
-				killentime_reading_time();
-				killentime_posted_in(); ?>
-			</div>
-		</div>
-	<?php endif;
+<article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('post') ?>>
+	<?php get_template_part('template-parts/entry/entry', 'header');
 
 	if (is_singular()) {
 		killentime_post_thumbnail();
