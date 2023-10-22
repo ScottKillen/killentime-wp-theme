@@ -7,7 +7,7 @@
 
 ?>
 
-<ul class="navbar-nav flex-row-flex-wrap ms-md-auto">
+<ul class="navbar-nav flex-rowflex-wrap ms-md-auto">
   <li class="nav-item">
     <button type="button" class="btn py-2" data-bs-toggle="modal" data-bs-target="#searchModal">
       <svg class="bi">
