@@ -118,23 +118,57 @@ add_action('widgets_init', 'killentime_widgets_init');
  */
 function killentime_scripts()
 {
-	wp_enqueue_style('fonts', get_theme_file_uri('/css/fonts.css'));
-	wp_enqueue_style('bootstrap', get_theme_file_uri('/css/bootstrap.min.css'));
-	wp_enqueue_style('style', get_theme_file_uri('/style.css'));
+	$theme = wp_get_theme();
+
+	wp_enqueue_style(
+		'google-fonts',
+		'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,600&display=swap"',
+		array(),
+		null
+	);
+	wp_enqueue_style(
+		'bootstrap',
+		get_theme_file_uri('/css/bootstrap.min.css'),
+		array('google-fonts'),
+		null
+	);
+	wp_enqueue_style(
+		'style',
+		get_theme_file_uri('/style.css'),
+		array(),
+		$theme->get('Version')
+	);
 
 	wp_enqueue_script(
 		'bootstrap',
 		'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js',
 		array('jquery'), // Add jQuery as a dependency if needed
-		'5.3.1',
+		null,
 		true // Load in the footer
 	);
-	wp_enqueue_script('color-modes', get_template_directory_uri() . '/js/color-modes.js', array(), '1.0.0', true);
+	wp_enqueue_script(
+		'color-modes',
+		get_template_directory_uri() . '/js/color-modes.js',
+		array(),
+		$theme->get('Version'),
+		true
+	);
 
-	wp_register_style('animate', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
+	wp_register_style(
+		'animate',
+		'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+		array(),
+		null
+	);
 	wp_enqueue_style('animate');
 
-	wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js', array(), '1.0.0', false);
+	wp_enqueue_script(
+		'header',
+		get_template_directory_uri() . '/js/header.js',
+		array(),
+		$theme->get('Version'),
+		false
+	);
 }
 add_action('wp_enqueue_scripts', 'killentime_scripts');
 
