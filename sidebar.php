@@ -14,7 +14,7 @@ if (!is_active_sidebar(1)) {
 }
 ?>
 
-<aside id="secondary" class="widget-area col-md-4">
+<aside id="secondary" class="widget-area col-md-4" role="complementary">
 	<div class="position-sticky" style="top: 5rem;">
 		<?php dynamic_sidebar(1); ?>
 	</div>
