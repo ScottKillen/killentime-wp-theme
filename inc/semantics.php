@@ -213,7 +213,7 @@ function semantic_term_links_tag($links)
     if ($p->next_tag('a')) {
       $p->add_class('p-category');
     }
-    $new_links[] = WP_HTML_Tag_Processor->get_updated_html();
+    $new_links[] = $p->get_updated_html();
   }
 
   return $new_links;
