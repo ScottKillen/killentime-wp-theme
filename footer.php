@@ -19,7 +19,7 @@
 			<?php bloginfo('name'); ?>
 		</a>
 		<ul class="nav col-md-4 justify-content-end">
-			<?php get_template_part('template-parts/social-icons'); ?>
+			<?php get_template_part('template-parts/social', 'icons'); ?>
 		</ul>
 	</div>
 </footer>

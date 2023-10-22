@@ -34,4 +34,4 @@
 	<div id="page" class="site container">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'killentime'); ?></a>
 
-		<?php get_template_part('template-parts/header/site-header'); ?>
+		<?php get_template_part('template-parts/header/site', 'header'); ?>

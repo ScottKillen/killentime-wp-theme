@@ -7,7 +7,7 @@
 
 ?>
 
-<?php get_template_part('template-parts/header/search-modal'); ?>
+<?php get_template_part('template-parts/header/search', 'modal'); ?>
 
 <nav class="py-2 mb-4 navbar navbar-expand-lg rounded border sticky-top shadow-sm main-navigation glass" id="site-navigation">
 	<div class="container-fluid">
@@ -28,7 +28,7 @@
 			);
 			?>
 			<div class="d-lg-flex col-lg-3 justify-content-end">
-				<?php get_template_part('template-parts/header/nav-buttons'); ?>
+				<?php get_template_part('template-parts/header/nav', 'buttons'); ?>
 			</div>
 		</div> <!-- #navbar1 -->
 	</div>

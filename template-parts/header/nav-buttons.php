@@ -20,8 +20,8 @@
     <hr class="d-lg-none my-2 text-white-50">
   </li>
   <?php get_template_part(
-    'template-parts/social-icons',
-    null,
+    'template-parts/social',
+    'icons',
     array(
       'social-class' => 'pt-1',
     )
