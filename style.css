@@ -40,18 +40,14 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   --bd-callout-code-color: #e685b5;
 }
 
-#head #logo {
+#head #site-title {
   margin-bottom: 0.5rem;
   line-height: 1.2;
-}
-
-#head .title, .navbar-brand, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
-  font-family: var(--bs-font-heading);
-}
-
-#head .title {
   font-size: 2.25rem;
-  line-height: 1.2;
+}
+
+.navbar-brand, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  font-family: var(--bs-font-heading);
 }
 
 .flex-auto {

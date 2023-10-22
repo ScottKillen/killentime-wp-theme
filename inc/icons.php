@@ -1,7 +1,6 @@
 <?php
-function KT_the_icons()
+function the_icons()
 {
-	ob_start();
 ?>
 	<svg display="none" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<symbol id="fa-check" viewBox="0 0 448 512">
@@ -87,7 +86,5 @@ function KT_the_icons()
 		</symbol>
 	</svg>
 <?php
-	$buffer = ob_get_contents();
-	ob_clean();
-	return $buffer;
 }
+add_action('wp_body_open', 'the_icons');

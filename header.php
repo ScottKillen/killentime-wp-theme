@@ -18,6 +18,8 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="profile" href="http://microformats.org/profile/specs" />
+	<link rel="profile" href="http://microformats.org/profile/hatom" />
 	<link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
 	<link rel="icon" href="/icon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
@@ -27,11 +29,9 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?><?php semantics('body'); ?>>
 	<?php wp_body_open(); ?>
 	<div id="page" class="site container">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'killentime'); ?></a>
-
-		<?php echo KT_the_icons(); ?>
 
 		<?php get_template_part('template-parts/header/site-header'); ?>

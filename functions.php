@@ -195,6 +195,7 @@ if (defined('JETPACK__VERSION')) {
 }
 
 require get_template_directory() . '/inc/icons.php';
+require get_template_directory() . '/inc/semantics.php';
 require get_template_directory() . '/inc/widget-recent-posts.php';
 require get_template_directory() . '/inc/widget-archives.php';
 require get_template_directory() . '/inc/widget-about.php';

@@ -6,22 +6,35 @@
  * @package Scott_Killen
  */
 
-/**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- * @return array
- */
-function killentime_body_classes($classes)
+function kt_site_description_classes($atts)
 {
-	// Adds a class of hfeed to non-singular pages.
-	if (!is_singular()) {
-		$classes[] = 'hfeed';
-	}
-
-	return $classes;
+	$atts['class'][] = 'text-body-secondary';
+	$atts['class'][] = 'd-block';
+	$atts['class'][] = 'mt-1';
+	$atts['class'][] = 'mb-2';
+	$atts['class'][] = 'font-accent';
+	$atts['class'][] = 'fs-6';
+	$atts['class'][] = 'lh-sm';
+	return $atts;
 }
-add_filter('body_class', 'killentime_body_classes');
+add_filter('get_semantics_site-description', 'kt_site_description_classes');
+
+function kt_site_url_classes($atts)
+{
+	$atts['class'][] = 'link-body-emphasis';
+	$atts['class'][] = 'link-offset-2';
+	$atts['class'][] = 'text-decoration-none';
+	return $atts;
+}
+add_filter('get_semantics_site-url', 'kt_site_url_classes');
+
+
+
+
+
+
+
+
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.

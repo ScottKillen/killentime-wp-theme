@@ -7,7 +7,7 @@
 ?>
 
 <div class="container">
-	<header id="masthead">
+	<header id="masthead" role="banner">
 
 		<?php get_template_part('template-parts/header/site-branding'); ?>
 
