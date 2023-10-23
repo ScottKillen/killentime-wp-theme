@@ -29,6 +29,58 @@ function kt_get_post_id()
 	return 'post-' . get_the_ID();
 }
 
+function kt_the_excerpt($post)
+{
+	if (has_excerpt()) { ?>
+		<p><?php echo esc_html($post->post_excerpt); ?></p>
+		<a href="<?php echo esc_url(get_permalink()); ?>" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi">
+				<use xlink:href="#fa-chevron-right" />
+			</svg></a>
+	<?php
+	} elseif (strpos($post->post_content, '<!--more-->')) {
+		the_content(
+			sprintf(
+				wp_kses(
+					'Continue reading<span class="screen-reader-text"> "%s"</span>',
+					array(
+						'span' => array(
+							'class' => array(),
+						),
+					)
+				),
+				wp_kses_post(get_the_title())
+			)
+		);
+	} else {
+		the_excerpt();
+	}
+}
+
+function kt_the_post_thumbnail($before = '', $after = '')
+{
+	if ('' != get_the_post_thumbnail()) {
+		$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-thumbnail');
+		$classes = array('img-fluid', 'rounded photo');
+
+		if ($image['1'] < 400) {
+			$classes[] = 'float-end';
+		} else {
+			$classes[] = 'mx-auto';
+			$classes[] = 'd-block';
+		}
+
+		$classes[] = in_array(get_post_format(), array('image', 'gallery')) ? 'u-photo' : 'u-featured';
+
+		echo $before;
+		the_post_thumbnail('post-thumbnail', array('class' => implode(' ', $classes), 'itemprop' => 'image'));
+		echo $after;
+	}
+}
+
+
+
+
+
 
 
 
@@ -194,42 +246,6 @@ function killentime_entry_footer()
 			$post = $orig_post;
 			wp_reset_query(); ?>
 		</div>
-	<?php
-	endif;
-}
-
-/**
- * Displays an optional post thumbnail.
- *
- * Wraps the post thumbnail in an anchor element on index views, or a div
- * element when on single views.
- */
-function killentime_post_thumbnail()
-{
-	if (post_password_required() || is_attachment() || !has_post_thumbnail()) {
-		return;
-	}
-
-	if (is_singular()) :
-	?>
-
-		<div class="post-thumbnail float-end ms-3 mb-3 shadow rounded overflow-hidden">
-			<?php the_post_thumbnail(); ?>
-		</div><!-- .post-thumbnail -->
-
-	<?php else : ?>
-
-		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-			<?php
-			the_post_thumbnail(
-				'post-thumbnail',
-				array(
-					'alt' => get_the_title(),
-				)
-			);
-			?>
-		</a>
-
 <?php
-	endif; // End is_singular().
+	endif;
 }

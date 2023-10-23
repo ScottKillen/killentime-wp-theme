@@ -26,8 +26,7 @@ function custom_tag_cloud_links($tag_cloud)
 ?>
 
 <div class="row">
-	<main id="primary" class="site-main col-md-8">
-
+	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
 		<section class="error-404 not-found">
 			<header class="page-header">
 				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="<?php echo esc_url($image_url) ?>">

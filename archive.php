@@ -12,8 +12,7 @@ get_header();
 ?>
 
 <div class="row">
-	<main id="primary" class="site-main col-md-8">
-
+	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
 		<?php
 		if (have_posts()) :
 			$archive_title = get_the_archive_title();

@@ -19,7 +19,7 @@ if (!defined('_S_VERSION')) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function killentime_setup()
+function kt_setup()
 {
 	/*
 	 * Make theme available for translation.
@@ -40,12 +40,12 @@ function killentime_setup()
 	 */
 	add_theme_support('title-tag');
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
+	// This theme uses post thumbnails
 	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size(668, 9999); // Unlimited height, soft crop
+
+	// Register custom image size for image post formats.
+	add_image_size('kt-image-post', 668, 1288);
 
 	add_theme_support('disable-custom-colors');
 	add_theme_support('disable-custom-font-sizes');
@@ -76,8 +76,13 @@ function killentime_setup()
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support('customize-selective-refresh-widgets');
+
+	// Add support for the Aside, Gallery Post Formats...
+	// add_theme_support('post-formats', array('aside', 'gallery', 'link', 'status', 'image', 'video', 'audio', 'quote', 'chat'));
+
+
 }
-add_action('after_setup_theme', 'killentime_setup');
+add_action('after_setup_theme', 'kt_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.

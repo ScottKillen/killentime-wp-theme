@@ -14,12 +14,11 @@
  */
 
 get_header();
+
+$row_class = !is_single() ? ' class="row"' : '';
 ?>
-
-<div class="row">
-
-	<main id="primary" class="site-main col-md-8">
-
+<div <?php echo $row_class; ?>>
+	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
 		<?php
 		while (have_posts()) :
 			the_post();

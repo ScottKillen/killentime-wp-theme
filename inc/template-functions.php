@@ -360,31 +360,6 @@ function KT_get_the_posts_navigation($args = array())
 	return $navigation;
 }
 
-function KT_home_excerpt($post)
-{
-	if (has_excerpt()) {
-		echo '<p>' . esc_html($post->post_excerpt) . '</p>';
-		echo '<a href="' . esc_url(get_permalink()) . '" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>';
-	} elseif (strpos($post->post_content, '<!--more-->')) {
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__('Continue reading<span class="screen-reader-text"> "%s"</span>', 'killentime'),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post(get_the_title())
-			)
-		);
-	} else {
-		the_excerpt();
-	}
-}
-
 function KT_get_the_comments_pagination($args = array())
 {
 	$navigation = '';

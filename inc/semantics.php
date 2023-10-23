@@ -81,19 +81,24 @@ add_filter('get_comment_author_link', 'semantic_author_link_class');
 /**
  * Adds microformats v2 support to the get_avatar() method.
  */
-function semantic_pre_get_avatar_data($args, $id_or_email)
+function semantic_pre_get_avatar_data($args)
 {
-  if (!isset($args['class'])) {
-    $args['class'] = array();
+  $classes = array('u-photo');
+
+  if (isset($args['class'])) {
+    if (is_array($args['class'])) {
+      $classes = array_merge($classes, $args['class']);
+    } else {
+      $class[] = $args['class'];
+    }
   }
 
-  // Adds a class for microformats v2
-  $args['class'] = array_unique(array_merge($args['class'], array('u-photo')));
+  $args['class'] = $classes;
   $args['extra_attr'] = 'itemprop="image"';
 
   return $args;
 }
-add_filter('pre_get_avatar_data', 'semantic_pre_get_avatar_data', 99, 2);
+add_filter('pre_get_avatar_data', 'semantic_pre_get_avatar_data', 99);
 
 /**
  * add rel-prev attribute to previous_image_link
