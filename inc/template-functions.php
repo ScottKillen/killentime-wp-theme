@@ -8,22 +8,53 @@
 
 function kt_site_description_classes($atts)
 {
-	$atts['class'][] = 'text-body-secondary';
-	$atts['class'][] = 'd-block';
-	$atts['class'][] = 'mt-1';
-	$atts['class'][] = 'mb-2';
-	$atts['class'][] = 'font-accent';
-	$atts['class'][] = 'fs-6';
-	$atts['class'][] = 'lh-sm';
+	if (isset($atts['class'])) {
+		if (is_array($atts['class'])) {
+			$classes = $atts['class'];
+		} else {
+			$classes[] = $atts['class'];
+		}
+	} else {
+		$classes = array();
+	}
+
+	$atts['class'] = array_merge(
+		$classes,
+		array(
+			'text-body-secondary',
+			'd-block',
+			'mt-1',
+			'font-accent',
+			'fs-6',
+			'lh-sm',
+		)
+	);
+
 	return $atts;
 }
 add_filter('get_semantics_site-description', 'kt_site_description_classes');
 
 function kt_site_url_classes($atts)
 {
-	$atts['class'][] = 'link-body-emphasis';
-	$atts['class'][] = 'link-offset-2';
-	$atts['class'][] = 'text-decoration-none';
+	if (isset($atts['class'])) {
+		if (is_array($atts['class'])) {
+			$classes = $atts['class'];
+		} else {
+			$classes[] = $atts['class'];
+		}
+	} else {
+		$classes = array();
+	}
+
+	$atts['class'] = array_merge(
+		$classes,
+		array(
+			'link-body-emphasis',
+			'link-offset-2',
+			'text-decoration-none',
+		)
+	);
+
 	return $atts;
 }
 add_filter('get_semantics_site-url', 'kt_site_url_classes');
@@ -37,86 +68,61 @@ function kt_post_class($classes = array())
 }
 add_filter('post_class', 'kt_post_class');
 
-
-
-
-
-
-
-
-
-/**
- * Add a pingback url auto-discovery header for single posts, pages, or attachments.
- */
-function killentime_pingback_header()
+function kt_add_pingback_link_header()
 {
 	if (is_singular() && pings_open()) {
 		printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
 	}
 }
-add_action('wp_head', 'killentime_pingback_header');
+add_action('wp_head', 'kt_add_pingback_link_header');
 
-/**
- * Add custom classe to nav menu items
- *
- * @param mixed $classes classes for the menu item
- * @param mixed $item the current menu item object
- * @param mixed $args An object of wp_nav_menu() arguments
- * @param mixed $depth Depth of menu item
- * @return mixed
- */
-function killentime_add_class_on_menu_item($classes, $item, $args, $depth)
+function kt_add_menu_li_class($classes, $item, $args)
 {
 	if (isset($args->add_li_class)) {
 		$classes[] = $args->add_li_class;
 	}
+
 	return $classes;
 }
-add_filter('nav_menu_css_class', 'killentime_add_class_on_menu_item', 1, 4);
+add_filter('nav_menu_css_class', 'kt_add_menu_li_class', 10, 3);
 
-/**
- * Sets pagination link attribguted
- * @param mixed $attributes
- * @return string
- */
-function killentime_set_pagination_link_attributes($attributes)
+function kt_set_post_pagination_link_class($attr)
 {
-	return 'class="page-link"';
+	return $attr . ' class="page-link"';
 }
+add_filter('next_posts_link_attributes', 'kt_set_post_pagination_link_class');
+add_filter('previous_posts_link_attributes', 'kt_set_post_pagination_link_class');
 
-add_filter('next_posts_link_attributes', 'killentime_set_pagination_link_attributes');
-add_filter('previous_posts_link_attributes', 'killentime_set_pagination_link_attributes');
-
-/**
- * Add classes to menu item link
- * @param mixed $atts      The HTML attributes applied to the menu item's <a> element, empty strings are ignored.
- * @param mixed $menu_item The current menu item object
- * @param mixed $args      An object of wp_nav_menu() arguments
- * @return mixed
- */
-function killentime_add_class_on_menu_item_link($atts, $menu_item, $args, $depth)
+function kt_add_class_on_nav_menu_link($atts, $menu_item, $args)
 {
-	if (in_array('class', $atts)) {
-		$classes = $atts['class'];
-	} else {
-		$classes = '';
+	$classes = array();
+
+	if (isset($atts['class'])) {
+		$classes[] = $atts['class'];
 	}
 
 	if (isset($args->add_link_class)) {
-		$classes .= ' ' . $args->add_link_class;
+		$classes[] = $args->add_link_class;
 	}
 
 	if (!empty($atts['aria-current'])) {
-		$classes .= ' active border-primary';
+		$classes = array_merge($classes, array('active', 'border-primary'));
 	}
-
-	if (!empty($classes)) {
-		$atts['class'] = $classes;
-	}
+	$atts['class'] = implode(' ', array_unique($classes));
 
 	return $atts;
 }
-add_filter('nav_menu_link_attributes', 'killentime_add_class_on_menu_item_link', 10, 4);
+add_filter('nav_menu_link_attributes', 'kt_add_class_on_nav_menu_link', 10, 3);
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Filters the string in the “more” link displayed after a trimmed excerpt.
