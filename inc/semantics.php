@@ -89,7 +89,7 @@ function semantic_pre_get_avatar_data($args)
     if (is_array($args['class'])) {
       $classes = array_merge($classes, $args['class']);
     } else {
-      $class[] = $args['class'];
+      $classes[] = $args['class'];
     }
   }
 
