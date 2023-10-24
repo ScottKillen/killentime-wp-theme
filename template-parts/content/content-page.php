@@ -11,31 +11,25 @@
 ?>
 
 <article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('page') ?>>
-	<?php get_template_part('template-parts/entry/entry', 'header');?>
+	<?php get_template_part('template-parts/entry/entry', 'header'); ?>
 
-<?php if (is_search()) : // Display excerpts in search ?>
-	<div class="entry-summary p-summary" itemprop="description">
-		<?php kt_the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-<?php else : ?>
-	<?php kt_the_post_thumbnail( '<div class="entry-media">', '</div>' ); ?>
+	<?php if (is_search()) : // Display excerpts in search
+	?>
+		<div class="entry-summary p-summary" itemprop="description">
+			<?php the_excerpt(); ?>
+		</div><!-- .entry-summary -->
+	<?php else : ?>
+		<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 
-	<div class="entry-content">
-		<?php
-		the_content();
-
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__('Pages:', 'killentime'),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
-
-	<?php if (get_edit_post_link()) : ?>
-		<footer class="entry-footer">
+		<div class="entry-content e-content" itemprop="description text">
+			<?php the_content(); ?>
 			<?php
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . 'Pages:',
+					'after'  => '</div>',
+				)
+			);
 			edit_post_link(
 				sprintf(
 					wp_kses(
@@ -53,6 +47,6 @@
 				'</span>'
 			);
 			?>
-		</footer><!-- .entry-footer -->
+		</div><!-- .entry-content -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->

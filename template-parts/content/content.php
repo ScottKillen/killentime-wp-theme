@@ -2,23 +2,20 @@
 
 ?>
 <article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('post') ?>>
-	<?php get_template_part('template-parts/entry/entry', 'header');
+	<?php get_template_part('template-parts/entry/entry', 'header'); ?>
 
-	if (is_singular()) {
-		kt_the_post_thumbnail();
-		echo '<div class="e-content">';
-		the_content();
-		echo '</div>';
-	} else {
-		echo '<div class="p-summary">';
-		kt_the_excerpt($post);
-		echo '</div>';
-	}
+	<?php if (is_search()) : // Only display Excerpts for Search
+	?>
+		<div class="entry-summary p-summary" itemprop="description">
+			<?php the_excerpt(); ?>
+		</div><!-- .entry-summary -->
+	<?php else : ?>
+		<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
+		<div class="entry-content e-content" itemprop="description articleBody">
+			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+			<?php wp_link_pages(array('before' => '<div class="page-link">' . 'Pages:', 'after' => '</div>')); ?>
+		</div><!-- .entry-content -->
+	<?php endif; ?>
 
-	if (is_singular()) : ?>
-		<footer class="entry-footer">
-			<?php killentime_entry_footer(); ?>
-		</footer><!-- .entry-footer -->
-	<?php
-	endif; ?>
+	<?php get_template_part('template-parts/entry/entry', 'footer'); ?>
 </article><!-- #post-<?php the_ID(); ?> -->

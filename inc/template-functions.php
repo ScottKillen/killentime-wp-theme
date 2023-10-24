@@ -114,6 +114,45 @@ function kt_add_class_on_nav_menu_link($atts, $menu_item, $args)
 }
 add_filter('nav_menu_link_attributes', 'kt_add_class_on_nav_menu_link', 10, 3);
 
+function kt_term_links_category($links)
+{
+	$new_links = array();
+	foreach ($links as $link) {
+		$p = new WP_HTML_Tag_Processor($link);
+		if ($p->next_tag('a')) {
+			$p->add_class('me-1');
+			$p->add_class('link-secondary');
+			$p->add_class('link-offset-2');
+			$p->add_class('link-underline-opacity-25');
+			$p->add_class('link-underline-opacity-100-hover');
+		}
+		$new_links[] = $p->get_updated_html();
+	}
+
+	return $new_links;
+}
+add_filter('term_links-category', 'kt_term_links_category');
+
+function kt_term_links_tag($links)
+{
+	$new_links = array();
+	foreach ($links as $link) {
+		$p = new WP_HTML_Tag_Processor($link);
+		if ($p->next_tag('a')) {
+			$p->add_class('badge');
+			$p->add_class('bg-info-subtle');
+			$p->add_class('border');
+			$p->add_class('border-info-subtle');
+			$p->add_class('text-info-emphasis');
+			$p->add_class('shadow');
+			$p->add_class('rounded-pill');
+		}
+		$new_links[] = $p->get_updated_html();
+	}
+
+	return $new_links;
+}
+add_filter('term_links-post_tag', 'kt_term_links_tag');
 
 
 

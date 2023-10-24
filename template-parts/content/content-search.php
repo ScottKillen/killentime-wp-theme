@@ -23,7 +23,7 @@
 			<?php
 			killentime_posted_on();
 			killentime_reading_time();
-			killentime_posted_in(); ?>
+			kt_posted_in(); ?>
 		</div>
 	<?php endif;
 
