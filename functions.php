@@ -78,9 +78,12 @@ function kt_setup()
 	add_theme_support('customize-selective-refresh-widgets');
 
 	// Add support for the Aside, Gallery Post Formats...
-	// add_theme_support('post-formats', array('aside', 'gallery', 'link', 'status', 'image', 'video', 'audio', 'quote', 'chat'));
-
-
+	add_theme_support(
+		'post-formats',
+		array(
+			'aside', 'gallery', 'link', 'status', 'image', 'video', 'audio', 'quote', 'chat'
+		)
+	);
 }
 add_action('after_setup_theme', 'kt_setup');
 

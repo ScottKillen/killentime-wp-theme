@@ -77,43 +77,24 @@ function kt_the_post_thumbnail($before = '', $after = '')
 	}
 }
 
-
-
-
-
-
-
-
-
-/**
- * Prints HTML with meta information for the current post-date/time.
- */
-function killentime_posted_on($show_border = true, $show_update = true)
+function kt_the_post_date($before = '', $after = '')
 {
+	echo $before;
 
-	$border_class = $show_border ? ' border-end' : '';
-
-	echo '<div class="col' . $border_class . '" title="Published"><svg class="bi"><use xlink:href="#fa-calendar" /></svg> ';
-
-	$time_string = '<time class="dt-published dt-updated" datetime="%1s">%2$s</time>';
-
-	$time_string = sprintf(
-		$time_string,
-		esc_attr(get_the_date(DATE_W3C)),
+	printf(
+		'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time class="entry-date updated published dt-updated dt-published" datetime="%3$s" itemprop="dateModified datePublished">%4$s</time></a>',
+		esc_url(get_permalink()),
+		esc_attr(get_the_time()),
+		esc_attr(get_the_date('c')),
 		esc_html(get_the_date())
 	);
 
-	echo $time_string;
-	echo '</div>';
+	echo $after;
 }
 
-function killentime_reading_time($show_border = true, $post_id = null)
+function kt_the_post_read_time($before = '', $after = '')
 {
-	if ($post_id === null) {
-		$post_id = get_the_ID(); // Get the current post ID in the loop
-	}
-
-	$post = get_post($post_id);
+	$post = get_post(get_the_ID());
 
 	// Getting the post content and stripping HTML tags
 	$content = strip_tags(get_post_field('post_content', $post->ID));
@@ -123,40 +104,61 @@ function killentime_reading_time($show_border = true, $post_id = null)
 	$word_count = str_word_count($content);
 
 	// Calculate the estimated reading time, considering 200 words per minute
-	$reading_time_minutes = ceil($word_count / 200);
+	$reading_time_minutes = $word_count / 200;
+
+	echo $before;
 
 	// Determine the reading time string
-	if ($reading_time_minutes === 1) {
-		$reading_time = "1 minute";
+	if ($reading_time_minutes < 1) {
+		echo 'under 1 minute';
 	} else {
-		$reading_time = $reading_time_minutes . " minutes";
+		$reading_time_minutes = ceil($reading_time_minutes);
+		if ($reading_time_minutes === 1) {
+			echo '1 minute';
+		} else {
+			echo $reading_time_minutes . ' minutes';
+		}
 	}
 
-	$border_class = $show_border ? ' border-end' : '';
-
-	// Output the reading time
-	echo '<div class="col' . $border_class . '" title="Reading time">'
-		. '<svg class="bi"><use xlink:href="#fa-book-open-reader" /></svg> '
-		. $reading_time . '</div>';
+	echo $after;
 }
 
-function kt_posted_in($show_border = true)
+function kt_the_categories($before = '', $after = '')
 {
 	$categories_list = get_the_category_list(', ');
 
 	if ($categories_list) {
 
-		$classes = 'col';
-		if ($show_border) {
-			$classes .= ' border-end';
+		$p = new WP_HTML_Tag_Processor($categories_list);
+		while ($p->next_tag('a')) {
+			$p->add_class('link-secondary');
+			$p->add_class('link-offset-2');
+			$p->add_class('link-underline-opacity-25');
+			$p->add_class('link-underline-opacity-100-hover');
 		}
-	?>
-		<div class="<?php echo $classes; ?>" title="Categories">
-			<svg class="bi me-2">
-				<use xlink:href="#fa-tag" />
-			</svg>
-			<?php echo $categories_list; ?>
-		</div>
-<?php
+
+		echo $before;
+		echo $p->get_updated_html();
+		echo $after;
+	}
+}
+
+function kt_the_tags($before = '', $after = '')
+{
+	$tag_list = get_the_tag_list('', ', ');
+
+	if ($tag_list) {
+
+		$p = new WP_HTML_Tag_Processor($tag_list);
+		while ($p->next_tag('a')) {
+			$p->add_class('link-secondary');
+			$p->add_class('link-offset-2');
+			$p->add_class('link-underline-opacity-25');
+			$p->add_class('link-underline-opacity-100-hover');
+		}
+
+		echo $before;
+		echo $p->get_updated_html();
+		echo $after;
 	}
 }

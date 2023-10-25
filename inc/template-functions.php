@@ -114,49 +114,11 @@ function kt_add_class_on_nav_menu_link($atts, $menu_item, $args)
 }
 add_filter('nav_menu_link_attributes', 'kt_add_class_on_nav_menu_link', 10, 3);
 
-function kt_term_links_category($links)
+function kt_add_comment_link_classes($link_attributes)
 {
-	$new_links = array();
-	foreach ($links as $link) {
-		$p = new WP_HTML_Tag_Processor($link);
-		if ($p->next_tag('a')) {
-			$p->add_class('me-1');
-			$p->add_class('link-secondary');
-			$p->add_class('link-offset-2');
-			$p->add_class('link-underline-opacity-25');
-			$p->add_class('link-underline-opacity-100-hover');
-		}
-		$new_links[] = $p->get_updated_html();
-	}
-
-	return $new_links;
+	return $link_attributes .= 'class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"';
 }
-add_filter('term_links-category', 'kt_term_links_category');
-
-function kt_term_links_tag($links)
-{
-	$new_links = array();
-	foreach ($links as $link) {
-		$p = new WP_HTML_Tag_Processor($link);
-		if ($p->next_tag('a')) {
-			$p->add_class('badge');
-			$p->add_class('bg-info-subtle');
-			$p->add_class('border');
-			$p->add_class('border-info-subtle');
-			$p->add_class('text-info-emphasis');
-			$p->add_class('shadow');
-			$p->add_class('rounded-pill');
-		}
-		$new_links[] = $p->get_updated_html();
-	}
-
-	return $new_links;
-}
-add_filter('term_links-post_tag', 'kt_term_links_tag');
-
-
-
-
+add_filter('comments_popup_link_attributes', 'kt_add_comment_link_classes');
 
 
 
@@ -213,15 +175,14 @@ add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
 // add custom class to tag
 function add_class_the_tags($html)
 {
-	$processor = new WP_HTML_Tag_Processor($html);
-	while ($processor->next_tag('a')) {
-		$processor->add_class('link-info');
-		$processor->add_class('link');
-		$processor->add_class('link-offset-2');
-		$processor->add_class('link-underline-opacity-0');
-		$processor->add_class('link-underline-opacity-75-hover');
+	$p = new WP_HTML_Tag_Processor($html);
+	while ($p->next_tag('a')) {
+		$p->add_class('link-secondary');
+		$p->add_class('link-offset-2');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-100-hover');
 	}
-	return $processor->get_updated_html();
+	return $p->get_updated_html();
 }
 add_filter('the_tags', 'add_class_the_tags');
 
@@ -296,8 +257,7 @@ function replace_edit_post_link($link)
 	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
 		$processor->add_class('btn');
 		$processor->add_class('btn-outline-secondary');
-		$processor->add_class('mt-2');
-		$processor->add_class('border');
+		$processor->add_class('btn-sm');
 		$processor->add_class('text-decoration-none');
 		$processor->add_class('icon-link');
 	}
@@ -309,20 +269,6 @@ function replace_edit_post_link($link)
 	);
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
-
-function kt_list_categories($html)
-{
-	$html = str_replace(
-		array('<li class="cat', '<a hr'),
-		array('<li class="list-group-item d-flex justify-content-between align-items-start cat', '<a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" hr'),
-		$html
-	);
-
-	$html = preg_replace('/\((\d+)\)/', '<span class="badge bg-primary rounded-pill">$1</span>', $html);
-
-	return $html;
-}
-add_filter('wp_list_categories', 'kt_list_categories');
 
 function kt_webmention_comment_form($template_name)
 {

@@ -1,6 +1,16 @@
 <?php ?>
 <article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('post'); ?> itemref="site-publisher">
-	<?php get_template_part('template-parts/entry/entry', 'header'); ?>
+	<?php get_template_part(
+		'template-parts/entry/entry',
+		'header',
+		array(
+			'components' => array(
+				'post_date',
+				'post_read_time',
+				'post_category',
+			)
+		)
+	); ?>
 
 	<?php if (is_search()) : // Only display Excerpts for Search
 	?>
@@ -15,5 +25,13 @@
 		</div><!-- .entry-content -->
 	<?php endif; ?>
 
-	<?php get_template_part('template-parts/entry/entry', 'footer'); ?>
+	<?php get_template_part(
+		'template-parts/entry/entry',
+		'footer',
+		array(
+			'components' => array(
+				'post_tag',
+			)
+		)
+	); ?>
 </article><!-- #post-<?php the_ID(); ?> -->
