@@ -18,16 +18,53 @@ Use it to make something cool, have fun, and share what you've learned.
 Scott Killen is distributed under the terms of the GNU GPL v2 or later.
 */
 
-#head img.rounded-circle {
-  width: 11.25rem;
-  height: 11.25rem;
-}
-
 :root {
   --bs-font-heading: 'Roboto Serif', serif;
   --bs-body-font-family: 'Atkinson Hyperlegible', sans-serif;
   --bs-font-monospace: 'Source Code Pro', monospace;
   --bs-font-accent: var(--bs-body-font-family);
+}
+
+#head img.rounded-circle {
+  width: 11.25rem;
+  height: 11.25rem;
+}
+
+#head #site-title {
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  font-size: 2.25rem;
+}
+
+.font-accent {
+  font-family: var(--bs-font-accent);
+}
+
+.font-body {
+  font-family: var(--bs-body-font-family);
+}
+
+.font-mono {
+  font-family: var(--bs-font-monospace);
+}
+
+.font-title, .navbar-brand, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  font-family: var(--bs-font-heading);
+}
+
+.bi {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentcolor;
+}
+
+.bi-yellow {
+  fill: #ffc107;
+}
+
+footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
+  border-right-width: 0 !important;
 }
 
 :root, [data-bs-theme="light"] {
@@ -40,16 +77,8 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   --bd-callout-code-color: #e685b5;
 }
 
-#head #site-title {
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-  font-size: 2.25rem;
-}
 
-.navbar-brand, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
-  font-family: var(--bs-font-heading);
-}
-
+/*
 .flex-auto {
   flex: 0 0 auto;
 }
@@ -58,23 +87,10 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
 @media (min-width: 768px) {
   .h-md-250 { height: 250px; }
 }
+*/
 
 .navbar .dropdown-menu .active .bi {
   display: block !important;
-}
-
-.bi {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.125em;
-  fill: currentcolor;
-}
-
-.bi-yellow {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.125em;
-  fill: #ffc107;
 }
 
 #secondary ul#recent-posts li:first-child a.border-top {
@@ -95,22 +111,6 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
 
 #primary-menu .nav-link:not(.active):hover {
   color: var(--bs-emphasis-color);
-}
-
-.font-title {
-  font-family: var(--bs-font-heading);
-}
-
-.font-accent {
-  font-family: var(--bs-font-accent);
-}
-
-.font-body {
-  font-family: var(--bs-body-font-family);
-}
-
-.font-mono {
-  font-family: var(--bs-font-monospace);
 }
 
 #colophon .logo {

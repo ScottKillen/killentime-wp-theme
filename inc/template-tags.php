@@ -36,7 +36,7 @@ function kt_the_excerpt($post)
 		<a href="<?php echo esc_url(get_permalink()); ?>" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi">
 				<use xlink:href="#fa-chevron-right" />
 			</svg></a>
-	<?php
+<?php
 	} elseif (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
@@ -71,23 +71,47 @@ function kt_the_post_thumbnail($before = '', $after = '')
 
 		$classes[] = in_array(get_post_format(), array('image', 'gallery')) ? 'u-photo' : 'u-featured';
 
+		if ('image' === get_post_format()) {
+			$classes[] = 'figure-img';
+			$classes[] = 'img-fluid';
+			$classes[] = 'rounded';
+		}
+
 		echo $before;
 		the_post_thumbnail('post-thumbnail', array('class' => implode(' ', $classes), 'itemprop' => 'image'));
 		echo $after;
 	}
 }
 
-function kt_the_post_date($before = '', $after = '')
+function kt_comments_popup_link($before = '', $after = '')
+{
+	if (comments_open() || ('0' != get_comments_number() && !comments_open())) {
+		echo $before;
+		comments_popup_link('Leave a comment', '1 Comment', '% Comments');
+		echo $after;
+	}
+}
+
+function kt_the_post_date($before = '', $after = '', $link = true)
 {
 	echo $before;
 
-	printf(
-		'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time class="entry-date updated published dt-updated dt-published" datetime="%3$s" itemprop="dateModified datePublished">%4$s</time></a>',
-		esc_url(get_permalink()),
-		esc_attr(get_the_time()),
-		esc_attr(get_the_date('c')),
-		esc_html(get_the_date())
-	);
+	if ($link) {
+		printf(
+			'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><time class="entry-date updated published dt-updated dt-published" datetime="%3$s" itemprop="dateModified datePublished">%4$s</time></a>',
+			esc_url(get_permalink()),
+			esc_attr(get_the_time()),
+			esc_attr(get_the_date('c')),
+			esc_html(get_the_date())
+		);
+	} else {
+		printf(
+			'<span title="%1$s"><time class="entry-date updated published dt-updated dt-published" datetime="%2$s" itemprop="dateModified datePublished">%3$s</time></span>',
+			esc_attr(get_the_time()),
+			esc_attr(get_the_date('c')),
+			esc_html(get_the_date())
+		);
+	}
 
 	echo $after;
 }

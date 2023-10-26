@@ -199,7 +199,7 @@ function replace_comment_author_link($link)
 
 	return str_replace(
 		'ugc">Scott Killen</a>',
-		'ugc">Scott Killen</a> <svg class="bi-yellow"><use xlink:href="#fa-star"/></svg>',
+		'ugc">Scott Killen</a> <svg class="bi bi-yellow"><use xlink:href="#fa-star"/></svg>',
 		$processor->get_updated_html()
 	);
 }
@@ -255,11 +255,10 @@ function replace_edit_post_link($link)
 	$processor = new WP_HTML_Tag_Processor($link);
 
 	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
-		$processor->add_class('btn');
-		$processor->add_class('btn-outline-secondary');
-		$processor->add_class('btn-sm');
-		$processor->add_class('text-decoration-none');
-		$processor->add_class('icon-link');
+		$processor->add_class('link-secondary');
+		$processor->add_class('link-offset-2');
+		$processor->add_class('link-underline-opacity-25');
+		$processor->add_class('link-underline-opacity-100-hover');
 	}
 
 	return str_replace(
