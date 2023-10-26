@@ -28,6 +28,7 @@
 			array(
 				'components' => array(
 					'post_tag',
+					'edit_link',
 				)
 			)
 		); ?>

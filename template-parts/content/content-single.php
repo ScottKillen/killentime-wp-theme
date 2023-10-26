@@ -36,6 +36,7 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 			array(
 				'components' => array(
 					'post_tag',
+					'edit_link'
 				)
 			)
 		); ?>
