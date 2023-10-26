@@ -113,6 +113,13 @@ function kt_the_post_date($before = '', $after = '', $link = true)
 		);
 	}
 
+	printf(
+		'<address class="byline d-none"><span class="author p-author vcard hcard h-card" itemprop="author " itemscope itemtype="http://schema.org/Person">%1$s <a class="url uid u-url u-uid fn p-name" href="%2$s" rel="author" itemprop="url"><span itemprop="name">%3$s</span></a></span></address>',
+		get_avatar(get_the_author_meta('ID'), 90),
+		esc_url(get_author_posts_url(get_the_author_meta('ID'))),
+		esc_html(get_the_author())
+	);
+
 	echo $after;
 }
 
