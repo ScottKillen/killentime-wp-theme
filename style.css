@@ -82,6 +82,30 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   --bd-callout-code-color: #e685b5;
 }
 
+.format-chat .entry-content > p {
+  border-radius: 18px;
+  border: solid 1px;
+  padding: 1em;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
+  color: var(--bs-body-color);
+  font-family: var(--bs-font-monospace);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.format-chat .entry-content > p:nth-child(odd) {
+  border-bottom-right-radius: 0;
+  background-color: rgba(214, 51, 132, 0.7);
+  border-color: var(--bs-pink);
+  margin-left: 33%;
+}
+
+.format-chat .entry-content > p:nth-child(even) {
+  border-bottom-left-radius: 0;
+  background-color: rgba(13, 202, 240, 0.7);
+  border-color: var(--bs-cyan);
+  margin-right: 33%;
+}
+
 
 /*
 .flex-auto {
