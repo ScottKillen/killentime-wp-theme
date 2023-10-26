@@ -67,6 +67,11 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   border-right-width: 0 !important;
 }
 
+.reverse-mode {
+  background-color: var(--bs-body-color);
+  color: var(--bs-body-bg);
+}
+
 :root, [data-bs-theme="light"] {
   --bd-callout-link: 10,88,202;
   --bd-callout-code-color: #ab296a;
