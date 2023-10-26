@@ -1,5 +1,7 @@
-<?php ?>
-<article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('post'); ?> itemref="site-publisher">
+<?php
+$classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
+?>
+<article <?php kt_post_id(); ?> <?php post_class($classes); ?><?php semantics('post'); ?> itemref="site-publisher">
 	<?php get_template_part(
 		'template-parts/entry/entry',
 		'header',
@@ -18,20 +20,24 @@
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
 	<?php else : ?>
-		<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
-		<div class="entry-content e-content" itemprop="description articleBody">
-			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+		<div class="clearfix py-3">
+			<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
+			<div class="entry-content e-content" itemprop="description articleBody">
+				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+			</div>
 			<?php wp_link_pages(array('before' => '<div class="page-link">' . 'Pages:', 'after' => '</div>')); ?>
 		</div><!-- .entry-content -->
 	<?php endif; ?>
 
-	<?php get_template_part(
-		'template-parts/entry/entry',
-		'footer',
-		array(
-			'components' => array(
-				'post_tag',
+	<div class="container">
+		<?php get_template_part(
+			'template-parts/entry/entry',
+			'footer',
+			array(
+				'components' => array(
+					'post_tag',
+				)
 			)
-		)
-	); ?>
+		); ?>
+	</div>
 </article><!-- #post-<?php the_ID(); ?> -->

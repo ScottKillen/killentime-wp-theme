@@ -61,8 +61,8 @@ add_filter('get_semantics_site-url', 'kt_site_url_classes');
 
 function kt_post_class($classes = array())
 {
-	$classes[] = 'mb-0';
-	$classes[] = 'pb-5';
+	$classes[] = 'mb-5';
+	$classes[] = 'pb-3';
 
 	return $classes;
 }

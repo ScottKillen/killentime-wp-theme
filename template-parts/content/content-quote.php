@@ -28,8 +28,7 @@
 			array(
 				'components' => array(
 					'post_tag',
-				),
-				'border-none' => true,
+				)
 			)
 		); ?>
 	</div>

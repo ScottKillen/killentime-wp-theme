@@ -25,8 +25,7 @@
 					'post_tag',
 					'comment_link',
 					'edit_link',
-				),
-				'border-none' => true,
+				)
 			)
 		); ?>
 	</div>

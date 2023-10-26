@@ -23,8 +23,7 @@
 				'components' => array(
 					'post_date_no_link',
 					'edit_link',
-				),
-				'border-none' => true,
+				)
 			)
 		); ?>
 	</div>

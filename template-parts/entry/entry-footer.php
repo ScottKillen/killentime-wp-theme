@@ -10,10 +10,8 @@
     $components = array();
   }
 
-  $border_start = !in_array('border_none', $args) ? 'border-start ' : '';
-
   if (!empty($components)) : ?>
-    <div class="<?php echo $border_start; ?>row row-cols-auto blog-post-meta text-secondary font-accent">
+    <div class="row row-cols-auto blog-post-meta text-secondary font-accent">
       <?php
       foreach ($components as $component) {
         switch ($component) {
