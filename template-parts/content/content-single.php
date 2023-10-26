@@ -24,9 +24,9 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 			<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 			<div class="entry-content e-content" itemprop="description articleBody">
 				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
-			</div>
-			<?php wp_link_pages(array('before' => '<div class="page-link">' . 'Pages:', 'after' => '</div>')); ?>
-		</div><!-- .entry-content -->
+			</div><!-- .entry-content -->
+		</div>
+		<?php wp_link_pages(array('before' => '<div class="page-link">' . 'Pages:', 'after' => '</div>')); ?>
 	<?php endif; ?>
 
 	<div class="container">

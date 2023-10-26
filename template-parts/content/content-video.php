@@ -20,8 +20,8 @@
 		<div class="entry-content e-content" itemprop="description articleBody">
 			<div class="clearfix pb-3">
 				<?php kt_the_post_thumbnail('<p class="pt-3">', '</p>'); ?>
+				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
 			</div>
-			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
 			<?php wp_link_pages(array('before' => '<div class="page-link">Pages:', 'after' => '</div>')); ?>
 		</div><!-- .entry-content -->
 	<?php endif; ?>
