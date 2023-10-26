@@ -1,13 +1,5 @@
 <?php
 
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package Scott_Killen
- */
-
 get_header();
 ?>
 <main id="primary" <?php semantic_main_class('site-main') ?>>
