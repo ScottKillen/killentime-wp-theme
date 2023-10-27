@@ -1,65 +1,40 @@
 <?php
 
-/**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Scott_Killen
- */
-
 get_header();
 ?>
 
 <div class="row">
-	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
-		<?php
-		if (have_posts()) :
-			$archive_title = get_the_archive_title();
-			$archive_description = get_the_archive_description();
+	<section id="primary" class="col-md-8">
+		<main id="content" <?php semantic_main_class() ?>>
+			<?php if (have_posts()) : ?>
 
-			// Display archive title and description if available.
-			if ($archive_title || $archive_description) :
-		?>
 				<header class="page-header">
-					<?php
-					if ($archive_title) {
-						echo '<h1 class="page-title border-bottom">' . $archive_title . '</h1>';
-					}
-					if ($archive_description) {
-						echo '<div class="archive-description">' . $archive_description . '</div>';
-					}
-					?>
-				</header><!-- .page-header -->
-		<?php
+					<h1 class="page-title display-4 border-bottom border-secondary-subtle mb-3"><?php the_archive_title(); ?></h1>
+					<div class="page-description"><?php the_archive_description(); ?></div>
+				</header>
+
+				<?php rewind_posts(); ?>
+
+				<?php kt_content_nav('nav-above'); ?>
+
+				<?php while (have_posts()) : the_post(); ?>
+
+					<?php get_template_part('template-parts/content/content', get_post_type()); ?>
+
+				<?php endwhile; ?>
+
+				<?php kt_content_nav('nav-below'); ?>
+
+			<?php else :
+
+				// If no posts found, display a message.
+				get_template_part('template-parts/content/content', 'none');
+
 			endif;
+			?>
 
-			// Start the Loop to display posts.
-			while (have_posts()) :
-				the_post();
-
-				/*
-                 * Include the Post-Type-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-                 */
-				get_template_part('template-parts/content/content', get_post_type());
-
-			endwhile;
-
-			// Display navigation for paginated archives.
-			the_posts_navigation();
-
-		else :
-
-			// If no posts found, display a message.
-			get_template_part('template-parts/content/content', 'none');
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
+		</main><!-- #content -->
+	</section><!-- #primary -->
 	<?php get_sidebar(); ?>
 </div>
 
