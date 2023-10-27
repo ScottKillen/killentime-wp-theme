@@ -16,7 +16,7 @@
 get_header();
 ?>
 <div id="main" class="row">
-	<main id="primary" <?php semantic_main_class('site-main') ?>>
+	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
 		<?php
 		if (have_posts()) :
 			if (is_home() && !is_front_page()) :
