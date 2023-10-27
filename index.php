@@ -26,6 +26,9 @@ get_header();
 				echo '</h1></header>';
 			endif;
 
+			kt_content_nav('nav-above');
+
+
 			/* Start the Loop */
 			while (have_posts()) : the_post();
 
@@ -33,14 +36,7 @@ get_header();
 
 			endwhile;
 
-			echo KT_get_the_posts_navigation(
-				array(
-					'prev_text' => esc_html__('Older', 'scottkillen'),
-					'next_text' => esc_html__('Newer', 'scottkillen'),
-					'screen_reader_text' => '',
-					'aria_label' => esc_attr__('Page navigation', 'scottkillen'),
-				)
-			);
+			kt_content_nav('nav-below');
 
 		else :
 			// If no posts found, display a message.
