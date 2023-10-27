@@ -8,7 +8,6 @@
  * @package Scott_Killen
  */
 
-
 /**
  * Display the id for the post div.
  */
@@ -36,7 +35,7 @@ function kt_the_excerpt($post)
 		<a href="<?php echo esc_url(get_permalink()); ?>" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi">
 				<use xlink:href="#fa-chevron-right" />
 			</svg></a>
-<?php
+	<?php
 	} elseif (strpos($post->post_content, '<!--more-->')) {
 		the_content(
 			sprintf(
@@ -192,4 +191,37 @@ function kt_the_tags($before = '', $after = '')
 		echo $p->get_updated_html();
 		echo $after;
 	}
+}
+
+function kt_content_nav($nav_id)
+{
+	global $wp_query;
+
+	?>
+	<nav id="<?php echo esc_attr($nav_id); ?>" "aria-label=" Post navigation">
+
+		<?php if (is_single()) : // navigation links for single posts
+		?>
+			<ul class="pagination">
+				<?php previous_post_link('<li class="nav-previous page-item">%link</li>', '&larr; %title'); ?>
+				<?php next_post_link('<li class="nav-next page-item">%link</li>', '%title &rarr;'); ?>
+			</ul>
+
+		<?php elseif ($wp_query->max_num_pages > 1 && (is_home() || is_archive() || is_search())) : // navigation links for home, archive, and search pages
+		?>
+
+			<ul class="pagination">
+				<?php if (get_next_posts_link()) : ?>
+					<div class="nav-previous page-item"><?php next_posts_link('<span class="meta-nav">&larr;</span> Older posts'); ?></div>
+				<?php endif; ?>
+
+				<?php if (get_previous_posts_link()) : ?>
+					<div class="nav-next page-item"><?php previous_posts_link('Newer posts <span class="meta-nav">&rarr;</span>'); ?></div>
+				<?php endif; ?>
+			</ul>
+
+		<?php endif; ?>
+
+	</nav><!-- #<?php echo $nav_id; ?> -->
+<?php
 }

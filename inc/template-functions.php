@@ -93,6 +93,30 @@ function kt_set_post_pagination_link_class($attr)
 add_filter('next_posts_link_attributes', 'kt_set_post_pagination_link_class');
 add_filter('previous_posts_link_attributes', 'kt_set_post_pagination_link_class');
 
+function kt_add_next_post_link_atts($output)
+{
+	$p = new WP_HTML_Tag_Processor($output);
+	while ($p->next_tag('a')) {
+		$p->add_class('page-link');
+		$p->set_attribute('title', 'Next post');
+	}
+
+	return $p->get_updated_html();
+}
+add_filter('next_post_link', 'kt_add_next_post_link_atts');
+
+function kt_previous_next_post_link_atts($output)
+{
+	$p = new WP_HTML_Tag_Processor($output);
+	while ($p->next_tag('a')) {
+		$p->add_class('page-link');
+		$p->set_attribute('title', 'Previus post');
+	}
+
+	return $p->get_updated_html();
+}
+add_filter('previous_post_link', 'kt_previous_next_post_link_atts');
+
 function kt_add_class_on_nav_menu_link($atts, $menu_item, $args)
 {
 	$classes = array();
@@ -303,51 +327,6 @@ function KT_navigation_markup($links, $css_class = 'posts-navigation', $screen_r
 		$links,
 		esc_attr($aria_label)
 	);
-}
-
-function KT_get_the_posts_navigation($args = array())
-{
-	global $wp_query;
-
-	$navigation = '';
-
-	// Don't print empty markup if there's only one page.
-	if ($wp_query->max_num_pages > 1) {
-		// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
-		if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
-			$args['aria_label'] = $args['screen_reader_text'];
-		}
-
-		// Define default arguments using wp_parse_args.
-		$args = wp_parse_args(
-			$args,
-			array(
-				'prev_text'          => __('Older posts'),
-				'next_text'          => __('Newer posts'),
-				'screen_reader_text' => __('Posts navigation'),
-				'aria_label'         => __('Posts'),
-				'class'              => 'posts-navigation',
-			)
-		);
-
-		$next_link = get_previous_posts_link($args['next_text']);
-		$prev_link = get_next_posts_link($args['prev_text']);
-
-		$navigation .= '<ul class="pagination">';
-
-		if ($prev_link) {
-			$navigation .= '<li class="page-item">' . $prev_link . '</li>';
-		}
-
-		if ($next_link) {
-			$navigation .= '<li class="page-item">' . $next_link . '</li>';
-		}
-		$navigation .= '</ul>';
-
-		$navigation = KT_navigation_markup($navigation, $args['class'], $args['screen_reader_text'], $args['aria_label']);
-	}
-
-	return $navigation;
 }
 
 function KT_get_the_comments_pagination($args = array())
