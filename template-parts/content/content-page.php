@@ -9,7 +9,7 @@
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
 	<?php else : ?>
-		<div class="clearfix py-3">
+		<div class="clearfix pb-3">
 			<div class="entry-content e-content" itemprop="description text">
 				<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 				<?php the_content(); ?>

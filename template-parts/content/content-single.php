@@ -20,13 +20,14 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
 	<?php else : ?>
-		<div class="clearfix py-3">
+		<?php kt_content_nav('nav_above'); ?>
+		<div class="clearfix pb-3">
 			<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 			<div class="entry-content e-content" itemprop="description articleBody">
 				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
 			</div><!-- .entry-content -->
 		</div>
-		<?php wp_link_pages(array('before' => '<div class="page-link">' . 'Pages:', 'after' => '</div>')); ?>
+		<?php kt_content_nav('below'); ?>
 	<?php endif; ?>
 
 	<div class="container">

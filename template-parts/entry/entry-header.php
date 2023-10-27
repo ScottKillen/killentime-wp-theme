@@ -1,5 +1,5 @@
 <?php if (get_the_title()) : ?>
-  <header class="entry-header">
+  <header class="entry-header pb-3">
     <?php
     if (is_singular()) {
       $title_level = 'h1';
