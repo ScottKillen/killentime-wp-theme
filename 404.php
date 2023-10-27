@@ -1,13 +1,5 @@
 <?php
 
-/**
- * The template for displaying 404 pages (not found)
- *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
- *
- * @package Scott_Killen
- */
-
 get_header();
 $image_url = get_theme_file_uri('/images/404.png');
 
@@ -25,18 +17,43 @@ function custom_tag_cloud_links($tag_cloud)
 
 ?>
 
-<div class="row">
-	<main id="primary" <?php semantic_main_class('site-main col-md-8') ?>>
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="<?php echo esc_url($image_url) ?>">
-				<h1 class="fst-italic page-title text-center"><?php esc_html_e('Oops! We couldn&rsquo;t find that page.', 'killentime'); ?></h1>
-			</header><!-- .page-header -->
+<section id="primary">
+	<main id="content" role="main" <?php semantic_main_class() ?>>
 
-			<div class="page-content">
-				<p class="text-info text-center"><?php esc_html_e('Try the links on this page to get your bearings.', 'killentime'); ?></p>
+		<article id="post-0" class="post error404 not-found">
+			<header class="entry-header">
+				<img alt="Sad looking guy" class="d-block my-2 mx-auto rounded-circle border border-secondary" height="384" widget="384" src="https://imagedelivery.net/0XfRl_9i2twIzyWa9HYA4g/f5f4e5eb-53cb-4f46-7f89-47f82372e900/400x">
+				<h1 class="fst-italic entry-title p-entry-title text-center"><?php echo esc_html('Oops! We couldn&rsquo;t find that page.'); ?></h1>
+			</header><!-- .entry-header -->
+
+			<div class="entry-content e-entry-content">
+				<p class="text-info text-center"><?php echo esc_html('Try the links on this page to get your bearings.'); ?></p>
 
 				<?php get_search_form(); ?>
+
+				<div class="d-flex gap-3">
+					<?php
+					the_widget(
+						'WP_Widget_Recent_Posts',
+						array(),
+						array(
+							'before_widget' => '<div class="widget %s my-4 col-6">',
+						)
+					);
+					?>
+
+					<?php
+					$archive_content = '<p>' . sprintf('Try looking in the monthly archives. %1$s', convert_smilies(':)')) . '</p>';
+					the_widget(
+						'WP_Widget_Archives',
+						'dropdown=1',
+						array(
+							'after_title' => '</h2>' . $archive_content,
+							'before_widget' => '<div class="widget %s my-4 col-6">',
+						)
+					);
+					?>
+				</div>
 
 				<div class="d-flex gap-3">
 					<div class="widget widget_categories my-4 col-6">
@@ -66,13 +83,11 @@ function custom_tag_cloud_links($tag_cloud)
 						?>
 					</div>
 				</div>
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
+			</div><!-- .entry-content -->
+		</article><!-- #post-0 -->
 
-	</main><!-- #main -->
-
-	<?php get_sidebar(); ?>
-</div>
+	</main><!-- #content -->
+</section><!-- #primary -->
 
 <?php
 get_footer();
