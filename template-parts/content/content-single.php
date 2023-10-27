@@ -20,14 +20,22 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
 	<?php else : ?>
-		<?php kt_content_nav('nav_above'); ?>
+		<?php
+		if (is_single()) {
+			kt_content_nav('nav_above');
+		}
+		?>
 		<div class="clearfix pb-3">
 			<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 			<div class="entry-content e-content" itemprop="description articleBody">
 				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
 			</div><!-- .entry-content -->
 		</div>
-		<?php kt_content_nav('below'); ?>
+		<?php
+		if (is_single()) {
+			kt_content_nav('nav_below');
+		}
+		?>
 	<?php endif; ?>
 
 	<div class="container">
