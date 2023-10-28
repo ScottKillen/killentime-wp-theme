@@ -127,6 +127,10 @@ article.border-bottom:has(+ .border-top) {
   border-bottom-width: 0 !important;
 }
 
+#footer-image {
+  margin-top: -1em !important;
+}
+
 /*
 .flex-auto {
   flex: 0 0 auto;
