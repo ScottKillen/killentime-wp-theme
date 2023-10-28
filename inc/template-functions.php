@@ -172,6 +172,36 @@ function kt_add_comment_link_classes($link_attributes)
 }
 add_filter('comments_popup_link_attributes', 'kt_add_comment_link_classes');
 
+function kt_pre_get_avatar_data($args)
+{
+	if (is_author()) {
+		$classes = array(
+			'float-start',
+			'me-3',
+			'rounded-circle',
+			'shadow-lg',
+			'bg-body-tertiary',
+			'border',
+			'border-primary',
+		);
+	} else {
+		$classes = array();
+	}
+
+	if (isset($args['class'])) {
+		if (is_array($args['class'])) {
+			$classes = array_merge($classes, $args['class']);
+		} else {
+			$classes[] = $args['class'];
+		}
+	}
+
+	$args['class'] = $classes;
+
+	return $args;
+}
+add_filter('pre_get_avatar_data', 'kt_pre_get_avatar_data', 99);
+
 
 
 

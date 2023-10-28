@@ -94,6 +94,9 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   --bd-callout-link: 110, 168, 254;
   --bd-callout-code-color: #e685b5;
 }
+.text-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
 .format-chat .entry-content > p {
   border-radius: 18px;
@@ -122,6 +125,19 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
 article.border-bottom:has(+ article > div.border),
 article.border-bottom:has(+ .border-top) {
   border-bottom-width: 0 !important;
+}
+
+html,
+body,
+#page,
+#primary {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#page {
+  display: flex;
+  flex-direction: column;
 }
 
 /*
@@ -175,6 +191,10 @@ article.border-bottom:has(+ .border-top) {
 textarea#comment {
   width: 100%;
   height: 10em;
+}
+
+img.rounded-circle.shadow-lg {
+  box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.7) !important;
 }
 
 .callout {
