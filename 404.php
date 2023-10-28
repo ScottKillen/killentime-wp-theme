@@ -20,7 +20,7 @@ get_header();
 				<div class="d-flex gap-3">
 					<?php
 					the_widget(
-						'WP_Widget_Recent_Posts',
+						'KT_Widget_Recent_Posts',
 						array(),
 						array(
 							'before_widget' => '<div class="widget %s my-4 col-6">',
