@@ -3,39 +3,36 @@
 get_header();
 ?>
 
-<div class="row">
-	<section id="primary" class="col-md-8">
-		<main id="content" <?php semantic_main_class('site-main') ?>>
-			<?php
-			if (have_posts()) : ?>
+<section id="primary">
+	<main id="content" <?php semantic_main_class('site-main') ?>>
+		<?php
+		if (have_posts()) : ?>
 
-				<header class="page-header">
-					<h1 class="page-title border-bottom"><?php printf('Search Results for: %s', '<span>' . get_search_query() . '</span>'); ?></h1>
-				</header><!-- .page-header -->
+			<header class="page-header">
+				<h1 class="page-title border-bottom"><?php printf('Search Results for: %s', '<span>' . get_search_query() . '</span>'); ?></h1>
+			</header><!-- .page-header -->
 
-			<?php
+		<?php
 
-				kt_content_nav('nav-above');
+			kt_content_nav('nav-above');
 
-				/* Start the Loop */
-				while (have_posts()) : the_post();
+			/* Start the Loop */
+			while (have_posts()) : the_post();
 
-					get_template_part('template-parts/content/content', get_post_format());
+				get_template_part('template-parts/content/content', get_post_format());
 
-				endwhile;
+			endwhile;
 
-				kt_content_nav('nav-below');
+			kt_content_nav('nav-below');
 
-			else :
+		else :
 
-				get_template_part('template-parts/content/content', 'none');
+			get_template_part('template-parts/content/content', 'none');
 
-			endif;
-			?>
+		endif;
+		?>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
-	<?php get_sidebar(); ?>
-</div>
+	</main><!-- #main -->
+</section><!-- #primary -->
 
 <?php get_footer();
