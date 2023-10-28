@@ -1,20 +1,6 @@
 <?php
 
 get_header();
-$image_url = get_theme_file_uri('/images/404.png');
-
-$categories_title = esc_html__('Most Used Categories', 'killentime');
-
-// Function to apply custom CSS classes to tag cloud links
-function custom_tag_cloud_links($tag_cloud)
-{
-	return str_replace(
-		'"tag-cloud-link',
-		'"pe-2 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover tag-cloud-link',
-		$tag_cloud
-	);
-}
-
 ?>
 
 <section id="primary">
@@ -57,7 +43,7 @@ function custom_tag_cloud_links($tag_cloud)
 
 				<div class="d-flex gap-3">
 					<div class="widget widget_categories my-4 col-6">
-						<p class="h2 fst-italic widget-title"><?php echo $categories_title; ?></p>
+						<p class="h2 fst-italic widget-title">Most Used Categories</p>
 						<div class="list-group">
 							<?php
 							wp_list_categories(
@@ -75,12 +61,7 @@ function custom_tag_cloud_links($tag_cloud)
 
 					<div class="widget widget_categories my-4 col-6">
 						<p class="h2 fst-italic widget-title">Tags</p>
-						<?php
-						ob_start();
-						wp_tag_cloud();
-						$tag_cloud = ob_get_clean();
-						echo custom_tag_cloud_links($tag_cloud);
-						?>
+						<?php wp_tag_cloud(); ?>
 					</div>
 				</div>
 			</div><!-- .entry-content -->

@@ -33,6 +33,34 @@ function kt_site_description_classes($atts)
 }
 add_filter('get_semantics_site-description', 'kt_site_description_classes');
 
+function kt_tag_link_classes($return)
+{
+	$p = new WP_HTML_Tag_Processor($return);
+	while ($p->next_tag('a')) {
+		$p->add_class('pe-2');
+		$p->add_class('link-underline');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-75-hover');
+	}
+
+	return $p->get_updated_html();
+}
+add_filter('wp_tag_cloud', 'kt_tag_link_classes');
+
+function kt_category_link_classes($return)
+{
+	$p = new WP_HTML_Tag_Processor($return);
+	while ($p->next_tag('a')) {
+		$p->add_class('link-underline');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-75-hover');
+	}
+
+	return $p->get_updated_html();
+}
+add_filter('wp_list_categories', 'kt_category_link_classes');
+add_filter('get_archives_link', 'kt_category_link_classes');
+
 function kt_site_url_classes($atts)
 {
 	if (isset($atts['class'])) {
