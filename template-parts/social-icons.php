@@ -28,22 +28,26 @@ $social_links = array(
 	)
 );
 
-$social_class = 'nav-item';
+$social_class[] = 'nav-item';
 
-ob_start();
-var_dump($args);
-if (array_key_exists('social-class', $args)) {
-	$social_class .= ' ' . $args['social-class'];
+if (isset($args['social-class'])) {
+	if (is_array($args['social-class'])) {
+		$social_class = array_merge($social_class, $args['social-class']);
+	} else {
+		$social_class[] = $args['social-class'];
+	}
 }
-ob_end_clean();
+
+$show_text = isset($args['show-text']) ? $args['show-text'] : false;
 
 foreach ($social_links as $link => $data) :
 ?>
-	<li class="<?php echo $social_class ?>">
+	<li class="<?php echo implode(' ', $social_class); ?>">
 		<a class="nav-link px-2 text-body-secondary icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="<?php echo esc_url($link); ?>" rel="me" title="<?php echo esc_attr($data['title']); ?>">
 			<svg class="bi">
 				<use xlink:href="#<?php echo esc_attr($data['icon']); ?>" />
-			</svg>
+			</svg> <?php echo $show_text ? esc_attr($data['title']) : ''; ?>
 		</a>
 	</li>
-<?php endforeach;
+<?php
+endforeach;
