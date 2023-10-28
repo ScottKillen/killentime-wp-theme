@@ -1,11 +1,4 @@
-<?php
-
-/**
- * Displays the nav search form.
- *
- */
-
-?>
+<?php defined('ABSPATH') || exit; ?>
 
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="seachModalTitle" aria-hidden="true">

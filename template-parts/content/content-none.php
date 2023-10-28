@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 $search_query = get_search_query();
 $categories_title = esc_html__('Most Used Categories', 'killentime');

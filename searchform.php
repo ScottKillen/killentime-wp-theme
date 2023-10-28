@@ -1,5 +1,4 @@
-<?php
-?>
+<?php defined('ABSPATH') || exit; ?>
 <form role="search" method="get" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" class="search-form" action="<?php echo esc_url(home_url('/')) ?>">
   <div class="input-group my-3">
     <!-- Search icon -->

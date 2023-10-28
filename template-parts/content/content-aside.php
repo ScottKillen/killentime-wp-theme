@@ -1,4 +1,4 @@
-<?php ?>
+<?php defined('ABSPATH') || exit; ?>
 <article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('post'); ?>>
 	<div class="rounded-3 border p-3">
 		<?php if (is_search()) : // Only display Excerpts for search pages

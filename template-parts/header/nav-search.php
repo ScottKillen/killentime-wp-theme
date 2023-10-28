@@ -1,11 +1,4 @@
-<?php
-
-/**
- * Displays the nav search form.
- *
- */
-
-?>
+<?php defined('ABSPATH') || exit; ?>
 <div class="container-fluid">
   <form role="search" method="get" class="d-flex" action="<?php echo esc_url(home_url('/')) ?>">
     <div class="input-group">

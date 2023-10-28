@@ -1,11 +1,5 @@
 <?php
-/**
- * Scott Killen functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package Scott_Killen
- */
+defined('ABSPATH') || exit;
 
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.

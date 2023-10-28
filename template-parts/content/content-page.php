@@ -1,5 +1,4 @@
-<?php ?>
-
+<?php defined('ABSPATH') || exit; ?>
 <article <?php kt_post_id(); ?> <?php post_class(); ?><?php semantics('page') ?>>
 	<?php get_template_part('template-parts/entry/entry', 'header'); ?>
 

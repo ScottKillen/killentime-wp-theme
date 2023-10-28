@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 ?>
 <article <?php kt_post_id(); ?> <?php post_class($classes); ?><?php semantics('post'); ?> itemref="site-publisher">

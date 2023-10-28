@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class KT_Widget_About extends WP_Widget
 {
 

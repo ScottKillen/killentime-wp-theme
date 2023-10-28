@@ -1,8 +1,8 @@
 <?php
+defined('ABSPATH') || exit;
 
 get_header();
 ?>
-
 <section id="primary">
 	<main id="content" <?php semantic_main_class('site-main') ?>>
 		<?php
@@ -34,5 +34,4 @@ get_header();
 
 	</main><!-- #main -->
 </section><!-- #primary -->
-
 <?php get_footer();

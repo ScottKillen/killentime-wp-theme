@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <footer class="entry-meta">
   <?php
   if (isset($args['components'])) {

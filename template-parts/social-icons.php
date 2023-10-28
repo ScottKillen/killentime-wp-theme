@@ -1,9 +1,5 @@
 <?php
-
-/**
- * Displays the social icons for the footer
- *
- */
+defined('ABSPATH') || exit;
 
 $social_links = array(
 	'mailto:scott@scottkillen.com' => array(

@@ -1,11 +1,4 @@
-<?php
-
-/**
- * Displays the site header.
- *
- */
-?>
-
+<?php defined('ABSPATH') || exit; ?>
 <div class="container">
 	<header id="masthead" role="banner">
 

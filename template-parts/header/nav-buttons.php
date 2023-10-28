@@ -1,12 +1,4 @@
-<?php
-
-/**
- * Displays color mode switch
- *
- */
-
-?>
-
+<?php defined('ABSPATH') || exit; ?>
 <ul class="navbar-nav flex-rowflex-wrap ms-md-auto">
   <li class="nav-item">
     <button type="button" class="btn py-2" data-bs-toggle="modal" data-bs-target="#searchModal">

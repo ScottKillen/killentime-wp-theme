@@ -1,8 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
 
-/**
- * Hook to add custom content before the Webmention form added to the comment form.
- */
 do_action('webmention_comment_form_template_before');
 ?>
 <form id="webmention-form" action="<?php echo get_webmention_endpoint(); ?>" method="post" class="pt-3 mt-4 border-top row g-3">
@@ -20,8 +18,4 @@ do_action('webmention_comment_form_template_before');
 	</div>
 </form>
 <?php
-/**
- * Hook to add custom content after the Webmention form added to the comment form.
- */
 do_action('webmention_comment_form_template_after');
-?>

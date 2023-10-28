@@ -1,13 +1,7 @@
 <?php
+defined('ABSPATH') || exit;
 
-/**
- * Displays the site navigation.
- *
- */
-
-?>
-
-<?php get_template_part('template-parts/header/search', 'modal'); ?>
+get_template_part('template-parts/header/search', 'modal'); ?>
 
 <nav class="py-2 mb-4 navbar navbar-expand-lg rounded border border-secondary-subtle sticky-top shadow-lg main-navigation glass" id="site-navigation">
 	<div class="container-fluid">

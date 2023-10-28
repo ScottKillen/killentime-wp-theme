@@ -1,4 +1,7 @@
-<?php if (get_the_title()) : ?>
+<?php
+defined('ABSPATH') || exit;
+
+if (get_the_title()) : ?>
   <header class="entry-header pb-3">
     <?php
     if (is_singular()) {

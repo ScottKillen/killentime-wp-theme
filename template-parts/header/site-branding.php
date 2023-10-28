@@ -1,9 +1,5 @@
 <?php
-
-/**
- * Displays header site branding
- *
- */
+defined('ABSPATH') || exit;
 
 $logo_img_url = 'https://imagedelivery.net/0XfRl_9i2twIzyWa9HYA4g/ec98a6d7-bf85-46bb-fea9-779267300300/thumbnail';
 ?>
