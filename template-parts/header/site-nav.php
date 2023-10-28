@@ -15,7 +15,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse d-lg-flex" id="navbar1">
-			<a class="navbar-brand col-lg-3 me-0 invisible" id="brand" href="/">Killentime</a>
+			<a class="navbar-brand col-lg-3 me-0 invisible" id="nav-brand" href="/">Killentime</a>
 			<?php
 			wp_nav_menu(
 				array(

@@ -23,7 +23,6 @@ function kt_site_description_classes($atts)
 		array(
 			'text-body-secondary',
 			'd-block',
-			'mt-1',
 			'font-accent',
 			'fs-6',
 			'lh-sm',

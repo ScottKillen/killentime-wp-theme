@@ -25,14 +25,13 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   --bs-font-accent: var(--bs-body-font-family);
 }
 
-#head img.rounded-circle {
-  width: 11.25rem;
-  height: 11.25rem;
+#head .logo img {
+  height: 80px;
 }
 
 #head #site-title {
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
+  margin-bottom: 0rem;
+  line-height: 1;
   font-size: 2.25rem;
 }
 
@@ -48,7 +47,20 @@ Scott Killen is distributed under the terms of the GNU GPL v2 or later.
   font-family: var(--bs-font-monospace);
 }
 
-.font-title, .navbar-brand, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+.font-title,
+.navbar-brand,
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
   font-family: var(--bs-font-heading);
 }
 
@@ -72,13 +84,14 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   color: var(--bs-body-bg);
 }
 
-:root, [data-bs-theme="light"] {
-  --bd-callout-link: 10,88,202;
+:root,
+[data-bs-theme='light'] {
+  --bd-callout-link: 10, 88, 202;
   --bd-callout-code-color: #ab296a;
 }
 
-[data-bs-theme="dark"] {
-  --bd-callout-link: 110,168,254;
+[data-bs-theme='dark'] {
+  --bd-callout-link: 110, 168, 254;
   --bd-callout-code-color: #e685b5;
 }
 
@@ -106,8 +119,8 @@ footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   margin-right: 33%;
 }
 
-article.border-bottom:has( + article > div.border),
-article.border-bottom:has( + .border-top) {
+article.border-bottom:has(+ article > div.border),
+article.border-bottom:has(+ .border-top) {
   border-bottom-width: 0 !important;
 }
 
@@ -153,13 +166,10 @@ article.border-bottom:has( + .border-top) {
 
 .post-update-meta {
   font-size: 0.9rem !important;
-  text-decoration-color: RGBA(
-    var(--bs-secondary-rgb),
-    0.5
-  ) !important;
+  text-decoration-color: RGBA(var(--bs-secondary-rgb), 0.5) !important;
 }
 .shadow-strong {
-    box-shadow: 0 0 2px 0 rgba(0,0,0,.16),0 1px 1px 0 rgba(0,0,0,.1)!important;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.16), 0 1px 1px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 textarea#comment {
@@ -168,66 +178,66 @@ textarea#comment {
 }
 
 .callout {
-    --bs-link-color-rgb: var(--bd-callout-link);
-    --bs-code-color: var(--bd-callout-code-color);
-    padding: 1.25rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    color: var(--bd-callout-color, inherit);
-    background-color: var(--bd-callout-bg, var(--bs-gray-100));
-    border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300))
+  --bs-link-color-rgb: var(--bd-callout-link);
+  --bs-code-color: var(--bd-callout-code-color);
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--bd-callout-color, inherit);
+  background-color: var(--bd-callout-bg, var(--bs-gray-100));
+  border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
 }
 
 .callout h4 {
-    margin-bottom: .25rem
+  margin-bottom: 0.25rem;
 }
 
-.callout>:last-child {
-    margin-bottom: 0
+.callout > :last-child {
+  margin-bottom: 0;
 }
 
-.callout+.callout {
-    margin-top: -.25rem
+.callout + .callout {
+  margin-top: -0.25rem;
 }
 
 .callout .highlight {
-    background-color: rgba(0,0,0,0.05)
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .callout-primary {
-    --bd-callout-color: var(--bs-primary-text-emphasis);
-    --bd-callout-bg: var(--bs-primary-bg-subtle);
-    --bd-callout-border: var(--bs-primary-border-subtle)
+  --bd-callout-color: var(--bs-primary-text-emphasis);
+  --bd-callout-bg: var(--bs-primary-bg-subtle);
+  --bd-callout-border: var(--bs-primary-border-subtle);
 }
 
 .callout-secondary {
-    --bd-callout-color: var(--bs-secondary-text-emphasis);
-    --bd-callout-bg: var(--bs-secondary-bg-subtle);
-    --bd-callout-border: var(--bs-secondary-border-subtle)
+  --bd-callout-color: var(--bs-secondary-text-emphasis);
+  --bd-callout-bg: var(--bs-secondary-bg-subtle);
+  --bd-callout-border: var(--bs-secondary-border-subtle);
 }
 
 .callout-success {
-    --bd-callout-color: var(--bs-success-text-emphasis);
-    --bd-callout-bg: var(--bs-success-bg-subtle);
-    --bd-callout-border: var(--bs-success-border-subtle)
+  --bd-callout-color: var(--bs-success-text-emphasis);
+  --bd-callout-bg: var(--bs-success-bg-subtle);
+  --bd-callout-border: var(--bs-success-border-subtle);
 }
 
 .callout-danger {
-    --bd-callout-color: var(--bs-danger-text-emphasis);
-    --bd-callout-bg: var(--bs-danger-bg-subtle);
-    --bd-callout-border: var(--bs-danger-border-subtle)
+  --bd-callout-color: var(--bs-danger-text-emphasis);
+  --bd-callout-bg: var(--bs-danger-bg-subtle);
+  --bd-callout-border: var(--bs-danger-border-subtle);
 }
 
 .callout-warning {
-    --bd-callout-color: var(--bs-warning-text-emphasis);
-    --bd-callout-bg: var(--bs-warning-bg-subtle);
-    --bd-callout-border: var(--bs-warning-border-subtle)
+  --bd-callout-color: var(--bs-warning-text-emphasis);
+  --bd-callout-bg: var(--bs-warning-bg-subtle);
+  --bd-callout-border: var(--bs-warning-border-subtle);
 }
 
 .callout-info {
-    --bd-callout-color: var(--bs-info-text-emphasis);
-    --bd-callout-bg: var(--bs-info-bg-subtle);
-    --bd-callout-border: var(--bs-info-border-subtle)
+  --bd-callout-color: var(--bs-info-text-emphasis);
+  --bd-callout-bg: var(--bs-info-bg-subtle);
+  --bd-callout-border: var(--bs-info-border-subtle);
 }
 
 .glass {
