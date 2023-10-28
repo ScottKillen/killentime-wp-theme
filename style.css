@@ -127,19 +127,6 @@ article.border-bottom:has(+ .border-top) {
   border-bottom-width: 0 !important;
 }
 
-html,
-body,
-#page,
-#primary {
-  height: 100%;
-  box-sizing: border-box;
-}
-
-#page {
-  display: flex;
-  flex-direction: column;
-}
-
 /*
 .flex-auto {
   flex: 0 0 auto;
@@ -193,7 +180,7 @@ textarea#comment {
   height: 10em;
 }
 
-img.rounded-circle.shadow-lg {
+img.rounded-circle.shadow-lg:not(#site-image) {
   box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.7) !important;
 }
 
