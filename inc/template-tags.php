@@ -33,7 +33,7 @@ function kt_the_excerpt($post)
 {
 	if (has_excerpt()) { ?>
 		<p><?php echo esc_html($post->post_excerpt); ?></p>
-		<a href="<?php echo esc_url(get_permalink()); ?>" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading...<svg class="bi">
+		<a href="<?php echo esc_url(get_permalink()); ?>" class="u-url more-link icon-link gap-1 icon-link-hover">Continue reading&hellip;<svg class="bi">
 				<use xlink:href="#fa-chevron-right" />
 			</svg></a>
 	<?php
@@ -205,8 +205,8 @@ function kt_content_nav($nav_id)
 		<?php if (is_single()) : // navigation links for single posts
 		?>
 			<ul class="pagination">
-				<?php previous_post_link('<li class="nav-previous page-item">%link</li>', '&larr; %title'); ?>
-				<?php next_post_link('<li class="nav-next page-item">%link</li>', '%title &rarr;'); ?>
+				<?php previous_post_link('<li class="nav-previous page-item">%link</li>', '<svg class="bi"><use xlink:href="#fa-chevron-left" /></svg> %title'); ?>
+				<?php next_post_link('<li class="nav-next page-item">%link</li>', '%title <svg class="bi"><use xlink:href="#fa-chevron-right" /></svg>'); ?>
 			</ul>
 
 		<?php elseif ($wp_query->max_num_pages > 1 && (is_home() || is_archive() || is_search())) : // navigation links for home, archive, and search pages
@@ -214,11 +214,11 @@ function kt_content_nav($nav_id)
 
 			<ul class="pagination">
 				<?php if (get_next_posts_link()) : ?>
-					<div class="nav-previous page-item"><?php next_posts_link('<span class="meta-nav">&larr;</span> Older posts'); ?></div>
+					<div class="nav-previous page-item"><?php next_posts_link('<svg class="bi"><use xlink:href="#fa-chevron-left" /></svg> Older posts'); ?></div>
 				<?php endif; ?>
 
 				<?php if (get_previous_posts_link()) : ?>
-					<div class="nav-next page-item"><?php previous_posts_link('Newer posts <span class="meta-nav">&rarr;</span>'); ?></div>
+					<div class="nav-next page-item"><?php previous_posts_link('Newer posts <svg class="bi"><use xlink:href="#fa-chevron-right" /></svg>'); ?></div>
 				<?php endif; ?>
 			</ul>
 
@@ -226,4 +226,237 @@ function kt_content_nav($nav_id)
 
 	</nav><!-- #<?php echo $nav_id; ?> -->
 <?php
+}
+
+function kt_get_the_comments_pagination($args = array())
+{
+	// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
+	if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
+		$args['aria_label'] = $args['screen_reader_text'];
+	}
+
+	$args = wp_parse_args(
+		$args,
+		array(
+			'screen_reader_text' => __('Comments navigation'),
+			'aria_label'         => __('Comments'),
+			'class'              => 'comments-pagination',
+		)
+	);
+	$args['echo'] = false;
+	$args['type'] = 'list';
+
+	$p = new WP_HTML_Tag_Processor(paginate_comments_links($args));
+
+	if ($p->next_tag('ul')) {
+		$p->add_class('pagination');
+		$p->add_class('pagination-sm');
+	}
+
+	$p = new WP_HTML_Tag_Processor($p->get_updated_html());
+
+	while ($p->next_tag('li')) {
+		$p->add_class('page-item');
+	}
+
+	$p = new WP_HTML_Tag_Processor($p->get_updated_html());
+
+	while ($p->next_tag('a')) {
+		$p->add_class('page-link');
+	}
+
+	$navigation = str_replace(
+		'page-item"><span aria-current="page" class="page-numbers current"',
+		'page-item active" aria-current="page"><span class="page-link"',
+		$p->get_updated_html()
+	);
+	$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#fa-chevrons-left"/></svg>', $navigation);
+	$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#fa-chevrons-right"/></svg>', $navigation);
+	return $navigation;
+}
+
+function kt_list_comments($args = array(), $comments = null)
+{
+	global $wp_query, $comment_alt, $comment_depth, $comment_thread_alt, $overridden_cpage, $in_comment_loop;
+
+	$in_comment_loop = true;
+
+	$comment_alt        = 0;
+	$comment_thread_alt = 0;
+	$comment_depth      = 1;
+
+	$defaults = array(
+		'max_depth'         => '',
+		'style'             => 'ul',
+		'callback'          => null,
+		'end-callback'      => null,
+		'type'              => 'all',
+		'page'              => '',
+		'per_page'          => '',
+		'avatar_size'       => 32,
+		'reverse_top_level' => null,
+		'reverse_children'  => '',
+		'format'            => current_theme_supports('html5', 'comment-list') ? 'html5' : 'xhtml',
+		'short_ping'        => false,
+		'echo'              => true,
+	);
+
+	$parsed_args = wp_parse_args($args, $defaults);
+
+	/**
+	 * Filters the arguments used in retrieving the comment list.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @see wp_list_comments()
+	 *
+	 * @param array $parsed_args An array of arguments for displaying comments.
+	 */
+	$parsed_args = apply_filters('wp_list_comments_args', $parsed_args);
+
+	// Figure out what comments we'll be looping through ($_comments).
+	if (null !== $comments) {
+		$comments = (array) $comments;
+		if (empty($comments)) {
+			return;
+		}
+		if ('all' !== $parsed_args['type']) {
+			$comments_by_type = separate_comments($comments);
+			if (empty($comments_by_type[$parsed_args['type']])) {
+				return;
+			}
+			$_comments = $comments_by_type[$parsed_args['type']];
+		} else {
+			$_comments = $comments;
+		}
+	} else {
+		/*
+		 * If 'page' or 'per_page' has been passed, and does not match what's in $wp_query,
+		 * perform a separate comment query and allow Walker_Comment to paginate.
+		 */
+		if ($parsed_args['page'] || $parsed_args['per_page']) {
+			$current_cpage = get_query_var('cpage');
+			if (!$current_cpage) {
+				$current_cpage = 'newest' === get_option('default_comments_page') ? 1 : $wp_query->max_num_comment_pages;
+			}
+
+			$current_per_page = get_query_var('comments_per_page');
+			if ($parsed_args['page'] != $current_cpage || $parsed_args['per_page'] != $current_per_page) {
+				$comment_args = array(
+					'post_id' => get_the_ID(),
+					'orderby' => 'comment_date_gmt',
+					'order'   => 'ASC',
+					'status'  => 'approve',
+				);
+
+				if (is_user_logged_in()) {
+					$comment_args['include_unapproved'] = array(get_current_user_id());
+				} else {
+					$unapproved_email = wp_get_unapproved_comment_author_email();
+
+					if ($unapproved_email) {
+						$comment_args['include_unapproved'] = array($unapproved_email);
+					}
+				}
+
+				$comments = get_comments($comment_args);
+
+				if ('all' !== $parsed_args['type']) {
+					$comments_by_type = separate_comments($comments);
+					if (empty($comments_by_type[$parsed_args['type']])) {
+						return;
+					}
+
+					$_comments = $comments_by_type[$parsed_args['type']];
+				} else {
+					$_comments = $comments;
+				}
+			}
+
+			// Otherwise, fall back on the comments from `$wp_query->comments`.
+		} else {
+			if (empty($wp_query->comments)) {
+				return;
+			}
+			if ('all' !== $parsed_args['type']) {
+				if (empty($wp_query->comments_by_type)) {
+					$wp_query->comments_by_type = separate_comments($wp_query->comments);
+				}
+				if (empty($wp_query->comments_by_type[$parsed_args['type']])) {
+					return;
+				}
+				$_comments = $wp_query->comments_by_type[$parsed_args['type']];
+			} else {
+				$_comments = $wp_query->comments;
+			}
+
+			if ($wp_query->max_num_comment_pages) {
+				$default_comments_page = get_option('default_comments_page');
+				$cpage                 = get_query_var('cpage');
+				if ('newest' === $default_comments_page) {
+					$parsed_args['cpage'] = $cpage;
+
+					/*
+					* When first page shows oldest comments, post permalink is the same as
+					* the comment permalink.
+					*/
+				} elseif (1 == $cpage) {
+					$parsed_args['cpage'] = '';
+				} else {
+					$parsed_args['cpage'] = $cpage;
+				}
+
+				$parsed_args['page']     = 0;
+				$parsed_args['per_page'] = 0;
+			}
+		}
+	}
+
+	if ('' === $parsed_args['per_page'] && get_option('page_comments')) {
+		$parsed_args['per_page'] = get_query_var('comments_per_page');
+	}
+
+	if (empty($parsed_args['per_page'])) {
+		$parsed_args['per_page'] = 0;
+		$parsed_args['page']     = 0;
+	}
+
+	if ('' === $parsed_args['max_depth']) {
+		if (get_option('thread_comments')) {
+			$parsed_args['max_depth'] = get_option('thread_comments_depth');
+		} else {
+			$parsed_args['max_depth'] = -1;
+		}
+	}
+
+	if ('' === $parsed_args['page']) {
+		if (empty($overridden_cpage)) {
+			$parsed_args['page'] = get_query_var('cpage');
+		} else {
+			$threaded            = (-1 != $parsed_args['max_depth']);
+			$parsed_args['page'] = ('newest' === get_option('default_comments_page')) ? get_comment_pages_count($_comments, $parsed_args['per_page'], $threaded) : 1;
+			set_query_var('cpage', $parsed_args['page']);
+		}
+	}
+	// Validation check.
+	$parsed_args['page'] = (int) $parsed_args['page'];
+	if (0 == $parsed_args['page'] && 0 != $parsed_args['per_page']) {
+		$parsed_args['page'] = 1;
+	}
+
+	if (null === $parsed_args['reverse_top_level']) {
+		$parsed_args['reverse_top_level'] = ('desc' === get_option('comment_order'));
+	}
+
+	$walker = new KT_Walker_Comment();
+
+	$output = $walker->paged_walk($_comments, $parsed_args['max_depth'], $parsed_args['page'], $parsed_args['per_page'], $parsed_args);
+
+	$in_comment_loop = false;
+
+	if ($parsed_args['echo']) {
+		echo $output;
+	} else {
+		return $output;
+	}
 }
