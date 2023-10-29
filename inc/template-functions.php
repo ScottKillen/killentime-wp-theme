@@ -202,57 +202,28 @@ function kt_pre_get_avatar_data($args)
 }
 add_filter('pre_get_avatar_data', 'kt_pre_get_avatar_data', 99);
 
-
-
-
-
-
-/**
- * Filters the string in the “more” link displayed after a trimmed excerpt.
- * @param mixed $more_string The string shown within the more link.
- * @return string
- */
-function killentime_excerpt_more($more_string)
+function killentime_excerpt_more()
 {
-	global $post;
-	return
-		'</p><a class="icon-link gap-1 icon-link-hover"
-	href="' . get_permalink($post->ID) . '">Continue reading...<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a><p class="d-none">';
+	return '&hellip;';
 }
 add_filter('excerpt_more', 'killentime_excerpt_more');
 
-/**
- * Filters the Read More link text
- * @param mixed $more_link_element Read More link element
- * @param mixed $more_link_text Read More text
- * @return array|string
- */
-function killentime_add_morelink_class($more_link_element, $more_link_text)
+function killentime_add_morelink_class($link)
 {
-	$offset = strpos($more_link_element, '#more-');
-
-	if ($offset !== false) {
-		$end = strpos($more_link_element, '"', $offset);
-		if ($end !== false) {
-			$more_link_element = substr_replace($more_link_element, '', $offset, $end - $offset);
-		}
-
-		$more_link_element = str_replace(
-			'more-link',
-			'more-link icon-link gap-1 icon-link-hover',
-			$more_link_element
-		);
-
-		$more_link_element = str_replace(
-			'</a>',
-			'<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>',
-			$more_link_element
-		);
+	$p = new WP_HTML_Tag_Processor($link);
+	if ($p->next_tag('a')) {
+		$p->add_class('icon-link');
+		$p->add_class('gap-1');
+		$p->add_class('icon-link-hover');
 	}
 
-	return $more_link_element;
+	return str_replace(
+		'</a>',
+		'<svg class="bi"><use xlink:href="#fa-chevron-right"/></svg></a>',
+		$p->get_updated_html()
+	);
 }
-add_action('the_content_more_link', 'killentime_add_morelink_class', 10, 2);
+add_action('the_content_more_link', 'killentime_add_morelink_class', 10);
 
 // add custom class to tag
 function add_class_the_tags($html)
@@ -270,83 +241,83 @@ add_filter('the_tags', 'add_class_the_tags');
 
 function replace_comment_author_link($link)
 {
-	$processor = new WP_HTML_Tag_Processor($link);
+	$p = new WP_HTML_Tag_Processor($link);
 
-	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'url'))) {
-		$processor->add_class('link-body-emphasis');
-		$processor->add_class('link-offset-2');
-		$processor->add_class('link-underline-opacity-25');
-		$processor->add_class('link-underline-opacity-75-hover');
+	while ($p->next_tag(array('tag_name' => 'a', 'class_name' => 'url'))) {
+		$p->add_class('link-body-emphasis');
+		$p->add_class('link-offset-2');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-75-hover');
 	}
 
 	return str_replace(
 		'ugc">Scott Killen</a>',
 		'ugc">Scott Killen</a> <svg class="bi bi-yellow"><use xlink:href="#fa-star"/></svg>',
-		$processor->get_updated_html()
+		$p->get_updated_html()
 	);
 }
 add_filter('get_comment_author_link', 'replace_comment_author_link');
 
 function replace_reply_link($link)
 {
-	$processor = new WP_HTML_Tag_Processor($link);
+	$p = new WP_HTML_Tag_Processor($link);
 
-	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-reply-link'))) {
-		$processor->add_class('badge');
-		$processor->add_class('bg-primary-subtle');
-		$processor->add_class('border');
-		$processor->add_class('border-primary-subtle');
-		$processor->add_class('text-primary-emphasis');
-		$processor->add_class('text-decoration-none');
-		$processor->add_class('icon-link');
+	while ($p->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-reply-link'))) {
+		$p->add_class('badge');
+		$p->add_class('bg-primary-subtle');
+		$p->add_class('border');
+		$p->add_class('border-primary-subtle');
+		$p->add_class('text-primary-emphasis');
+		$p->add_class('text-decoration-none');
+		$p->add_class('icon-link');
 	}
 
 	return str_replace(
 		'>Reply<',
 		'><svg class="bi"><use xlink:href="#fa-reply"/></svg> Reply<',
-		$processor->get_updated_html()
+		$p->get_updated_html()
 	);
 }
 add_filter('comment_reply_link', 'replace_reply_link');
 
 function replace_comment_edit_link($link)
 {
-	$processor = new WP_HTML_Tag_Processor($link);
+	$p = new WP_HTML_Tag_Processor($link);
 
-	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-edit-link'))) {
-		$processor->add_class('badge');
-		$processor->add_class('mx-1');
-		$processor->add_class('bg-secondary-subtle');
-		$processor->add_class('border');
-		$processor->add_class('border-secondary-subtle');
-		$processor->add_class('text-primary-emphasis');
-		$processor->add_class('text-decoration-none');
-		$processor->add_class('icon-link');
+	while ($p->next_tag(array('tag_name' => 'a', 'class_name' => 'comment-edit-link'))) {
+		$p->add_class('badge');
+		$p->add_class('mx-1');
+		$p->add_class('bg-secondary-subtle');
+		$p->add_class('border');
+		$p->add_class('border-secondary-subtle');
+		$p->add_class('text-primary-emphasis');
+		$p->add_class('text-decoration-none');
+		$p->add_class('icon-link');
 	}
 
 	return str_replace(
 		'>Edit<',
 		'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<',
-		$processor->get_updated_html()
+		$p->get_updated_html()
 	);
 }
 add_filter('edit_comment_link', 'replace_comment_edit_link');
 
 function replace_edit_post_link($link)
 {
-	$processor = new WP_HTML_Tag_Processor($link);
+	$p = new WP_HTML_Tag_Processor($link);
 
-	while ($processor->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
-		$processor->add_class('link-secondary');
-		$processor->add_class('link-offset-2');
-		$processor->add_class('link-underline-opacity-25');
-		$processor->add_class('link-underline-opacity-100-hover');
+	while ($p->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
+		$p->add_class('link-secondary');
+		$p->add_class('link-offset-2');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-100-hover');
 	}
 
 	return str_replace(
 		'>Edit <',
 		'><svg class="bi"><use xlink:href="#fa-pen-to-square"/></svg> Edit<',
-		$processor->get_updated_html()
+		$p->get_updated_html()
 	);
 }
 add_filter('edit_post_link', 'replace_edit_post_link');
@@ -357,40 +328,8 @@ function kt_webmention_comment_form($template_name)
 }
 add_filter('webmention_comment_form', 'kt_webmention_comment_form');
 
-//
-// Replace wordpress versions of functions
-//
-
-function KT_navigation_markup($links, $css_class = 'posts-navigation', $screen_reader_text = '', $aria_label = '')
+function kt_get_the_comments_pagination($args = array())
 {
-	// Set default values if empty
-	$screen_reader_text = $screen_reader_text ?: __('Posts navigation');
-	$aria_label = $aria_label ?: $screen_reader_text;
-
-	$template =
-	'
-    <nav class="pt-4 mt-4 border-top %1$s" aria-label="%4$s">
-        <h2 class="screen-reader-text">%2$s</h2>
-        %3$s
-    </nav>';
-
-	// Apply filters
-	$template = apply_filters('navigation_markup_template', $template, $css_class);
-
-	// Generate and return the formatted markup
-	return sprintf(
-		$template,
-		sanitize_html_class($css_class),
-		esc_html($screen_reader_text),
-		$links,
-		esc_attr($aria_label)
-	);
-}
-
-function KT_get_the_comments_pagination($args = array())
-{
-	$navigation = '';
-
 	// Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
 	if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
 		$args['aria_label'] = $args['screen_reader_text'];
@@ -405,34 +344,38 @@ function KT_get_the_comments_pagination($args = array())
 		)
 	);
 	$args['echo'] = false;
+	$args['type'] = 'list';
 
-	// Make sure we get a string back. Plain is the next best thing.
-	if (isset($args['type']) && 'array' === $args['type']) {
-		$args['type'] = 'plain';
+	$p = new WP_HTML_Tag_Processor(paginate_comments_links($args));
+
+	if ($p->next_tag('ul')) {
+		$p->add_class('pagination');
+		$p->add_class('pagination-sm');
 	}
 
-	$links = paginate_comments_links($args);
+	$p = new WP_HTML_Tag_Processor($p->get_updated_html());
 
-	if ($links) {
-		$navigation = _navigation_markup($links, $args['class'], $args['screen_reader_text'], $args['aria_label']);
-		$navigation = str_replace('<div class="nav-links">', '<ul class="pagination pagination-sm">', $navigation);
-		$navigation = str_replace('</div>', '</ul>', $navigation);
-		$navigation = str_replace('</a>', '</ali>', $navigation);
-		$navigation = str_replace('</ali>', '</a></li>', $navigation);
-		$navigation = str_replace('<a cl', '<lia', $navigation);
-		$navigation = str_replace('<lia', '<li class="page-item"><a cl', $navigation);
-		$navigation = str_replace('page-numbers', 'page-link', $navigation);
-		$navigation = str_replace('current', 'active', $navigation);
-		$navigation = str_replace('span aria-active="page"', 'li', $navigation);
-		$navigation = str_replace('/span', '/li', $navigation);
-		$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#fa-chevrons-left"/></svg>', $navigation);
-		$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#fa-chevrons-right"/></svg>', $navigation);
+	while ($p->next_tag('li')) {
+		$p->add_class('page-item');
 	}
 
+	$p = new WP_HTML_Tag_Processor($p->get_updated_html());
+
+	while ($p->next_tag('a')) {
+		$p->add_class('page-link');
+	}
+
+	$navigation = str_replace(
+		'page-item"><span aria-current="page" class="page-numbers current"',
+		'page-item active" aria-current="page"><span class="page-link"',
+		$p->get_updated_html()
+	);
+	$navigation = str_replace('&laquo; Previous', '<svg class="bi"><title>Older</title><use xlink:href="#fa-chevrons-left"/></svg>', $navigation);
+	$navigation = str_replace('Next &raquo;', '<svg class="bi"><title>Newer</title><use xlink:href="#fa-chevrons-right"/></svg>', $navigation);
 	return $navigation;
 }
 
-function KT_wp_list_comments($args = array(), $comments = null)
+function kt_list_comments($args = array(), $comments = null)
 {
 	global $wp_query, $comment_alt, $comment_depth, $comment_thread_alt, $overridden_cpage, $in_comment_loop;
 

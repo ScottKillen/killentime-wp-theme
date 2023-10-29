@@ -52,11 +52,11 @@ if (post_password_required()) {
 							}
 							?>
 						</p>
-						<?php echo KT_get_the_comments_pagination(); ?>
+						<?php echo kt_get_the_comments_pagination(); ?>
 						<div class="row">
 							<div class="col comment-list">
 								<?php
-					KT_wp_list_comments(
+								kt_list_comments(
 									array(
 										'style'      => 'div',
 										'avatar_size' => 65,
