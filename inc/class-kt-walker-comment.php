@@ -173,7 +173,7 @@ class KT_Walker_Comment extends Walker_Comment
 
 ?>
 		<div id="comment-<?php echo $comment_ID; ?>" <?php comment_class($ping_classes, $comment); ?> style="width:100%">
-			<svg width="65" height="65" fill="#6610f2" class="shadow-strong me-3 my-2">
+			<svg width="65" height="65" fill="#6610f2" class="shadow me-3 my-2">
 				<use xlink:href="#fa-message-quote" />
 			</svg>
 			<div class="flex-grow-1 flex-shrink-1">
@@ -235,7 +235,7 @@ class KT_Walker_Comment extends Walker_Comment
 				'',
 				'',
 				array(
-					'class' => 'rounded-circle border border-primary-subtle shadow-strong me-3 avatar',
+					'class' => 'rounded-circle border border-primary-subtle shadow me-3 avatar',
 				)
 			);
 			?>
