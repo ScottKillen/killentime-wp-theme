@@ -10,7 +10,7 @@
 			<div class="entry-content e-content p-summary entry-title p-name" itemprop="name headline description articleBody">
 				<div class="clearfix">
 					<?php kt_the_post_thumbnail('<p>', '</p>'); ?>
-					<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+					<?php the_content('Continue reading'); ?>
 				</div>
 				<?php wp_link_pages(array('before' => '<div class="page-link">Pages:', 'after' => '</div>')); ?>
 			</div><!-- .entry-content -->

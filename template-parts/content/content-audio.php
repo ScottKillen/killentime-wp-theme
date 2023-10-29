@@ -21,7 +21,7 @@
 			<div class="clearfix pb-3">
 				<?php kt_the_post_thumbnail('<div class="pt-3 entry-media">', '</div>'); ?>
 			</div>
-			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+			<?php the_content('Continue reading'); ?>
 			<?php wp_link_pages(array('before' => '<div class="page-link">Pages:', 'after' => '</div>')); ?>
 		</div><!-- .entry-content -->
 	<?php endif; ?>

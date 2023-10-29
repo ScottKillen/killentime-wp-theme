@@ -22,7 +22,7 @@
 			<figcaption class="figure-caption text-center"><?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?></figcaption>
 		</figure>
 		<div class="entry-content e-content" itemprop="description articleBody">
-			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+			<?php the_content('Continue reading'); ?>
 			<?php wp_link_pages(array('before' => '<div class="page-link">Pages:', 'after' => '</div>')); ?>
 		</div><!-- .entry-content -->
 	<?php endif; ?>

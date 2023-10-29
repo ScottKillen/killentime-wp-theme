@@ -30,7 +30,7 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 		<div class="clearfix pb-3">
 			<?php kt_the_post_thumbnail('<div class="entry-media">', '</div>'); ?>
 			<div class="entry-content e-content" itemprop="description articleBody">
-				<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+				<?php the_content('Continue reading'); ?>
 			</div><!-- .entry-content -->
 		</div>
 		<?php

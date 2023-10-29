@@ -18,7 +18,7 @@
 		</div><!-- .entry-summary -->
 	<?php else : ?>
 		<div class="py-3 entry-content e-content" itemprop="description">
-			<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+			<?php the_content('Continue reading'); ?>
 			<?php wp_link_pages(array('before' => '<div class="page-links"><span class="page-links-title">Pages:</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>')); ?>
 		</div><!-- .entry-content -->
 	<?php endif; ?>

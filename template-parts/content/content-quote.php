@@ -12,7 +12,7 @@
 					<?php kt_the_post_thumbnail('<p>', '</p>'); ?>
 					<figure>
 						<blockquote class="blockquote">
-							<?php the_content('Continue reading <span class="meta-nav">&rarr;</span>'); ?>
+							<?php the_content('Continue reading'); ?>
 						</blockquote>
 						<figcaption class="blockquote-footer">
 							<cite><?php the_title(); ?></cite>
