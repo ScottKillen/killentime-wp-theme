@@ -64,6 +64,7 @@ function kt_the_post_thumbnail($before = '', $after = '')
 
 		if ($image['1'] < 400) {
 			$classes[] = 'float-end';
+			$classes[] = 'mx-3';
 		} else {
 			$classes[] = 'mx-auto';
 			$classes[] = 'd-block';
