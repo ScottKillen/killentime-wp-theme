@@ -133,6 +133,10 @@ img.rounded-circle.shadow-lg:not(#site-image) {
   line-height: 1.3;
 }
 
+.social .nav-item {
+  line-height: 1.35;
+}
+
 .glass {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
