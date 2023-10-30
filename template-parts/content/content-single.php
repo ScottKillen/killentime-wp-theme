@@ -33,6 +33,9 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 				<?php the_content('Continue reading'); ?>
 			</div><!-- .entry-content -->
 		</div>
+
+		<?php the_share_buttons(); ?>
+
 		<?php
 		if (is_single()) {
 			kt_content_nav('nav_below');
@@ -41,15 +44,18 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 	<?php endif; ?>
 
 	<div class="container">
-		<?php get_template_part(
+		<?php
+		$components[] = 'post_tag';
+		if (!is_single()) {
+			$components[] = 'comment_link';
+		}
+		$components[] = 'edit_link';
+
+		get_template_part(
 			'template-parts/entry/entry',
 			'footer',
 			array(
-				'components' => array(
-					'post_tag',
-					'comment_link',
-					'edit_link'
-				)
+				'components' => $components
 			)
 		); ?>
 	</div>

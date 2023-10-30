@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 function the_icons()
 {
 ?>
-	<svg display="none" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<svg display="none" class="d-none" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<symbol id="fa-check" viewBox="0 0 448 512">
 			<path d="M441 103c9.4 9.4 9.4 24.6 0 33.9L177 401c-9.4 9.4-24.6 9.4-33.9 0L7 265c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l119 119L407 103c9.4-9.4 24.6-9.4 33.9 0z" />
 		</symbol>
@@ -91,6 +91,12 @@ function the_icons()
 		</symbol>
 		<symbol id="fa-tags" viewBox=" 0 0 512 512">
 			<path d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+		</symbol>
+		<symbol id="fa-envelope" viewBox="0 0 512 512">
+			<path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
+		</symbol>
+		<symbol id="fa-print" viewBox="0 0 512 512">
+			<path d="M96 0H368h13.3l9.4 9.4 48 48 9.4 9.4V80v80H384V93.3L354.7 64H128v96H64V32 0H96zM64 384H0V192H512V384H448v96 32H416 96 64V480 384zm64 0v64H384V384 352H128v16 16zM408 248v48h48V248H408z" />
 		</symbol>
 	</svg>
 <?php
