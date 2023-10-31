@@ -34,6 +34,7 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 			</div><!-- .entry-content -->
 		</div>
 
+		<?php the_syndication_links(); ?>
 		<?php the_share_buttons(); ?>
 
 		<?php

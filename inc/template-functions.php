@@ -308,7 +308,7 @@ function replace_edit_post_link($link)
 	$p = new WP_HTML_Tag_Processor($link);
 
 	while ($p->next_tag(array('tag_name' => 'a', 'class_name' => 'post-edit-link'))) {
-		$p->add_class('link-secondary');
+		$p->add_class('link-underline');
 		$p->add_class('link-offset-2');
 		$p->add_class('link-underline-opacity-25');
 		$p->add_class('link-underline-opacity-100-hover');
@@ -327,3 +327,5 @@ function kt_webmention_comment_form($template_name)
 	return locate_template('webmention-comment-form.php');
 }
 add_filter('webmention_comment_form', 'kt_webmention_comment_form');
+
+add_filter('syndication_links_display', '__return_false');

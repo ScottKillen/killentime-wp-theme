@@ -62,7 +62,7 @@ function kt_the_post_thumbnail($before = '', $after = '')
 		$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-thumbnail');
 		$classes = array('img-fluid', 'rounded photo');
 
-		if ($image['1'] < 400) {
+		if ($image['1'] <= 400) {
 			$classes[] = 'float-end';
 			$classes[] = 'mx-3';
 		} else {
@@ -459,4 +459,38 @@ function kt_list_comments($args = array(), $comments = null)
 	} else {
 		return $output;
 	}
+}
+
+function the_syndication_links()
+{
+	if ((!is_single() && !is_page()) || !function_exists('get_post_syndication_links')) {
+		return;
+	}
+
+	$syn_links = get_post_syndication_links();
+	$syn_links = str_replace('<ul', '<div', $syn_links);
+	$syn_links = str_replace('</ul>', '</div>', $syn_links);
+	$syn_links = str_replace('"relsyn"', '"relsyn d-inline ms-2"', $syn_links);
+	$syn_links = str_replace('<li>', '', $syn_links);
+	$syn_links = str_replace('</li>', '', $syn_links);
+	$syn_links = str_replace('</a><a', '</a>, <a', $syn_links);
+	$syn_links = str_replace(
+		'<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Medium</title><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>',
+		'<svg class="bi"><title>Medium</title><use href="#fa-medium"></use></svg>',
+		$syn_links
+	);
+
+	$p = new WP_HTML_Tag_Processor($syn_links);
+	while ($p->next_tag('a')) {
+		$p->add_class('link-underline');
+		$p->add_class('link-offset-2');
+		$p->add_class('link-underline-opacity-25');
+		$p->add_class('link-underline-opacity-100-hover');
+		$p->add_class('icon-link');
+	}
+?>
+
+	<div class="syn-links mt-3"><?php echo $p->get_updated_html(); ?></div>
+
+<?php
 }

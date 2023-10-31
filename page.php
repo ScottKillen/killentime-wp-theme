@@ -10,6 +10,8 @@ get_header();
 
 		get_template_part('template-parts/content/content', 'page');
 
+
+		the_syndication_links();
 		the_share_buttons();
 
 		// If comments are open or we have at least one comment, load up the comment template.

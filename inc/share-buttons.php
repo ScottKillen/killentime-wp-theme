@@ -17,7 +17,7 @@ function the_share_buttons()
     $tags = array();
   }
 ?>
-  <div class="mb-5 mt-3">
+  <div id="share-buttons" class="mb-5 mt-3">
     <p class="h6 font-accent">Share this:</p>
     <?php the_mastodon_share_button($classes, $title, $url, $tags); ?>
     <?php the_email_share_button($classes, $title, $url, $tags); ?>
