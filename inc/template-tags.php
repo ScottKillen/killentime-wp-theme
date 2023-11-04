@@ -62,7 +62,7 @@ function kt_the_post_thumbnail($before = '', $after = '')
 		$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-thumbnail');
 		$classes = array('img-fluid', 'rounded photo');
 
-		if ($image['1'] <= 400) {
+		if (($image['1'] <= 400) || (!is_single() && get_post_meta(get_the_ID(), 'excerpt_on_home', true))) {
 			$classes[] = 'float-end';
 			$classes[] = 'mx-3';
 		} else {

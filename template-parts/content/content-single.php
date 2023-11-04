@@ -2,6 +2,7 @@
 defined('ABSPATH') || exit;
 
 $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
+$show_excerpt = is_search() ? true : (is_home() ? get_post_meta(get_the_ID(), 'excerpt_on_home', true) : false);
 ?>
 <article <?php kt_post_id(); ?> <?php post_class($classes); ?><?php semantics('post'); ?> itemref="site-publisher">
 	<?php get_template_part(
@@ -16,11 +17,17 @@ $classes = !is_single() ? 'border-bottom border-secondary-subtle' : '';
 		)
 	); ?>
 
-	<?php if (is_search() || (!is_single() && get_post_meta(get_the_ID(), 'excerpt_on_home', true))) : // Only display Excerpts for Search
+	<?php if (is_search() || $show_excerpt) : // Only display Excerpts for Search
 	?>
-		<div class="entry-summary p-summary" itemprop="description">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-summary -->
+		<div class="clearfix pb-3">
+			<div class="entry-summary p-summary" itemprop="description">
+				<?php if (!is_search()) {
+					kt_the_post_thumbnail('<div class="entry-media">', '</div>');
+				}
+				?>
+				<?php the_excerpt(); ?>
+			</div><!-- .entry-summary -->
+		</div>
 	<?php else : ?>
 		<?php
 		if (is_single()) {
