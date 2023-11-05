@@ -29,6 +29,12 @@ get_header(); ?>
 				</div>
 			</div>
 		</header>
+		<p class="h3">Posts:</p>
+		<hr>
+		<?php while (have_posts()) : the_post();
+			get_template_part('template-parts/content/content', get_post_type());
+		endwhile; // End of the loop.
+		?>
 	</main><!-- #content -->
 </section><!-- #primary -->
 <?php
