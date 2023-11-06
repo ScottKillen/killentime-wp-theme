@@ -201,4 +201,5 @@ require get_template_directory() . '/inc/semantics.php';
 require get_template_directory() . '/inc/share-buttons.php';
 require get_template_directory() . '/inc/widget-recent-posts.php';
 require get_template_directory() . '/inc/widget-about.php';
+require get_template_directory() . '/inc/class-kt-auto-anchor.php';
 require get_template_directory() . '/inc/class-kt-walker-comment.php';

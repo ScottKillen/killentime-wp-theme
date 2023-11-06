@@ -329,3 +329,11 @@ function kt_webmention_comment_form($template_name)
 add_filter('webmention_comment_form', 'kt_webmention_comment_form');
 
 add_filter('syndication_links_display', '__return_false');
+
+function add_anchors_to_headings($content)
+{
+	$aa = new KTAutoAnchor($content);
+	$content = preg_replace_callback('/(\<h[2-6](.*?))\>(.*)(<\/h[2-6]>)/i', array($aa, 'custom_callback'), $content);
+	return $content;
+}
+add_filter('the_content', 'add_anchors_to_headings');
