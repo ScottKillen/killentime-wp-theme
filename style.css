@@ -76,6 +76,10 @@ h1,
   fill: #ffc107;
 }
 
+#color-mode-switcher button.active svg.bi.d-none {
+  display: block !important;
+}
+
 footer.entry-meta .blog-post-meta:not(.border-start) .border-end:last-child {
   border-right-width: 0 !important;
 }
