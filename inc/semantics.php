@@ -4,8 +4,7 @@ defined('ABSPATH') || exit;
 /**
  * Adds custom classes to the array of body classes.
  */
-function semantic_body_classes($classes = array())
-{
+add_filter('body_class', function ($classes = array()) {
   $classes[] = 'multi-column';
 
   // Adds a class of single-author to blogs with only 1 published author
@@ -20,14 +19,12 @@ function semantic_body_classes($classes = array())
   }
 
   return $classes;
-}
-add_filter('body_class', 'semantic_body_classes');
+});
 
 /**
  * Adds custom classes to the array of post classes.
  */
-function semantic_post_classes($classes = array())
-{
+add_filter('post_class', function ($classes = array()) {
   $classes = array_diff($classes, array('hentry'));
 
   if (!get_the_title()) {
@@ -39,22 +36,19 @@ function semantic_post_classes($classes = array())
   } else {
     return $classes;
   }
-}
-add_filter('post_class', 'semantic_post_classes', 99);
+}, 99);
 
 /**
  * Adds custom classes to the array of comment classes.
  */
-function sempantic_comment_classes($classes = array())
-{
+add_filter('comment_class', function ($classes = array()) {
   $classes[] = 'h-entry';
   $classes[] = 'h-cite';
   $classes[] = 'p-comment';
   $classes[] = 'comment';
 
   return array_unique($classes);
-}
-add_filter('comment_class', 'sempantic_comment_classes', 99);
+}, 99);
 
 function get_semantic_post_classes($classes = array())
 {
@@ -69,21 +63,22 @@ function get_semantic_post_classes($classes = array())
 
   return array_unique($classes);
 }
+
 /**
  * Adds microformats v2 support to the comment_author_link.
  */
-function semantic_author_link_class($link)
-{
-  // Adds a class for microformats v2
-  return preg_replace('/(class\s*=\s*[\"|\'])/i', '${1}u-url ', $link);
-}
-add_filter('get_comment_author_link', 'semantic_author_link_class');
+add_filter(
+  'get_comment_author_link',
+  function ($link) {
+    // Adds a class for microformats v2
+    return preg_replace('/(class\s*=\s*[\"|\'])/i', '${1}u-url ', $link);
+  }
+);
 
 /**
  * Adds microformats v2 support to the get_avatar() method.
  */
-function semantic_pre_get_avatar_data($args)
-{
+add_filter('pre_get_avatar_data', function ($args) {
   $classes = array('u-photo');
 
   if (isset($args['class'])) {
@@ -98,44 +93,47 @@ function semantic_pre_get_avatar_data($args)
   $args['extra_attr'] = 'itemprop="image"';
 
   return $args;
-}
-add_filter('pre_get_avatar_data', 'semantic_pre_get_avatar_data', 99);
+}, 99);
 
 /**
  * add rel-prev attribute to previous_image_link
  */
-function semantic_previous_image_link($link)
-{
-  return preg_replace('/<a/i', '<a rel="prev"', $link);
-}
-add_filter('previous_image_link', 'semantic_previous_image_link');
+add_filter(
+  'previous_image_link',
+  function ($link) {
+    return preg_replace('/<a/i', '<a rel="prev"', $link);
+  }
+);
 
 /**
  * add rel-next attribute to next_image_link
  */
-function sempress_semantic_next_image_link($link)
-{
-  return preg_replace('/<a/i', '<a rel="next"', $link);
-}
-add_filter('next_image_link', 'sempress_semantic_next_image_link');
+add_filter(
+  'next_image_link',
+  function ($link) {
+    return preg_replace('/<a/i', '<a rel="next"', $link);
+  }
+);
 
 /**
  * add rel-prev attribute to next_posts_link_attributes
  */
-function semantic_next_posts_link_attributes($attr)
-{
-  return $attr . ' rel="prev"';
-}
-add_filter('next_posts_link_attributes', 'semantic_next_posts_link_attributes');
+add_filter(
+  'next_posts_link_attributes',
+  function ($attr) {
+    return $attr . ' rel="prev"';
+  }
+);
 
 /**
  * add rel-next attribute to previous_posts_link
  */
-function semantic_previous_posts_link_attributes($attr)
-{
-  return $attr . ' rel="next"';
-}
-add_filter('previous_posts_link_attributes', 'semantic_previous_posts_link_attributes');
+add_filter(
+  'previous_posts_link_attributes',
+  function ($attr) {
+    return $attr . ' rel="next"';
+  }
+);
 
 /**
  * add semantics
@@ -211,20 +209,21 @@ function semantics($id)
 /**
  * Add `p-category` to tags links
  */
-function semantic_term_links_tag($links)
-{
-  $new_links = array();
-  foreach ($links as $link) {
-    $p = new WP_HTML_Tag_Processor($link);
-    if ($p->next_tag('a')) {
-      $p->add_class('p-category');
+add_filter(
+  'term_links-post_tag',
+  function ($links) {
+    $new_links = array();
+    foreach ($links as $link) {
+      $p = new WP_HTML_Tag_Processor($link);
+      if ($p->next_tag('a')) {
+        $p->add_class('p-category');
+      }
+      $new_links[] = $p->get_updated_html();
     }
-    $new_links[] = $p->get_updated_html();
-  }
 
-  return $new_links;
-}
-add_filter('term_links-post_tag', 'semantic_term_links_tag');
+    return $new_links;
+  }
+);
 
 function semantic_main_class($class = '')
 {
