@@ -337,3 +337,23 @@ function add_anchors_to_headings($content)
 	return $content;
 }
 add_filter('the_content', 'add_anchors_to_headings');
+
+add_filter('share_on_mastodon_status', function ($status, $post) {
+	//  Create a short preview of the post
+	$status = "\"" . get_the_title($post) . "\"\n\n";
+	$status .= get_the_excerpt($post);
+	//  Remove the … forced by the excerpt and replace with the Unicode symbol
+	$status = html_entity_decode($status);
+	//  Add a link
+	$status .= "\n\nRead more: " . get_permalink($post);
+	//  Add tags
+	$tags = get_the_tags($post->ID);
+	if ($tags) {
+		$status .= "\n\n";
+		foreach ($tags as $tag) {
+			$status .= '#' . preg_replace('/\s/', '', $tag->name) . ' ';
+		}
+	}
+	$status = trim($status);
+	return $status;
+}, 10, 2);
