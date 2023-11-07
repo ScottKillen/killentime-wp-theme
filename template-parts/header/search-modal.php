@@ -2,8 +2,8 @@
 
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="seachModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" class="modal-content d-flex glass" role="search" method="get" action="<?php echo esc_url(home_url('/')) ?>">
+  <search class="modal-dialog modal-dialog-centered">
+    <form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" class="modal-content d-flex glass" method="get" action="<?php echo esc_url(home_url('/')) ?>">
       <div class="modal-header">
         <h1 class="modal-title fs-5 text-light" id="seachModalTitle">Search</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -17,5 +17,5 @@
       </div>
       <meta itemprop="target" content="<?php echo home_url('/?s={search} '); ?>" />
     </form>
-  </div>
+  </search>
 </div>
