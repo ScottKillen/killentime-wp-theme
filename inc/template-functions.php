@@ -345,6 +345,23 @@ function add_anchors_to_headings($content)
 }
 add_filter('the_content', 'add_anchors_to_headings');
 
+add_filter('pre_get_avatar_data', function ($args) {
+	$classes = array('me-3');
+
+	if (isset($args['class'])) {
+		if (is_array($args['class'])) {
+			$classes = array_merge($classes, $args['class']);
+		} else {
+			$classes[] = $args['class'];
+		}
+	}
+
+	$args['class'] = $classes;
+
+	return $args;
+});
+
+
 add_filter('share_on_mastodon_status', function ($status, $post) {
 	//  Create a short preview of the post
 	$status = "\"" . get_the_title($post) . "\"\n\n";
