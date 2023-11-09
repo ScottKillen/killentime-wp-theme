@@ -364,3 +364,25 @@ add_filter('share_on_mastodon_status', function ($status, $post) {
 	$status = trim($status);
 	return $status;
 }, 10, 2);
+
+add_filter('syn_link_mapping', function ($return, $url) {
+	$domain = wp_parse_url($url, PHP_URL_HOST);
+	$domain = str_replace('www.', '', $domain); // Always remove www
+	switch ($domain) {
+		case 'ttocs.io':
+			return 'mastodon';
+	}
+	return $return;
+}, 10, 2);
+
+add_filter('pre_syn_link_icon', function ($icon, $name) {
+	switch ($name) {
+		case 'medium':
+			return '<svg class="bi"><title>Medium</title><use href="#fa-medium" /></svg>';
+		case 'mastodon':
+			return '<svg class="bi"><title>Mastodon</title><use href="#fa-mastodon" /></svg>';
+		case 'website':
+			return '<svg class="bi"><use href="#fa-globe" /></svg>';
+	}
+	return null;
+}, 10, 2);
