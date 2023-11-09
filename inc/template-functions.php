@@ -405,7 +405,7 @@ add_filter('pre_syn_link_icon', function ($icon, $name) {
 }, 10, 2);
 
 add_filter('get_comment_text', function ($comment_text, $comment) {
-	if ('list' === $comment->comment_type) {
+	if ('like' === $comment->comment_type) {
 		return '<svg class="bi"><use href="#fa-thumbs-up" /><title>Like</title></svg>';
 	}
 	return $comment_text;
