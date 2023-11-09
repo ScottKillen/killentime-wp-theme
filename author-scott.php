@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 get_header(); ?>
 <section id="primary">
 	<main id="content" role="main" <?php semantic_main_class(); ?>>
-		<header class="clearfix page-header author vcard h-card pb-3 mb-3" itemprop="author" itemscope itemtype="http://schema.org/Person">
+		<header class="clearfix page-header author vcard h-card pb-3 mb-3" itemprop="author" itemscope itemtype="https://schema.org/Person">
 			<h1 class="page-title display-4 border-bottom mb-3 border-secondary-subtle">About the Author</h1>
 			<div class="d-flex">
 				<div><?php echo get_avatar(get_the_author_meta('ID'), 150); ?></div>

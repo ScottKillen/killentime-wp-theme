@@ -3,7 +3,7 @@
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="seachModalTitle" aria-hidden="true">
   <search class="modal-dialog modal-dialog-centered">
-    <form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" class="modal-content d-flex glass" method="get" action="<?php echo esc_url(home_url('/')) ?>">
+    <form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" class="modal-content d-flex glass" method="get" action="<?php echo esc_url(home_url('/')) ?>">
       <div class="modal-header">
         <p class="modal-title fs-5 text-light" id="seachModalTitle">Search</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

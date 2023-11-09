@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit; ?>
 <search>
-  <form method="get" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" class="search-form" action="<?php echo esc_url(home_url('/')) ?>">
+  <form method="get" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" class="search-form" action="<?php echo esc_url(home_url('/')) ?>">
     <div class="input-group my-3">
       <!-- Search icon -->
       <span class="input-group-text" id="basic-addon3">

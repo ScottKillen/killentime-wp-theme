@@ -17,7 +17,7 @@ get_header(); ?>
 			the_post();
 			?>
 
-			<header class="clearfix page-header author vcard h-card pb-3 mb-3 border-bottom border-secondary-subtle" itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<header class="clearfix page-header author vcard h-card pb-3 mb-3 border-bottom border-secondary-subtle" itemprop="author" itemscope itemtype="https://schema.org/Person">
 				<h1 class="page-title display-4 border-bottom mb-3 border-secondary-subtle"><?php printf(__('Author Archives: %s', 'sempress'), '<a class="url u-url fn p-fn n p-name link-underline link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="' . get_author_posts_url(get_the_author_meta('ID')) . '" title="' . esc_attr(get_the_author()) . '" rel="me author" itemprop="url"><span itemprop="name">' . get_the_author() . '</span></a>'); ?></h1>
 				<?php echo get_avatar(get_the_author_meta('ID'), 150); ?>
 				<?php if (get_the_author_meta('description')) { ?>

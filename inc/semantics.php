@@ -147,13 +147,13 @@ function get_semantics($id = null)
     case 'body':
       if (!is_singular()) {
         $atts['itemscope'] = array('');
-        $atts['itemtype'] = array('http://schema.org/Blog', 'http://schema.org/WebPage');
+        $atts['itemtype'] = array('https://schema.org/Blog', 'https://schema.org/WebPage');
       } elseif (is_single()) {
         $atts['itemscope'] = array('');
-        $atts['itemtype'] = array('http://schema.org/BlogPosting');
+        $atts['itemtype'] = array('https://schema.org/BlogPosting');
       } elseif (is_page()) {
         $atts['itemscope'] = array('');
-        $atts['itemtype'] = array('http://schema.org/WebPage');
+        $atts['itemtype'] = array('https://schema.org/WebPage');
       }
       break;
     case 'site-title':
@@ -178,7 +178,7 @@ function get_semantics($id = null)
       if (!is_singular()) {
         $atts['itemprop'] = array('blogPost');
         $atts['itemscope'] = array('');
-        $atts['itemtype'] = array('http://schema.org/BlogPosting');
+        $atts['itemtype'] = array('https://schema.org/BlogPosting');
       }
       break;
   }
