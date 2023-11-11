@@ -2,7 +2,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="seachModalTitle" aria-hidden="true">
-  <search class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered">
     <form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" class="modal-content d-flex glass" method="get" action="<?php echo esc_url(home_url('/')) ?>">
       <div class="modal-header">
         <p class="modal-title fs-5 text-light" id="seachModalTitle">Search</p>
@@ -17,5 +17,5 @@
       </div>
       <meta itemprop="target" content="<?php echo home_url('/?s={search} '); ?>" />
     </form>
-  </search>
+  </div>
 </div>

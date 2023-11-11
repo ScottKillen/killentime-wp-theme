@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit; ?>
 <div class="container">
-	<header id="masthead" role="banner">
+	<header id="masthead">
 
 		<?php get_template_part('template-parts/header/site', 'branding'); ?>
 

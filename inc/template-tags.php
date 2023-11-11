@@ -200,7 +200,7 @@ function kt_content_nav($nav_id)
 	global $wp_query;
 
 	?>
-	<nav id="<?php echo esc_attr($nav_id); ?>" "aria-label=" Post navigation">
+	<nav id="<?php echo esc_attr($nav_id); ?>" aria-label="Post navigation">
 
 		<?php if (is_single()) : // navigation links for single posts
 		?>
@@ -214,11 +214,11 @@ function kt_content_nav($nav_id)
 
 			<ul class="pagination">
 				<?php if (get_next_posts_link()) : ?>
-					<div class="nav-previous page-item"><?php next_posts_link('<svg class="bi"><use xlink:href="#fa-chevron-left" /></svg> Older posts'); ?></div>
+					<li class="nav-previous page-item"><?php next_posts_link('<svg class="bi"><use xlink:href="#fa-chevron-left" /></svg> Older posts'); ?></li>
 				<?php endif; ?>
 
 				<?php if (get_previous_posts_link()) : ?>
-					<div class="nav-next page-item"><?php previous_posts_link('Newer posts <svg class="bi"><use xlink:href="#fa-chevron-right" /></svg>'); ?></div>
+					<li class="nav-next page-item"><?php previous_posts_link('Newer posts <svg class="bi"><use xlink:href="#fa-chevron-right" /></svg>'); ?></li>
 				<?php endif; ?>
 			</ul>
 

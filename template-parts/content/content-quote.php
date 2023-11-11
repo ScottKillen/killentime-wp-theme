@@ -17,6 +17,7 @@
 						<figcaption class="blockquote-footer">
 							<cite><?php the_title(); ?></cite>
 						</figcaption>
+					</figure>
 				</div>
 				<?php wp_link_pages(array('before' => '<div class="page-link">Pages:', 'after' => '</div>')); ?>
 			</div><!-- .entry-content -->

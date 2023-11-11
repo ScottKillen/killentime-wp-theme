@@ -173,7 +173,9 @@ add_filter('nav_menu_link_attributes', function ($atts, $menu_item, $args) {
 add_filter(
 	'comments_popup_link_attributes',
 	function ($link_attributes) {
-		return $link_attributes .= 'class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"';
+		$link_attributes = array($link_attributes);
+		$link_attributes[] = 'class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"';
+		return join(' ', $link_attributes);
 	}
 );
 
