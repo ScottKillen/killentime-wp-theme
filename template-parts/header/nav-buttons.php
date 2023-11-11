@@ -1,7 +1,7 @@
 <?php defined('ABSPATH') || exit; ?>
 <ul class="navbar-nav flex-rowflex-wrap ms-md-auto">
   <li class="nav-item">
-    <button type="button" class="btn py-2" data-bs-toggle="modal" data-bs-target="#searchModal">
+    <button type="button" class="btn py-2" data-bs-toggle="modal" data-bs-target="#searchModal" aria-label="Toggle search form">
       <svg class="bi">
         <use xlink:href="#fa-magnifying-glass" />
       </svg>
