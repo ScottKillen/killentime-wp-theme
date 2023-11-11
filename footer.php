@@ -16,7 +16,7 @@ $logo_img_url = 'https://imagedelivery.net/0XfRl_9i2twIzyWa9HYA4g/ec98a6d7-bf85-
 			</ul>
 		</div>
 		<div class="d-flex flex-wrap justify-content-center">
-			<img id="footer-image" loading="lazy" height="256" width="356" class="d-block my-0 img-fluid" src="<?php echo $logo_img_url; ?>" alt="Killentime logo" />
+			<img id="footer-image" loading="lazy" height="256" width="256" class="d-block my-0 img-fluid" src="<?php echo $logo_img_url; ?>" alt="Killentime logo" />
 		</div>
 	</div>
 </footer>
