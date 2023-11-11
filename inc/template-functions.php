@@ -202,6 +202,10 @@ add_filter('pre_get_avatar_data', function ($args) {
 		}
 	}
 
+	if (!isset($args['loading'])) {
+		$args['loading'] = 'lazy';
+	}
+
 	$args['class'] = $classes;
 
 	return $args;
