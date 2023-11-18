@@ -414,5 +414,8 @@ add_filter('get_comment_text', function ($comment_text, $comment) {
 	if ('like' === $comment->comment_type) {
 		return '<svg class="bi"><use href="#fa-star" /><title>Like</title></svg>';
 	}
+	if ('repost' === $comment->comment_type) {
+		return '<svg class="bi"><use href="#fa-arrows-retweet" /><title>Repost</title></svg>';
+	}
 	return $comment_text;
 }, 10, 2);
